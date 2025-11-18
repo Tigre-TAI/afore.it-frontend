@@ -8,7 +8,22 @@
   "home": {
     "title": "Afore Italia",
     "prodotti": "Products",
-    "documentazione": "Documentation"
+    "documentazione": "Documentation",
+    "hero": {
+      "title": "WORLD LEADER FOR PHOTOVOLTAIC PRODUCTS",
+      "badge": "TopBrand 2025",
+      "cta": "Discover Products"
+    },
+    "productsSection": {
+      "title": "Our Products",
+      "description": "Complete solutions for residential and commercial photovoltaics.",
+      "cta": "View All Products"
+    },
+    "featured_products": {
+      "title": "Featured Products",
+      "description": "Discover our complete range of photovoltaic solutions",
+      "cta": "View All Products"
+    }
   },
   "prodotti": {
     "title": "Products",
@@ -41,7 +56,47 @@
   },
   "documentazione": {
     "title": "Documentation",
-    "subtitle": "All technical documentation of our products",
+    "subtitle": "Warranties, certifications, compatibility, archive and social responsibility.",
+    "scopriDiPiu": "Learn more",
+    "categories": {
+      "pvInverter": {
+        "title": "String PV Inverter Certificates",
+        "description": "Official documents for CEI alignment and compliance testing.",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guide to compiling the operating regulations",
+          "Guide to compiling the Technical Addendum and Conformity Verification Test"
+        ]
+      },
+      "inverterIbridi": {
+        "title": "Hybrid Inverter Certificates",
+        "description": "Hailei Storage recommended by Afore",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guide to compiling the operating regulations"
+        ]
+      },
+      "accumuloAfore": {
+        "title": "Afore Storage",
+        "description": "Technical documents and certifications for Afore storage systems.",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guide to compiling the operating regulations"
+        ]
+      },
+      "allInOne": {
+        "title": "All-in-One Certificates",
+        "description": "Technical downloads for integrated residential and commercial systems.",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guide to compiling the operating regulations"
+        ]
+      }
+    },
     "schedaTecnica": {
       "title": "Technical Sheet",
       "subtitle": "Download the complete technical sheets of our products"
@@ -53,6 +108,22 @@
     "cei": {
       "title": "CEI-16 & CEI-021",
       "subtitle": "CEI regulatory documentation"
+    },
+    "certificatiInverterStringa": {
+      "title": "String Inverter Certificates",
+      "subtitle": "CEI regulatory documentation"
+    },
+    "certificatiInverterIbridi": {
+      "title": "Hybrid Inverter Certificates",
+      "subtitle": "Certifications and guides for the integration of hybrid systems proposed by Afore."
+    },
+    "accumuloAfore": {
+      "title": "Afore Storage",
+      "subtitle": "Technical documents and certifications for Afore storage systems."
+    },
+    "certificatiAllInOne": {
+      "title": "All-in-One Certificates",
+      "subtitle": "Technical downloads for integrated residential and commercial systems."
     },
     "archivio": {
       "title": "Documentation Archive",
@@ -67,7 +138,11 @@
     "inserisciNumeroSerie": "Enter the serial number",
     "verifica": "Verify Warranty",
     "apriSistema": "Open Warranty System",
-    "descrizione": "Enter the product serial number to verify the warranty status."
+    "descrizione": "Enter the product serial number to verify the warranty status.",
+    "garanzia10Anni": {
+      "title": "10 Year Warranty",
+      "description": "Download the official 10 year warranty document."
+    }
   },
   "common": {
     "home": "Home",

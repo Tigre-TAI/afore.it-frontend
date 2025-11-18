@@ -88,23 +88,23 @@ export default function Footer() {
               <h3 className="text-white font-semibold mb-4">{t('footer.documentazione')}</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href={withLang("/documentazione/scheda-tecnica", lang)} className="hover:text-white transition-colors">
-                    Scheda Tecnica
+                  <Link href={withLang("/documentazione/certificati-inverter-di-stringa", lang)} className="hover:text-white transition-colors">
+                    {t('documentazione.certificatiInverterStringa.title')}
                   </Link>
                 </li>
                 <li>
-                  <Link href={withLang("/documentazione/manuale", lang)} className="hover:text-white transition-colors">
-                    Manuale
+                  <Link href={withLang("/documentazione/certificati-inverter-ibridi", lang)} className="hover:text-white transition-colors">
+                    {t('documentazione.certificatiInverterIbridi.title')}
                   </Link>
                 </li>
                 <li>
-                  <Link href={withLang("/documentazione/cei", lang)} className="hover:text-white transition-colors">
-                    CEI-16 & CEI-021
+                  <Link href={withLang("/documentazione/accumulo-afore", lang)} className="hover:text-white transition-colors">
+                    {t('documentazione.accumuloAfore.title')}
                   </Link>
                 </li>
                 <li>
-                  <Link href={withLang("/documentazione/archivio", lang)} className="hover:text-white transition-colors">
-                    Archivio
+                  <Link href={withLang("/documentazione/certificati-all-in-one", lang)} className="hover:text-white transition-colors">
+                    {t('documentazione.certificatiAllInOne.title')}
                   </Link>
                 </li>
               </ul>

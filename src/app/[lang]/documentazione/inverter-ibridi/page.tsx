@@ -28,13 +28,15 @@ function Section({ title, sections }: { title: string; sections: DocSection[] })
                       <p className="font-semibold text-slate-900 truncate">{it.title}</p>
                       {it.meta ? <p className="text-xs text-slate-500 mt-0.5">{it.meta}</p> : null}
                     </div>
-                    <Link
+                    <a
                       href={it.href}
-                      className="shrink-0 rounded-md bg-brand-600 px-3 py-1.5 text-white text-sm font-semibold hover:bg-brand-500"
+                      download
+                      className="shrink-0 rounded-md bg-brand-600 px-3 py-1.5 text-white text-sm font-semibold hover:bg-brand-500 inline-block"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Download
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -47,8 +49,8 @@ function Section({ title, sections }: { title: string; sections: DocSection[] })
 }
 
 export default function InverterIbridiPage() {
-  // Base prefix for convenience
-  const base = "https://www.afore.it/documentazione";
+  // Base prefix for local PDFs
+  const base = "/documentazione";
 
   const afslCei: DocSection[] = [
     {
@@ -133,7 +135,7 @@ export default function InverterIbridiPage() {
         {
           title:
             "Inverter Ibrido Monofase AF‑SL 1–6kW · Test Report EN62109‑2:2011 (VOC) [EN]",
-          href: `${base}/PV_INVERTER/EN_Inverter_di_Stringa_Monofase_HNS_3-10kW_TestReport_EN62109-2_VOC.pdf`,
+          href: `${base}/PV_INVERTER/EN_Inverter_Ibrido_Monofase_AF-SL_1-6kW_TestReport_EN62109-2-2011_VOC.pdf`,
         },
       ],
     },

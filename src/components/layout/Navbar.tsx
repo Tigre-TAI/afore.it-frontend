@@ -78,10 +78,10 @@ export default function Navbar() {
 
   // 语言切换器 - 三个按钮放在一起
   const LanguageSwitcher = () => (
-    <div className="flex items-center gap-1 border rounded-lg overflow-hidden" style={{ borderColor: solid ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.3)' }}>
+    <div className="flex items-center gap-1 border rounded-lg overflow-hidden flex-shrink-0" style={{ borderColor: solid ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.3)' }}>
       <button
         onClick={() => switchLanguage("it")}
-        className={`px-3 py-1.5 text-xs font-semibold transition-colors ${
+        className={`px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold transition-colors ${
           currentLang === "it"
             ? solid
               ? "text-white bg-slate-800"
@@ -95,7 +95,7 @@ export default function Navbar() {
       </button>
       <button
         onClick={() => switchLanguage("en")}
-        className={`px-3 py-1.5 text-xs font-semibold transition-colors border-l ${
+        className={`px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold transition-colors border-l ${
           currentLang === "en"
             ? solid
               ? "text-white bg-slate-800 border-slate-600"
@@ -109,7 +109,7 @@ export default function Navbar() {
       </button>
       <button
         onClick={() => switchLanguage("es")}
-        className={`px-3 py-1.5 text-xs font-semibold transition-colors border-l ${
+        className={`px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold transition-colors border-l ${
           currentLang === "es"
             ? solid
               ? "text-white bg-slate-800 border-slate-600"
@@ -144,26 +144,26 @@ export default function Navbar() {
       </div>
 
       {/* 内容层 */}
-      <div className="relative z-10 max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
+      <div className="relative z-10 max-w-7xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href={navLink("/")} className="flex items-center gap-2">
+        <Link href={navLink("/")} className="flex items-center gap-2 flex-shrink-0">
           <Image
             src={solid ? "/logos/logo_afore_dark.png" : "/logos/logo_afore_light.png"}
             alt="Afore Logo"
             width={132}
             height={40}
             priority
-            className="h-10 w-auto"
+            className="h-8 sm:h-10 w-auto"
           />
         </Link>
 
         {/* 桌面导航 */}
-        <nav className="hidden md:flex items-center gap-8 text-sm tracking-wide">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-8 text-sm tracking-wide">
           <Link 
             className={navLinkClass((p) => p === `/${currentLang}` || p === `/${currentLang}/`)} 
             href={navLink("/")}
           >
-            {t('nav.home')}
+            HOME
           </Link>
           <Link
             className={navLinkClass((p) => p.includes("/prodotti"))}
@@ -192,7 +192,7 @@ export default function Navbar() {
         <button
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
-          className={`md:hidden text-2xl transition-colors ${
+          className={`md:hidden text-2xl transition-colors flex-shrink-0 ml-2 ${
             solid ? "text-slate-800" : "text-white"
           }`}
         >
@@ -202,29 +202,56 @@ export default function Navbar() {
 
       {/* 移动端菜单 */}
       {mobileOpen && (
-        <div
-          className={`md:hidden border-t ${
-            solid ? "bg-white text-slate-800" : "bg-black/60 text-white"
-          }`}
-        >
-          <nav className="flex flex-col px-6 py-4 gap-3 text-base font-medium">
-            <Link href={navLink("/")} onClick={() => setMobileOpen(false)}>
-              {t('nav.home')}
-            </Link>
-            <Link href={navLink("/prodotti")} onClick={() => setMobileOpen(false)}>
-              {t('nav.prodotti')}
-            </Link>
-            <Link href={navLink("/documentazione")} onClick={() => setMobileOpen(false)}>
-              {t('nav.documentazione')}
-            </Link>
-            <Link href={navLink("/garanzia")} onClick={() => setMobileOpen(false)}>
-              {t('nav.garanzia')}
-            </Link>
-            <div className="pt-2 border-t border-white/20">
-              <LanguageSwitcher />
-            </div>
-          </nav>
-        </div>
+        <>
+          {/* 背景遮罩 */}
+          <div
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
+          {/* 菜单内容 */}
+          <div
+            className={`fixed top-16 left-0 right-0 bottom-0 md:hidden border-t overflow-y-auto z-50 ${
+              solid ? "bg-white text-slate-800" : "bg-black/95 backdrop-blur-md text-white"
+            }`}
+          >
+            <nav className="flex flex-col px-4 sm:px-6 py-4 gap-3 text-base font-medium">
+              <Link 
+                href={navLink("/")} 
+                onClick={() => setMobileOpen(false)}
+                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
+              >
+                HOME
+              </Link>
+              <Link 
+                href={navLink("/prodotti")} 
+                onClick={() => setMobileOpen(false)}
+                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
+              >
+                {t('nav.prodotti')}
+              </Link>
+              <Link 
+                href={navLink("/documentazione")} 
+                onClick={() => setMobileOpen(false)}
+                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
+              >
+                {t('nav.documentazione')}
+              </Link>
+              <Link 
+                href={navLink("/garanzia")} 
+                onClick={() => setMobileOpen(false)}
+                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
+              >
+                {t('nav.garanzia')}
+              </Link>
+              <div className="pt-4 mt-2 border-t border-white/20">
+                <p className="text-xs font-semibold uppercase tracking-wider mb-3 opacity-70">
+                  {t('common.language') || 'Language'}
+                </p>
+                <LanguageSwitcher />
+              </div>
+            </nav>
+          </div>
+        </>
       )}
     </header>
   );

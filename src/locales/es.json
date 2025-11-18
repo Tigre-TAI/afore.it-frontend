@@ -8,7 +8,22 @@
   "home": {
     "title": "Afore Italia",
     "prodotti": "Productos",
-    "documentazione": "Documentación"
+    "documentazione": "Documentación",
+    "hero": {
+      "title": "LÍDER MUNDIAL EN PRODUCTOS FOTOVOLTAICOS",
+      "badge": "TopBrand 2025",
+      "cta": "Descubrir Productos"
+    },
+    "productsSection": {
+      "title": "Nuestros Productos",
+      "description": "Soluciones completas para fotovoltaica residencial y comercial.",
+      "cta": "Ver Todos los Productos"
+    },
+    "featured_products": {
+      "title": "Productos Destacados",
+      "description": "Descubra nuestra gama completa de soluciones fotovoltaicas",
+      "cta": "Ver Todos los Productos"
+    }
   },
   "prodotti": {
     "title": "Productos",
@@ -41,7 +56,47 @@
   },
   "documentazione": {
     "title": "Documentación",
-    "subtitle": "Toda la documentación técnica de nuestros productos",
+    "subtitle": "Garantías, certificaciones, compatibilidad, archivo y responsabilidad social.",
+    "scopriDiPiu": "Descubrir más",
+    "categories": {
+      "pvInverter": {
+        "title": "Certificados de Inversor PV de Cadena",
+        "description": "Documentos oficiales para la alineación CEI y las pruebas de conformidad.",
+        "bullets": [
+          "Cumplimiento del Estándar CEI 0-21",
+          "Informe de Pruebas",
+          "Guía para la compilación del reglamento de funcionamiento",
+          "Guía para la compilación del Addendum Técnico y Prueba de Verificación de Conformidad"
+        ]
+      },
+      "inverterIbridi": {
+        "title": "Certificados de Inversor Híbrido",
+        "description": "Almacenamiento Hailei recomendado por Afore",
+        "bullets": [
+          "Cumplimiento del Estándar CEI 0-21",
+          "Informe de Pruebas",
+          "Guía para la compilación del reglamento de funcionamiento"
+        ]
+      },
+      "accumuloAfore": {
+        "title": "Almacenamiento Afore",
+        "description": "Documentos técnicos y certificaciones para los sistemas de almacenamiento Afore.",
+        "bullets": [
+          "Cumplimiento del Estándar CEI 0-21",
+          "Informe de Pruebas",
+          "Guía para la compilación del reglamento de funcionamiento"
+        ]
+      },
+      "allInOne": {
+        "title": "Certificados All-in-One",
+        "description": "Descargas técnicas para sistemas integrados residenciales y comerciales.",
+        "bullets": [
+          "Cumplimiento del Estándar CEI 0-21",
+          "Informe de Pruebas",
+          "Guía para la compilación del reglamento de funcionamiento"
+        ]
+      }
+    },
     "schedaTecnica": {
       "title": "Ficha Técnica",
       "subtitle": "Descarga las fichas técnicas completas de nuestros productos"
@@ -53,6 +108,22 @@
     "cei": {
       "title": "CEI-16 & CEI-021",
       "subtitle": "Documentación normativa CEI"
+    },
+    "certificatiInverterStringa": {
+      "title": "Certificados de Inversor de Cadena",
+      "subtitle": "Documentación normativa CEI"
+    },
+    "certificatiInverterIbridi": {
+      "title": "Certificados de Inversor Híbrido",
+      "subtitle": "Certificaciones y guías para la integración de sistemas híbridos propuestos por Afore."
+    },
+    "accumuloAfore": {
+      "title": "Almacenamiento Afore",
+      "subtitle": "Documentos técnicos y certificaciones para los sistemas de almacenamiento Afore."
+    },
+    "certificatiAllInOne": {
+      "title": "Certificados All-in-One",
+      "subtitle": "Descargas técnicas para sistemas integrados residenciales y comerciales."
     },
     "archivio": {
       "title": "Archivo de Documentación",
@@ -67,7 +138,11 @@
     "inserisciNumeroSerie": "Ingrese el número de serie",
     "verifica": "Verificar Garantía",
     "apriSistema": "Abrir Sistema de Garantía",
-    "descrizione": "Ingrese el número de serie del producto para verificar el estado de la garantía."
+    "descrizione": "Ingrese el número de serie del producto para verificar el estado de la garantía.",
+    "garanzia10Anni": {
+      "title": "Garantía de 10 años",
+      "description": "Descargue el documento oficial de la garantía de 10 años."
+    }
   },
   "common": {
     "home": "Inicio",

@@ -100,7 +100,7 @@ function Card({ p }: { p: any }) {
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
           <Breadcrumb
             theme="dark"
             items={[
@@ -108,26 +108,26 @@ function Card({ p }: { p: any }) {
               { label: t('prodotti.title') }, // 当前页
             ]}
           />
-          <h1 className="mt-3 text-3xl lg:text-5xl font-extrabold tracking-tight">
+          <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight break-words">
             {t('prodotti.title')}
           </h1>
-          <p className="mt-3 max-w-2xl text-white/85">
+          <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/85">
             {t('prodotti.subtitle')}
           </p>
         </div>
       </section>
 
       {/* ===== 列表分组（按照导航结构与标题） ===== */}
-      <section className="py-10 lg:py-14">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-16">
+      <section className="py-8 sm:py-10 lg:py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
           {GROUPS.map((g, gi) => (
             <div key={gi}>
               {/* 大标题 + 横线 */}
-              <div className="mb-6">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-wide">
+              <div className="mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide break-words">
                   {g.bigTitle}
                 </h2>
-                <div className="mt-2 h-[2px] w-40 bg-black/10" />
+                <div className="mt-2 h-[2px] w-32 sm:w-40 bg-black/10" />
               </div>
 
               {/* 子线：标题 + 副标题 + 卡片网格 */}
@@ -136,15 +136,15 @@ function Card({ p }: { p: any }) {
                 if (list.length === 0) return null;
 
                 return (
-                  <div key={li} className="mb-10 last:mb-0">
-                    <h3 className="text-xl md:text-2xl font-extrabold tracking-wide">
+                  <div key={li} className="mb-8 sm:mb-10 last:mb-0">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide break-words">
                       {line.title}
                     </h3>
                     {line.subtitle && (
-                      <p className="text-slate-500">{line.subtitle}</p>
+                      <p className="text-sm sm:text-base text-slate-500 mt-1">{line.subtitle}</p>
                     )}
 
-                    <div className="mt-6 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="mt-6 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                       {list.map((p) => (
                         <Card key={p.id} p={p} />
                       ))}

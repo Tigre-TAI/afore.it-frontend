@@ -7,6 +7,7 @@ import { join } from "path";
 import { existsSync } from "fs";
 import Link from "next/link";
 import { withLang } from "@/lib/lang-utils";
+import { getTranslations } from "@/lib/i18n";
 
 type Props = { 
   params: Promise<{ 
@@ -137,21 +138,46 @@ export default async function ProductPage({ params }: Props) {
     ),
   ];
 
+  const t = getTranslations(lang);
+  
   // 面包屑：统一从数据推导（可覆盖全局 Breadcrumbs 的默认行为）
   const crumbs = [
-    { href: "/", label: "Home" },
-    { href: "/prodotti", label: "Prodotti" },
+    { href: "/", label: t("common.breadcrumb.home") },
+    { href: "/prodotti", label: t("prodotti.title") },
     { href: `/prodotti/${family}`, label: labelOf(family) },
     { label: p.title },
   ];
 
   return (
-    <main className="mx-auto max-w-7xl px-6 lg:px-8 py-10 space-y-10">
-      {/* 面包屑（深色/浅色由父级控制；这里默认浅色） */}
-      <Breadcrumbs items={crumbs} theme="light" />
+    <main>
+      {/* Hero Section */}
+      <section className="relative -mt-16 pt-16">
+        <div className="absolute inset-0">
+          <img
+            src="/image/product_bg.jpg"
+            alt={p.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
 
-      {/* Hero：左图右文 */}
-      <section className="grid gap-8 md:grid-cols-2 items-center">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
+          <Breadcrumbs items={crumbs} theme="dark" />
+          <h1 className="mt-3 text-3xl lg:text-5xl font-extrabold tracking-tight">
+            {p.title}
+          </h1>
+          {p.subtitle && (
+            <p className="mt-3 max-w-2xl text-white/85">
+              {p.subtitle}
+            </p>
+          )}
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-10 space-y-10">
+        {/* Hero：左图右文 */}
+        <section className="grid gap-8 md:grid-cols-2 items-center">
         <div>
           <Image
             src={meta?.hero?.product ?? p.image}
@@ -242,6 +268,7 @@ export default async function ProductPage({ params }: Props) {
           }),
         }}
       />
+      </div>
     </main>
   );
 }

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { readdir, stat } from 'fs/promises';
 import { join } from 'path';
 
-const OLD_REPO_DOC_PATH = '/Users/tai/Projects/web/afore-web/public/documentazione';
+const DOC_PATH = join(process.cwd(), 'public', 'documentazione');
 
 type DocumentFile = {
   fileName: string;
@@ -59,7 +59,7 @@ async function scanDocumentazioneDirectory(): Promise<DocumentFile[]> {
     const productTypes = ['PV_INVERTER', 'ALL_IN_ONE', 'BATTERIA_DI_ACCUMULO', 'EV_CHARGER'];
     
     for (const productType of productTypes) {
-      const dirPath = join(OLD_REPO_DOC_PATH, productType);
+      const dirPath = join(DOC_PATH, productType);
       
       try {
         const files = await readdir(dirPath);

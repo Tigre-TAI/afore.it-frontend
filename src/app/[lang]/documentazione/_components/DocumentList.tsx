@@ -2,7 +2,6 @@
 
 import { useMemo, useEffect, useState } from "react";
 import { PRODUCTS } from "@/data/product-data";
-import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 
 type DocumentFile = {
@@ -271,13 +270,15 @@ export default function DocumentList({
                                   <p className="text-xs text-slate-500 mt-0.5">Lingua: {item.lang}</p>
                                 )}
                               </div>
-                              <Link
+                              <a
                                 href={item.href}
-                                className="shrink-0 rounded-md bg-brand-600 px-3 py-1.5 text-white text-sm font-semibold hover:bg-brand-500 transition-colors"
+                                download
+                                className="shrink-0 rounded-md bg-slate-900 px-4 py-2 text-white text-sm font-bold hover:bg-slate-800 transition-colors shadow-sm border border-slate-800 whitespace-nowrap inline-block"
                                 target="_blank"
+                                rel="noopener noreferrer"
                               >
                                 Download
-                              </Link>
+                              </a>
                             </li>
                           ))}
                         </ul>

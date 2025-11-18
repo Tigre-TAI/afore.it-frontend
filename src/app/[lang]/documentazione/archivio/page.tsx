@@ -1,42 +1,20 @@
-import Breadcrumb from "@/components/ui/Breadcrumbs";
-import Filters from "../_components/Filters";
 import DocumentList from "../_components/DocumentList";
+import PageIntro from "../_components/PageIntro";
 
 export default function ArchivioPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="relative -mt-16 pt-16">
-        <div className="absolute inset-0">
-          <img
-            src="/image/documentazione_hero.jpg"
-            alt="Archivio Documentazione"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Documentazione", href: "/documentazione" },
-              { label: "Archivio Documentazione" },
-            ]}
-          />
-          <h1 className="mt-3 text-3xl lg:text-5xl font-extrabold tracking-tight">
-            Archivio Documentazione
-          </h1>
-          <p className="mt-3 max-w-2xl text-white/85">
-            Archivio completo di tutta la documentazione disponibile.
-          </p>
-        </div>
-      </section>
-
-      <Filters />
+    <main>
+      <PageIntro
+        title="Archivio Documentazione"
+        description="Archivio completo di certificazioni, manuali, schede tecniche e report ufficiali sempre accessibili."
+        bullets={[
+          "Storico completo dei documenti pubblicati",
+          "Download rapidi in formato originale",
+          "Aggiornamenti costanti a cura del team tecnico",
+        ]}
+      />
       <DocumentList />
-    </>
+    </main>
   );
 }
 

@@ -8,7 +8,22 @@
   "home": {
     "title": "Afore Italia",
     "prodotti": "Prodotti",
-    "documentazione": "Documentazione"
+    "documentazione": "Documentazione",
+    "hero": {
+      "title": "LEADER MONDIALE PER PRODOTTO FOTOVOLTAICO",
+      "badge": "TopBrand 2025",
+      "cta": "Scopri i prodotti"
+    },
+    "productsSection": {
+      "title": "I Nostri Prodotti",
+      "description": "Soluzioni complete per il fotovoltaico residenziale e commerciale.",
+      "cta": "Vedi tutti i prodotti"
+    },
+    "featured_products": {
+      "title": "Prodotti in Evidenza",
+      "description": "Scopri la nostra gamma completa di soluzioni fotovoltaiche",
+      "cta": "Vedi tutti i prodotti"
+    }
   },
   "prodotti": {
     "title": "Prodotti",
@@ -41,7 +56,47 @@
   },
   "documentazione": {
     "title": "Documentazione",
-    "subtitle": "Tutta la documentazione tecnica dei nostri prodotti",
+    "subtitle": "Garanzie, certificazioni, compatibilità, archivio e responsabilità sociale.",
+    "scopriDiPiu": "Scopri di più",
+    "categories": {
+      "pvInverter": {
+        "title": "Certificati PV Inverter di Stringa",
+        "description": "Documenti ufficiali per l'allineamento CEI e i test di conformità.",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guida alla compilazione del regolamento di esercizio",
+          "Guida alla compilazione dell'Addendum Tecnico e Test di Verifica di Conformità"
+        ]
+      },
+      "inverterIbridi": {
+        "title": "Certificati Inverter Ibridi",
+        "description": "Accumulo Hailei consigliato da Afore",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guida alla compilazione del regolamento di esercizio"
+        ]
+      },
+      "accumuloAfore": {
+        "title": "Accumulo Afore",
+        "description": "Documenti tecnici e certificazioni per i sistemi di accumulo Afore.",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guida alla compilazione del regolamento di esercizio"
+        ]
+      },
+      "allInOne": {
+        "title": "Certificati All-in-One",
+        "description": "Download tecnici per sistemi integrati residenziali e commerciali.",
+        "bullets": [
+          "CEI 0-21 Standard Compliance",
+          "Test Report",
+          "Guida alla compilazione del regolamento di esercizio"
+        ]
+      }
+    },
     "schedaTecnica": {
       "title": "Scheda Tecnica",
       "subtitle": "Scarica le schede tecniche complete dei nostri prodotti"
@@ -53,6 +108,22 @@
     "cei": {
       "title": "CEI-16 & CEI-021",
       "subtitle": "Documentazione normativa CEI"
+    },
+    "certificatiInverterStringa": {
+      "title": "Certificati Inverter di Stringa",
+      "subtitle": "Documentazione normativa CEI"
+    },
+    "certificatiInverterIbridi": {
+      "title": "Certificati Inverter Ibridi",
+      "subtitle": "Certificazioni e guide per l'integrazione dei sistemi ibridi proposti da Afore."
+    },
+    "accumuloAfore": {
+      "title": "Accumulo Afore",
+      "subtitle": "Documenti tecnici e certificazioni per i sistemi di accumulo Afore."
+    },
+    "certificatiAllInOne": {
+      "title": "Certificati All-in-One",
+      "subtitle": "Download tecnici per sistemi integrati residenziali e commerciali."
     },
     "archivio": {
       "title": "Archivio Documentazione",
@@ -67,7 +138,11 @@
     "inserisciNumeroSerie": "Inserisci il numero di serie",
     "verifica": "Verifica Garanzia",
     "apriSistema": "Apri Sistema Garanzia",
-    "descrizione": "Inserisci il numero di serie del prodotto per verificare lo stato della garanzia."
+    "descrizione": "Inserisci il numero di serie del prodotto per verificare lo stato della garanzia.",
+    "garanzia10Anni": {
+      "title": "Garanzia di 10 anni",
+      "description": "Scarica il documento ufficiale della garanzia di 10 anni."
+    }
   },
   "common": {
     "home": "Home",
