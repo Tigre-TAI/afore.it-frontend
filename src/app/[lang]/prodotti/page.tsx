@@ -75,18 +75,19 @@ export default function ProdottiPage() {
   const lang = (params?.lang as string) || "it";
   const { t } = useTranslation();
 
-/** 轻量封装你的 ProductCard */
-function Card({ p }: { p: any }) {
-  return (
-    <ProductCard
+  /** 轻量封装你的 ProductCard */
+  function Card({ p }: { p: any }) {
+    return (
+      <ProductCard
         href={hrefOf(p, lang)}
-      title={p.title}
-      subtitle={p.subtitle}
-      image={p.image}
+        title={p.title}
+        subtitle={p.subtitle}
+        image={p.image}
         schedaKey={p.schedaKey}
-    />
-  );
-}
+      />
+    );
+  }
+
   return (
     <main className="page-content font-sans">
       {/* ===== Hero ===== */}

@@ -4,6 +4,15 @@ import ProductCategories from "@/components/ProductCategories";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import { getTranslations } from "@/lib/i18n";
 
+/** 预渲染所有语言版本的主页（静态导出必需） */
+export async function generateStaticParams() {
+  return [
+    { lang: "it" },
+    { lang: "en" },
+    { lang: "es" },
+  ];
+}
+
 export default async function Home({
   params,
 }: {

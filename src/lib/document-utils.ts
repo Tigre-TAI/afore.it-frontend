@@ -1,10 +1,7 @@
-import { NextResponse } from 'next/server';
 import { readdir, stat } from 'fs/promises';
 import { join } from 'path';
 
-const DOC_PATH = join(process.cwd(), 'public', 'documentazione');
-
-type DocumentFile = {
+export type DocumentFile = {
   fileName: string;
   filePath: string;
   category: string | null;
@@ -49,10 +46,11 @@ function extractLang(fileName: string): string {
 }
 
 /**
- * 扫描文档目录
+ * 扫描文档目录 - 在构建时使用
  */
-async function scanDocumentazioneDirectory(): Promise<DocumentFile[]> {
+export async function scanDocumentazioneDirectory(): Promise<DocumentFile[]> {
   const documents: DocumentFile[] = [];
+  const DOC_PATH = join(process.cwd(), 'public', 'documentazione');
   
   try {
     // 扫描各个产品类型目录
@@ -93,18 +91,5 @@ async function scanDocumentazioneDirectory(): Promise<DocumentFile[]> {
   }
   
   return documents;
-}
-
-export async function GET() {
-  try {
-    const documents = await scanDocumentazioneDirectory();
-    return NextResponse.json({ documents });
-  } catch (error) {
-    console.error('Error in documentazione API:', error);
-    return NextResponse.json(
-      { error: 'Failed to scan documents' },
-      { status: 500 }
-    );
-  }
 }
 

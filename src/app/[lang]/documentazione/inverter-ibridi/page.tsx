@@ -1,6 +1,15 @@
 // src/app/documentazione/inverter-ibridi/page.tsx
 import Link from "next/link";
 
+/** 预渲染所有语言版本的页面（静态导出必需） */
+export async function generateStaticParams() {
+  return [
+    { lang: "it" },
+    { lang: "en" },
+    { lang: "es" },
+  ];
+}
+
 type DocItem = {
   title: string;
   href: string;

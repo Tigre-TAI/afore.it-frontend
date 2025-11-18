@@ -117,6 +117,15 @@ type Props = {
   params: Promise<{ lang: string }>;
 };
 
+/** 预渲染所有语言版本的页面（静态导出必需） */
+export async function generateStaticParams() {
+  return [
+    { lang: "it" },
+    { lang: "en" },
+    { lang: "es" },
+  ];
+}
+
 export default async function AccumuloAforePage({ params }: Props) {
   const { lang } = await params;
   const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";

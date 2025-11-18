@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { bySchedaKey } from "@/data/product-data";
 
@@ -62,7 +62,7 @@ type FiltersProps = {
   highlightProduct?: string;
 };
 
-export default function Filters({ highlightProduct }: FiltersProps = {} as FiltersProps) {
+function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps) {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -288,5 +288,21 @@ export default function Filters({ highlightProduct }: FiltersProps = {} as Filte
         </div>
       </div>
     </section>
+  );
+}
+
+export default function Filters(props: FiltersProps) {
+  return (
+    <Suspense fallback={
+      <section className="py-12 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center py-12 text-slate-500">
+            <p>Caricamento filtri...</p>
+          </div>
+        </div>
+      </section>
+    }>
+      <FiltersContent {...props} />
+    </Suspense>
   );
 }

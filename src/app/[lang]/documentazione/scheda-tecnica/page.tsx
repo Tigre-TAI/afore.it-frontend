@@ -1,15 +1,25 @@
 import Breadcrumb from "@/components/ui/Breadcrumbs";
 import Filters from "../_components/Filters";
 import DocumentList from "../_components/DocumentList";
+import { scanDocumentazioneDirectory } from "@/lib/document-utils";
 
 type Props = {
   params: Promise<{ lang: string }>;
-  searchParams: Promise<{ product?: string }>;
 };
 
-export default async function SchedaTecnicaPage({ params, searchParams }: Props) {
+/** 预渲染所有语言版本的页面（静态导出必需） */
+export async function generateStaticParams() {
+  return [
+    { lang: "it" },
+    { lang: "en" },
+    { lang: "es" },
+  ];
+}
+
+export default async function SchedaTecnicaPage({ params }: Props) {
   const { lang } = await params;
-  const { product } = await searchParams;
+  // For static export, searchParams are handled client-side via URL params in DocumentList
+  const documents = await scanDocumentazioneDirectory();
   
   return (
     <>
@@ -43,8 +53,8 @@ export default async function SchedaTecnicaPage({ params, searchParams }: Props)
       </section>
 
       {/* Filters 和 DocumentList 分开，Filters 在上，DocumentList 在下 */}
-      <Filters highlightProduct={product} />
-      <DocumentList highlightProduct={product} />
+      <Filters />
+      <DocumentList documents={documents} />
     </>
   );
 }

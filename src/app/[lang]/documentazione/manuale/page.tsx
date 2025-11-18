@@ -1,8 +1,20 @@
 import Breadcrumb from "@/components/ui/Breadcrumbs";
 import Filters from "../_components/Filters";
 import DocumentList from "../_components/DocumentList";
+import { scanDocumentazioneDirectory } from "@/lib/document-utils";
 
-export default function ManualePage() {
+/** 预渲染所有语言版本的页面（静态导出必需） */
+export async function generateStaticParams() {
+  return [
+    { lang: "it" },
+    { lang: "en" },
+    { lang: "es" },
+  ];
+}
+
+export default async function ManualePage() {
+  const documents = await scanDocumentazioneDirectory();
+  
   return (
     <>
       {/* Hero */}
@@ -35,7 +47,7 @@ export default function ManualePage() {
       </section>
 
       <Filters />
-      <DocumentList />
+      <DocumentList documents={documents} />
     </>
   );
 }

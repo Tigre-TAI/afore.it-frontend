@@ -1,16 +1,9 @@
 "use client";
 
-import { useMemo, useEffect, useState } from "react";
+import { useMemo, Suspense } from "react";
 import { PRODUCTS } from "@/data/product-data";
 import { useParams, useSearchParams } from "next/navigation";
-
-type DocumentFile = {
-  fileName: string;
-  filePath: string;
-  category: string | null;
-  productType: string;
-  lang: string;
-};
+import type { DocumentFile } from "@/lib/document-utils";
 
 type DocItem = {
   title: string;
@@ -24,6 +17,7 @@ type DocSection = {
 };
 
 type DocumentListProps = {
+  documents: DocumentFile[];
   productFilter?: string;
   seriesFilter?: string;
   powerFilter?: string;
@@ -67,7 +61,8 @@ function generateTitle(fileName: string): string {
  * 文档列表组件 - 按产品分组显示文档，从上往下
  * 参考 inverter-ibridi/page.tsx 的结构
  */
-export default function DocumentList({
+function DocumentListContent({
+  documents: allDocuments,
   productFilter,
   seriesFilter,
   powerFilter,
@@ -79,8 +74,6 @@ export default function DocumentList({
   const params = useParams();
   const lang = (params?.lang as string) || "it";
   const searchParams = useSearchParams();
-  const [allDocuments, setAllDocuments] = useState<DocumentFile[]>([]);
-  const [loading, setLoading] = useState(true);
 
   // 从 URL 参数获取筛选条件（如果 props 没有提供）
   const effectiveProductFilter = productFilter || searchParams.get("prodotto") || "";
@@ -89,22 +82,6 @@ export default function DocumentList({
   const effectiveDocTypeFilter = docTypeFilter || searchParams.get("tipo") || "";
   const effectiveLangFilter = langFilter || searchParams.get("lingua") || "";
   const effectiveRegionFilter = regionFilter || searchParams.get("regione") || "";
-
-  // 从 API 获取文档列表
-  useEffect(() => {
-    async function fetchDocuments() {
-      try {
-        const response = await fetch('/api/documentazione');
-        const data = await response.json();
-        setAllDocuments(data.documents || []);
-      } catch (error) {
-        console.error('Failed to fetch documents:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchDocuments();
-  }, []);
 
   // 根据筛选条件过滤产品
   const filteredProducts = useMemo(() => {
@@ -214,18 +191,6 @@ export default function DocumentList({
     return result;
   }, [filteredProducts, allDocuments, effectiveLangFilter, effectiveDocTypeFilter]);
 
-  if (loading) {
-    return (
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center py-12 text-slate-500">
-            <p>Caricamento documenti...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -292,5 +257,21 @@ export default function DocumentList({
         )}
       </div>
     </section>
+  );
+}
+
+export default function DocumentList(props: DocumentListProps) {
+  return (
+    <Suspense fallback={
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center py-12 text-slate-500">
+            <p>Caricamento documenti...</p>
+          </div>
+        </div>
+      </section>
+    }>
+      <DocumentListContent {...props} />
+    </Suspense>
   );
 }

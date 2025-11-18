@@ -1,7 +1,19 @@
 import DocumentList from "../_components/DocumentList";
 import PageIntro from "../_components/PageIntro";
+import { scanDocumentazioneDirectory } from "@/lib/document-utils";
 
-export default function ArchivioPage() {
+/** 预渲染所有语言版本的页面（静态导出必需） */
+export async function generateStaticParams() {
+  return [
+    { lang: "it" },
+    { lang: "en" },
+    { lang: "es" },
+  ];
+}
+
+export default async function ArchivioPage() {
+  const documents = await scanDocumentazioneDirectory();
+  
   return (
     <main>
       <PageIntro
@@ -13,7 +25,7 @@ export default function ArchivioPage() {
           "Aggiornamenti costanti a cura del team tecnico",
         ]}
       />
-      <DocumentList />
+      <DocumentList documents={documents} />
     </main>
   );
 }
