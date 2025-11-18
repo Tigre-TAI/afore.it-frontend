@@ -15,6 +15,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Afore Italia",
   description: "Afore Italia - Soluzioni per l'energia solare",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/image/logos/logo_afore_favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/image/logos/logo_afore_favicon.ico", sizes: "180x180", type: "image/x-icon" },
+    ],
+  },
 };
 
 export default function RootLayout({

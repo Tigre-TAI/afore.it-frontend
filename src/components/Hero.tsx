@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 type HeroProps = {
@@ -27,9 +27,46 @@ export default function Hero({
   centerContent = false,
 }: HeroProps) {
   const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const videoUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`;
+  // 初始视频 URL（静音）
+  const videoUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+
+  // 切换静音状态，使用 YouTube IFrame API
+  const toggleMute = () => {
+    if (iframeRef.current) {
+      const iframe = iframeRef.current;
+      const newMutedState = !isMuted;
+      
+      // 使用 postMessage 与 YouTube IFrame API 通信
+      iframe.contentWindow?.postMessage(
+        JSON.stringify({
+          event: "command",
+          func: newMutedState ? "mute" : "unMute",
+          args: [],
+        }),
+        "https://www.youtube.com"
+      );
+      
+      setIsMuted(newMutedState);
+    }
+  };
+
+  // 加载 YouTube IFrame API
+  useEffect(() => {
+    // 检查是否已经加载了 YouTube API
+    if ((window as any).YT && (window as any).YT.Player) {
+      return;
+    }
+
+    // 加载 YouTube IFrame API 脚本
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName("script")[0];
+    if (firstScriptTag.parentNode) {
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+  }, []);
 
   const textAlignClass = {
     left: "text-left items-start",
@@ -44,6 +81,8 @@ export default function Hero({
       {/* YouTube Video Background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <iframe
+          ref={iframeRef}
+          id="youtube-player"
           className="absolute top-0 left-0 w-full h-full"
           src={videoUrl}
           title={backgroundAlt || title}
@@ -110,21 +149,21 @@ export default function Hero({
           </div>
         )}
 
-        {/* Video Controls (optional, hidden by default) */}
-        <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 hover:opacity-100 transition-opacity">
+        {/* Sound Toggle Button - Always Visible */}
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20">
           <button
-            onClick={() => setIsMuted(!isMuted)}
-            className="p-2 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors"
+            onClick={toggleMute}
+            className="p-3 sm:p-3.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 active:bg-white/40 transition-all duration-200 shadow-lg border border-white/20"
             aria-label={isMuted ? "Unmute" : "Mute"}
           >
             {isMuted ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
               </svg>
             ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
               </svg>
             )}
           </button>
