@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "HOME",
+    "prodotti": "PRODUCTS",
+    "documentazione": "DOCUMENTATION",
+    "garanzia": "WARRANTY"
+  },
+  "home": {
+    "title": "Afore Italia",
+    "prodotti": "Products",
+    "documentazione": "Documentation"
+  },
+  "prodotti": {
+    "title": "Products",
+    "subtitle": "Complete catalog of AFORE solutions",
+    "pvInverter": {
+      "title": "PV Inverter",
+      "subtitle": "Complete solutions for solar energy inversion",
+      "inverterDiStringa": {
+        "title": "String Inverter",
+        "subtitle": "Single-phase and three-phase string inverters for photovoltaic systems"
+      },
+      "inverterIbrido": {
+        "title": "Hybrid Inverter",
+        "subtitle": "Single-phase and three-phase hybrid inverters with integrated storage"
+      }
+    },
+    "batteriaDiAccumulo": {
+      "title": "Battery Storage",
+      "subtitle": "Energy storage systems for solar energy"
+    },
+    "allInOne": {
+      "title": "All in One",
+      "subtitle": "Integrated systems with inverter and storage in a single solution"
+    },
+    "evCharger": {
+      "title": "EV Charger",
+      "subtitle": "Charging systems for electric vehicles"
+    },
+    "schedaTecnica": "Technical Sheet"
+  },
+  "documentazione": {
+    "title": "Documentation",
+    "subtitle": "All technical documentation of our products",
+    "schedaTecnica": {
+      "title": "Technical Sheet",
+      "subtitle": "Download the complete technical sheets of our products"
+    },
+    "manuale": {
+      "title": "Manual",
+      "subtitle": "User and installation manuals"
+    },
+    "cei": {
+      "title": "CEI-16 & CEI-021",
+      "subtitle": "CEI regulatory documentation"
+    },
+    "archivio": {
+      "title": "Documentation Archive",
+      "subtitle": "Complete documentation archive"
+    }
+  },
+  "garanzia": {
+    "title": "Warranty",
+    "subtitle": "Information about the warranty of our products",
+    "verificaGaranzia": "Verify Warranty",
+    "numeroSerie": "Serial Number",
+    "inserisciNumeroSerie": "Enter the serial number",
+    "verifica": "Verify Warranty",
+    "apriSistema": "Open Warranty System",
+    "descrizione": "Enter the product serial number to verify the warranty status."
+  },
+  "common": {
+    "home": "Home",
+    "download": "Download",
+    "breadcrumb": {
+      "home": "Home"
+    }
+  },
+  "footer": {
+    "afore": "Afore",
+    "prodotti": "Products",
+    "documentazione": "Documentation",
+    "garanzia": "Warranty",
+    "contatti": "Contacts",
+    "copyright": "© {year} Afore Italia S.R.L. All rights reserved.",
+    "address": "Commercity, MODULE N25, Viale Alexandre Gustave Eiffel, 100, 00148 Roma RM"
+  }
+}
+

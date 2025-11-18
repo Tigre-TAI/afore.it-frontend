@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "INICIO",
+    "prodotti": "PRODUCTOS",
+    "documentazione": "DOCUMENTACIÓN",
+    "garanzia": "GARANTÍA"
+  },
+  "home": {
+    "title": "Afore Italia",
+    "prodotti": "Productos",
+    "documentazione": "Documentación"
+  },
+  "prodotti": {
+    "title": "Productos",
+    "subtitle": "Catálogo completo de soluciones AFORE",
+    "pvInverter": {
+      "title": "Inversor PV",
+      "subtitle": "Soluciones completas para la inversión de energía solar",
+      "inverterDiStringa": {
+        "title": "Inversor de Cadena",
+        "subtitle": "Inversores de cadena monofásicos y trifásicos para sistemas fotovoltaicos"
+      },
+      "inverterIbrido": {
+        "title": "Inversor Híbrido",
+        "subtitle": "Inversores híbridos monofásicos y trifásicos con almacenamiento integrado"
+      }
+    },
+    "batteriaDiAccumulo": {
+      "title": "Batería de Almacenamiento",
+      "subtitle": "Sistemas de almacenamiento de energía para energía solar"
+    },
+    "allInOne": {
+      "title": "Todo en Uno",
+      "subtitle": "Sistemas integrados con inversor y almacenamiento en una sola solución"
+    },
+    "evCharger": {
+      "title": "Cargador EV",
+      "subtitle": "Sistemas de carga para vehículos eléctricos"
+    },
+    "schedaTecnica": "Ficha Técnica"
+  },
+  "documentazione": {
+    "title": "Documentación",
+    "subtitle": "Toda la documentación técnica de nuestros productos",
+    "schedaTecnica": {
+      "title": "Ficha Técnica",
+      "subtitle": "Descarga las fichas técnicas completas de nuestros productos"
+    },
+    "manuale": {
+      "title": "Manual",
+      "subtitle": "Manuales de uso e instalación"
+    },
+    "cei": {
+      "title": "CEI-16 & CEI-021",
+      "subtitle": "Documentación normativa CEI"
+    },
+    "archivio": {
+      "title": "Archivo de Documentación",
+      "subtitle": "Archivo completo de documentación"
+    }
+  },
+  "garanzia": {
+    "title": "Garantía",
+    "subtitle": "Información sobre la garantía de nuestros productos",
+    "verificaGaranzia": "Verificar Garantía",
+    "numeroSerie": "Número de Serie",
+    "inserisciNumeroSerie": "Ingrese el número de serie",
+    "verifica": "Verificar Garantía",
+    "apriSistema": "Abrir Sistema de Garantía",
+    "descrizione": "Ingrese el número de serie del producto para verificar el estado de la garantía."
+  },
+  "common": {
+    "home": "Inicio",
+    "download": "Descargar",
+    "breadcrumb": {
+      "home": "Inicio"
+    }
+  },
+  "footer": {
+    "afore": "Afore",
+    "prodotti": "Productos",
+    "documentazione": "Documentación",
+    "garanzia": "Garantía",
+    "contatti": "Contactos",
+    "copyright": "© {year} Afore Italia S.R.L. Todos los derechos reservados.",
+    "address": "Commercity, MÓDULO N25, Viale Alexandre Gustave Eiffel, 100, 00148 Roma RM"
+  }
+}
+

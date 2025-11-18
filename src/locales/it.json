@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "HOME",
+    "prodotti": "PRODOTTI",
+    "documentazione": "DOCUMENTAZIONE",
+    "garanzia": "GARANZIA"
+  },
+  "home": {
+    "title": "Afore Italia",
+    "prodotti": "Prodotti",
+    "documentazione": "Documentazione"
+  },
+  "prodotti": {
+    "title": "Prodotti",
+    "subtitle": "Catalogo completo delle soluzioni AFORE",
+    "pvInverter": {
+      "title": "PV Inverter",
+      "subtitle": "Soluzioni complete per l'inversione dell'energia solare",
+      "inverterDiStringa": {
+        "title": "Inverter di Stringa",
+        "subtitle": "Inverter di stringa monofase e trifase per impianti fotovoltaici"
+      },
+      "inverterIbrido": {
+        "title": "Inverter Ibrido",
+        "subtitle": "Inverter ibridi monofase e trifase con accumulo integrato"
+      }
+    },
+    "batteriaDiAccumulo": {
+      "title": "Batteria di Accumulo",
+      "subtitle": "Sistemi di accumulo per energia solare"
+    },
+    "allInOne": {
+      "title": "All in One",
+      "subtitle": "Sistemi integrati con inverter e accumulo in un'unica soluzione"
+    },
+    "evCharger": {
+      "title": "EV Charger",
+      "subtitle": "Sistemi di ricarica per veicoli elettrici"
+    },
+    "schedaTecnica": "Scheda Tecnica"
+  },
+  "documentazione": {
+    "title": "Documentazione",
+    "subtitle": "Tutta la documentazione tecnica dei nostri prodotti",
+    "schedaTecnica": {
+      "title": "Scheda Tecnica",
+      "subtitle": "Scarica le schede tecniche complete dei nostri prodotti"
+    },
+    "manuale": {
+      "title": "Manuale",
+      "subtitle": "Manuali d'uso e installazione"
+    },
+    "cei": {
+      "title": "CEI-16 & CEI-021",
+      "subtitle": "Documentazione normativa CEI"
+    },
+    "archivio": {
+      "title": "Archivio Documentazione",
+      "subtitle": "Archivio completo della documentazione"
+    }
+  },
+  "garanzia": {
+    "title": "Garanzia",
+    "subtitle": "Informazioni sulla garanzia dei nostri prodotti",
+    "verificaGaranzia": "Verifica Garanzia",
+    "numeroSerie": "Numero di Serie",
+    "inserisciNumeroSerie": "Inserisci il numero di serie",
+    "verifica": "Verifica Garanzia",
+    "apriSistema": "Apri Sistema Garanzia",
+    "descrizione": "Inserisci il numero di serie del prodotto per verificare lo stato della garanzia."
+  },
+  "common": {
+    "home": "Home",
+    "download": "Download",
+    "breadcrumb": {
+      "home": "Home"
+    }
+  },
+  "footer": {
+    "afore": "Afore",
+    "prodotti": "Prodotti",
+    "documentazione": "Documentazione",
+    "garanzia": "Garanzia",
+    "contatti": "Contatti",
+    "copyright": "© {year} Afore Italia S.R.L. Tutti i diritti riservati.",
+    "address": "Commercity, MODULO N25, Viale Alexandre Gustave Eiffel, 100, 00148 Roma RM"
+  }
+}
+
