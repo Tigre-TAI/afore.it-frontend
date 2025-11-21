@@ -23,6 +23,65 @@
       "title": "Prodotti in Evidenza",
       "description": "Scopri la nostra gamma completa di soluzioni fotovoltaiche",
       "cta": "Vedi tutti i prodotti"
+    },
+    "cases": {
+      "title": "I Nostri Casi Studio",
+      "description": "Scopri i progetti realizzati con le nostre soluzioni fotovoltaiche",
+      "showAll": "Mostra tutto",
+      "showLess": "Mostra meno",
+      "model": "Modello",
+      "relatedImages": "Immagini correlate",
+      "viewProduct": "Vedi Prodotto",
+      "viewSpecs": "Scheda Tecnica",
+      "viewProducts": "Vedi Prodotti",
+      "case1": {
+        "title": "Impianto Fotovoltaico Residenziale",
+        "model": "AF3K-SL"
+      },
+      "case2": {
+        "title": "TopBrand 2025 - Riconoscimento Eccellenza",
+        "model": "HNS5000TL"
+      },
+      "case3": {
+        "title": "Webinar Formazione Installatori",
+        "model": "BAT-AFORE-5KWH"
+      },
+      "case4": {
+        "title": "Sistema Commerciale Fotovoltaico",
+        "model": "AIO-3.6KW"
+      },
+      "case5": {
+        "title": "Impianto Ibrido con Accumulo",
+        "model": "AF10K-TL"
+      },
+      "case6": {
+        "title": "Progetto Energia Solare Industriale",
+        "model": "BNT025KTL"
+      },
+      "case7": {
+        "title": "Installazione Residenziale Premium",
+        "model": "AF3.6K-SL"
+      },
+      "case8": {
+        "title": "Sistema All-in-One Integrato",
+        "model": "AIO-4.6KW"
+      },
+      "case9": {
+        "title": "Progetto Fotovoltaico Scalabile",
+        "model": "HNS6000TL"
+      },
+      "case10": {
+        "title": "Impianto con Batteria Hailei",
+        "model": "BAT-HAILEI-10KWH"
+      },
+      "case11": {
+        "title": "Sistema Trifase Commerciale",
+        "model": "BNT015KTL"
+      },
+      "case12": {
+        "title": "Installazione Residenziale Smart",
+        "model": "AF2K-SL"
+      }
     }
   },
   "prodotti": {
@@ -159,6 +218,33 @@
     "contatti": "Contatti",
     "copyright": "© {year} Afore Italia S.R.L. Tutti i diritti riservati.",
     "address": "Commercity, MODULO N25, Viale Alexandre Gustave Eiffel, 100, 00148 Roma RM"
+  },
+  "cookie": {
+    "title": "Utilizziamo i Cookie",
+    "description": "Utilizziamo cookie per migliorare la tua esperienza di navigazione, analizzare il traffico del sito e personalizzare i contenuti. Accettando i cookie, ci permetti di utilizzare queste informazioni.",
+    "acceptAll": "Accetta tutto",
+    "rejectAll": "Rifiuta tutto",
+    "customize": "Personalizza",
+    "savePreferences": "Salva preferenze",
+    "settingsTitle": "Impostazioni Cookie",
+    "settingsDescription": "Scegli quali cookie vuoi accettare. I cookie necessari sono sempre attivi per garantire il funzionamento del sito.",
+    "necessary": {
+      "title": "Cookie Necessari",
+      "description": "Questi cookie sono essenziali per il funzionamento del sito e non possono essere disattivati."
+    },
+    "analytics": {
+      "title": "Cookie Analitici",
+      "description": "Ci aiutano a comprendere come i visitatori interagiscono con il sito web."
+    },
+    "marketing": {
+      "title": "Cookie di Marketing",
+      "description": "Utilizzati per fornire annunci e contenuti rilevanti per te."
+    },
+    "functional": {
+      "title": "Cookie Funzionali",
+      "description": "Permettono al sito di ricordare le tue scelte e fornire funzionalità migliorate."
+    },
+    "manageCookies": "Gestisci Cookie"
   }
 }
 

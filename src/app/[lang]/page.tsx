@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import ScrollingBanner from "@/components/ScrollingBanner";
 import ProductCategories from "@/components/ProductCategories";
 import FeaturedProducts from "@/components/FeaturedProducts";
+import Cases from "@/components/Cases";
 import { getTranslations } from "@/lib/i18n";
 import type { Metadata } from "next";
 
@@ -110,6 +111,9 @@ export default async function Home({
 
       {/* Featured Products Section */}
       <FeaturedProducts />
+
+      {/* Cases Section */}
+      <Cases />
     </main>
   );
 }

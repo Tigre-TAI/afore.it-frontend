@@ -23,6 +23,65 @@
       "title": "Featured Products",
       "description": "Discover our complete range of photovoltaic solutions",
       "cta": "View All Products"
+    },
+    "cases": {
+      "title": "Our Case Studies",
+      "description": "Discover projects realized with our photovoltaic solutions",
+      "showAll": "Show All",
+      "showLess": "Show Less",
+      "model": "Model",
+      "relatedImages": "Related Images",
+      "viewProduct": "View Product",
+      "viewSpecs": "Technical Sheet",
+      "viewProducts": "View Products",
+      "case1": {
+        "title": "Residential Photovoltaic System",
+        "model": "AF3K-SL"
+      },
+      "case2": {
+        "title": "TopBrand 2025 - Excellence Recognition",
+        "model": "HNS5000TL"
+      },
+      "case3": {
+        "title": "Installer Training Webinar",
+        "model": "BAT-AFORE-5KWH"
+      },
+      "case4": {
+        "title": "Commercial Photovoltaic System",
+        "model": "AIO-3.6KW"
+      },
+      "case5": {
+        "title": "Hybrid System with Storage",
+        "model": "AF10K-TL"
+      },
+      "case6": {
+        "title": "Industrial Solar Energy Project",
+        "model": "BNT025KTL"
+      },
+      "case7": {
+        "title": "Premium Residential Installation",
+        "model": "AF3.6K-SL"
+      },
+      "case8": {
+        "title": "Integrated All-in-One System",
+        "model": "AIO-4.6KW"
+      },
+      "case9": {
+        "title": "Scalable Photovoltaic Project",
+        "model": "HNS6000TL"
+      },
+      "case10": {
+        "title": "System with Hailei Battery",
+        "model": "BAT-HAILEI-10KWH"
+      },
+      "case11": {
+        "title": "Three-Phase Commercial System",
+        "model": "BNT015KTL"
+      },
+      "case12": {
+        "title": "Smart Residential Installation",
+        "model": "AF2K-SL"
+      }
     }
   },
   "prodotti": {
@@ -159,6 +218,33 @@
     "contatti": "Contacts",
     "copyright": "© {year} Afore Italia S.R.L. All rights reserved.",
     "address": "Commercity, MODULE N25, Viale Alexandre Gustave Eiffel, 100, 00148 Roma RM"
+  },
+  "cookie": {
+    "title": "We Use Cookies",
+    "description": "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By accepting cookies, you allow us to use this information.",
+    "acceptAll": "Accept All",
+    "rejectAll": "Reject All",
+    "customize": "Customize",
+    "savePreferences": "Save Preferences",
+    "settingsTitle": "Cookie Settings",
+    "settingsDescription": "Choose which cookies you want to accept. Necessary cookies are always active to ensure the site functions properly.",
+    "necessary": {
+      "title": "Necessary Cookies",
+      "description": "These cookies are essential for the website to function and cannot be disabled."
+    },
+    "analytics": {
+      "title": "Analytics Cookies",
+      "description": "Help us understand how visitors interact with our website."
+    },
+    "marketing": {
+      "title": "Marketing Cookies",
+      "description": "Used to deliver ads and content relevant to you."
+    },
+    "functional": {
+      "title": "Functional Cookies",
+      "description": "Allow the website to remember your choices and provide enhanced features."
+    },
+    "manageCookies": "Manage Cookies"
   }
 }
 

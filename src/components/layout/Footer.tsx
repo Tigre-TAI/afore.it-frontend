@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { getLangFromPath, withLang } from "@/lib/lang-utils";
 import { useTranslation } from "@/hooks/useTranslation";
+import { openCookieSettings } from "@/components/CookieConsent";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -128,8 +129,16 @@ export default function Footer() {
 
       {/* 下区：版权 + 社交；同一容器以保证左右对齐 */}
       <div className="border-t border-gray-700">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between text-sm">
-          <p>{t('footer.copyright', { year: new Date().getFullYear().toString() })}</p>
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between text-sm gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <p>{t('footer.copyright', { year: new Date().getFullYear().toString() })}</p>
+            <button
+              onClick={() => openCookieSettings()}
+              className="text-gray-400 hover:text-white transition-colors underline text-xs md:text-sm"
+            >
+              {t('cookie.manageCookies')}
+            </button>
+          </div>
 
           <div className="flex gap-4 mt-4 md:mt-0">
             <a 

@@ -23,6 +23,65 @@
       "title": "Productos Destacados",
       "description": "Descubra nuestra gama completa de soluciones fotovoltaicas",
       "cta": "Ver Todos los Productos"
+    },
+    "cases": {
+      "title": "Nuestros Casos de Estudio",
+      "description": "Descubra proyectos realizados con nuestras soluciones fotovoltaicas",
+      "showAll": "Mostrar todo",
+      "showLess": "Mostrar menos",
+      "model": "Modelo",
+      "relatedImages": "Imágenes relacionadas",
+      "viewProduct": "Ver Producto",
+      "viewSpecs": "Ficha Técnica",
+      "viewProducts": "Ver Productos",
+      "case1": {
+        "title": "Sistema Fotovoltaico Residencial",
+        "model": "AF3K-SL"
+      },
+      "case2": {
+        "title": "TopBrand 2025 - Reconocimiento de Excelencia",
+        "model": "HNS5000TL"
+      },
+      "case3": {
+        "title": "Webinar de Formación para Instaladores",
+        "model": "BAT-AFORE-5KWH"
+      },
+      "case4": {
+        "title": "Sistema Fotovoltaico Comercial",
+        "model": "AIO-3.6KW"
+      },
+      "case5": {
+        "title": "Sistema Híbrido con Almacenamiento",
+        "model": "AF10K-TL"
+      },
+      "case6": {
+        "title": "Proyecto de Energía Solar Industrial",
+        "model": "BNT025KTL"
+      },
+      "case7": {
+        "title": "Instalación Residencial Premium",
+        "model": "AF3.6K-SL"
+      },
+      "case8": {
+        "title": "Sistema All-in-One Integrado",
+        "model": "AIO-4.6KW"
+      },
+      "case9": {
+        "title": "Proyecto Fotovoltaico Escalable",
+        "model": "HNS6000TL"
+      },
+      "case10": {
+        "title": "Sistema con Batería Hailei",
+        "model": "BAT-HAILEI-10KWH"
+      },
+      "case11": {
+        "title": "Sistema Comercial Trifásico",
+        "model": "BNT015KTL"
+      },
+      "case12": {
+        "title": "Instalación Residencial Inteligente",
+        "model": "AF2K-SL"
+      }
     }
   },
   "prodotti": {
@@ -159,6 +218,33 @@
     "contatti": "Contactos",
     "copyright": "© {year} Afore Italia S.R.L. Todos los derechos reservados.",
     "address": "Commercity, MÓDULO N25, Viale Alexandre Gustave Eiffel, 100, 00148 Roma RM"
+  },
+  "cookie": {
+    "title": "Utilizamos Cookies",
+    "description": "Utilizamos cookies para mejorar tu experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido. Al aceptar las cookies, nos permites utilizar esta información.",
+    "acceptAll": "Aceptar todo",
+    "rejectAll": "Rechazar todo",
+    "customize": "Personalizar",
+    "savePreferences": "Guardar preferencias",
+    "settingsTitle": "Configuración de Cookies",
+    "settingsDescription": "Elige qué cookies deseas aceptar. Las cookies necesarias están siempre activas para garantizar el funcionamiento del sitio.",
+    "necessary": {
+      "title": "Cookies Necesarias",
+      "description": "Estas cookies son esenciales para el funcionamiento del sitio web y no se pueden desactivar."
+    },
+    "analytics": {
+      "title": "Cookies Analíticas",
+      "description": "Nos ayudan a comprender cómo los visitantes interactúan con nuestro sitio web."
+    },
+    "marketing": {
+      "title": "Cookies de Marketing",
+      "description": "Se utilizan para mostrar anuncios y contenido relevante para ti."
+    },
+    "functional": {
+      "title": "Cookies Funcionales",
+      "description": "Permiten que el sitio web recuerde tus elecciones y proporcione funciones mejoradas."
+    },
+    "manageCookies": "Gestionar Cookies"
   }
 }
 
