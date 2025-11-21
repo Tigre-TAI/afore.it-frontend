@@ -12,11 +12,11 @@ export default function Footer() {
   const { t } = useTranslation();
   return (
     <footer className="bg-black text-gray-300">
-      {/* 上区：左 logo + 右四列（与 Navbar 同一容器宽度/内边距） */}
+      {/* 上区：移动端 Logo 单独一行，桌面端左 logo + 右四列 */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex items-start gap-10">
-          {/* 左侧 LOGO：固定宽度，保持对齐 */}
-          <div className="shrink-0 w-40">
+        <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
+          {/* Logo：移动端单独一行靠左，桌面端左侧固定宽度 */}
+          <div className="w-full md:shrink-0 md:w-40 flex justify-start">
             <Image
               src="/logos/logo_afore_light.png"
               alt="Afore Logo"
@@ -27,8 +27,8 @@ export default function Footer() {
             />
           </div>
 
-          {/* 右侧：四列信息；ml-auto 让这块整体靠右对齐容器 */}
-          <div className="ml-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+          {/* 右侧：四列信息；移动端 2 列，桌面端 4 列 */}
+          <div className="w-full md:ml-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-sm">
             {/* Col 1 - Afore */}
             <div>
               <h3 className="text-white font-semibold mb-4">{t('footer.afore')}</h3>
