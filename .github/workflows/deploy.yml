@@ -32,6 +32,16 @@ jobs:
       - name: Export static site
         run: npm run export
 
+      - name: Fix language route structure for S3
+        run: |
+          # Create index.html for each language route to support /it, /en, /es paths
+          # S3 looks for it/index.html when accessing /it, not it.html
+          mkdir -p out/it out/en out/es
+          cp out/it.html out/it/index.html
+          cp out/en.html out/en/index.html
+          cp out/es.html out/es/index.html
+          echo "Created language index.html files for S3 routing"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
