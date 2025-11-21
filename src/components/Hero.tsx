@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 type HeroProps = {
   youtubeId: string;
@@ -149,8 +150,45 @@ export default function Hero({
           </div>
         )}
 
-        {/* Sound Toggle Button - Always Visible */}
-        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20">
+        {/* Social Media Icons and Sound Toggle Button - Always Visible */}
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex items-center gap-2 sm:gap-3">
+          {/* WhatsApp */}
+          <a 
+            href="https://wa.me/393513399999" 
+            aria-label="WhatsApp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 sm:p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 active:bg-white/40 transition-all duration-200 shadow-lg border border-white/20"
+          >
+            <Image
+              src="/image/social/social_whatsapp.svg"
+              alt="WhatsApp"
+              width={20}
+              height={20}
+              className="opacity-90 hover:opacity-100 transition-opacity"
+              unoptimized
+            />
+          </a>
+          
+          {/* LinkedIn */}
+          <a 
+            href="https://it.linkedin.com/company/afore-italia" 
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 sm:p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 active:bg-white/40 transition-all duration-200 shadow-lg border border-white/20"
+          >
+            <Image
+              src="/image/social/social_linkedin.svg"
+              alt="LinkedIn"
+              width={20}
+              height={20}
+              className="opacity-90 hover:opacity-100 transition-opacity"
+              unoptimized
+            />
+          </a>
+          
+          {/* Sound Toggle Button */}
           <button
             onClick={toggleMute}
             className="p-3 sm:p-3.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 active:bg-white/40 transition-all duration-200 shadow-lg border border-white/20"

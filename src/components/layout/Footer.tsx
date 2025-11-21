@@ -132,40 +132,109 @@ export default function Footer() {
           <p>{t('footer.copyright', { year: new Date().getFullYear().toString() })}</p>
 
           <div className="flex gap-4 mt-4 md:mt-0">
-            <a href="#" aria-label="Facebook">
+            <a 
+              href="https://wa.me/393513399999" 
+              aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/image/social/social_whatsapp.svg"
+                alt="WhatsApp"
+                width={20}
+                height={20}
+                className="opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
+              />
+            </a>
+            <a 
+              href="https://www.tiktok.com/@afore.italia?is_from_webapp=1&sender_device=pc" 
+              aria-label="TikTok"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/image/social/social_tiktok.svg"
+                alt="TikTok"
+                width={20}
+                height={20}
+                className="opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
+              />
+            </a>
+            <a 
+              href="https://x.com/aforeitalia" 
+              aria-label="X (Twitter)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/image/social/social_x.svg"
+                alt="X"
+                width={20}
+                height={20}
+                className="opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
+              />
+            </a>
+            <a 
+              href="https://www.facebook.com/profile.php?id=61570302226961" 
+              aria-label="Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="/image/social/social_facebook.svg"
                 alt="Facebook"
                 width={20}
                 height={20}
                 className="opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
               />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a 
+              href="https://www.instagram.com/afore.italia/" 
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="/image/social/social_instagram.svg"
                 alt="Instagram"
                 width={20}
                 height={20}
                 className="opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
               />
             </a>
-            <a href="#" aria-label="LinkedIn">
-              <Image
-                src="/image/social/social_linkedin.svg"
-                alt="LinkedIn"
-                width={20}
-                height={20}
-                className="opacity-70 hover:opacity-100 transition-opacity"
-              />
-            </a>
-            <a href="#" aria-label="YouTube">
+            <a 
+              href="https://www.youtube.com/@aforeitalia" 
+              aria-label="YouTube"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="/image/social/social_youtube.svg"
                 alt="YouTube"
                 width={20}
                 height={20}
                 className="opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
+              />
+            </a>
+            <a 
+              href="https://it.linkedin.com/company/afore-italia" 
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/image/social/social_linkedin.svg"
+                alt="LinkedIn"
+                width={20}
+                height={20}
+                className="opacity-70 hover:opacity-100 transition-opacity"
+                unoptimized
               />
             </a>
           </div>
