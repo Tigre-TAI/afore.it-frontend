@@ -36,11 +36,27 @@ jobs:
         run: |
           # Create index.html for each language route to support /it, /en, /es paths
           # S3 looks for it/index.html when accessing /it, not it.html
-          mkdir -p out/it out/en out/es
-          cp out/it.html out/it/index.html
-          cp out/en.html out/en/index.html
-          cp out/es.html out/es/index.html
-          echo "Created language index.html files for S3 routing"
+          # Also fix sub-routes like /it/garanzia, /it/prodotti, etc.
+          for lang in it en es; do
+            if [ -d "out/$lang" ]; then
+              # Create index.html for the language root
+              if [ -f "out/${lang}.html" ]; then
+                mkdir -p "out/$lang"
+                cp "out/${lang}.html" "out/$lang/index.html"
+              fi
+              
+              # Create index.html for all sub-routes (garanzia, prodotti, documentazione, etc.)
+              for html_file in out/$lang/*.html; do
+                if [ -f "$html_file" ] && [ "$(basename "$html_file")" != "index.html" ]; then
+                  page_name=$(basename "$html_file" .html)
+                  mkdir -p "out/$lang/$page_name"
+                  cp "$html_file" "out/$lang/$page_name/index.html"
+                  echo "Created out/$lang/$page_name/index.html"
+                fi
+              done
+            fi
+          done
+          echo "✓ Fixed all language route structures for S3"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
