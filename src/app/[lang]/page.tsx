@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   const metadataByLang = {
     it: {
-      title: "Afore Italia - Leader Mondiale Inverter Fotovoltaico e Sistemi Solari | TopBrand 2025",
+      title: "Afore Italia - il sito ufficiale",
       description: "Afore Italia è leader mondiale in inverter fotovoltaici, inverter ibridi, batterie di accumulo e sistemi fotovoltaici completi. Scopri la nostra gamma di inverter di stringa, inverter ibridi monofase e trifase, batterie Afore e Hailei per energia solare residenziale e commerciale.",
       keywords: "Afore, Afore Italia, inverter fotovoltaico, inverter ibrido, inverter di stringa, batteria accumulo, fotovoltaico Italia, energia solare, inverter solare, pannelli solari, sistemi fotovoltaici, Afore inverter, Hailei batterie, accumulo energia solare, TopBrand 2025",
     },
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
           url: `${baseUrl}/image/logos/logo_afore_light.png`,
           width: 1200,
           height: 630,
-          alt: "Afore Italia - Leader Mondiale Inverter Fotovoltaico",
+          alt: validLang === 'it' ? "Afore Italia - il sito ufficiale" : "Afore Italia",
         },
       ],
     },
