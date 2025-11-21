@@ -157,7 +157,7 @@ export default function Hero({
             href="https://wa.me/393513399999" 
             aria-label="WhatsApp"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer nofollow"
             className="p-2.5 sm:p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 active:bg-white/40 transition-all duration-200 shadow-lg border border-white/20"
           >
             <Image
@@ -175,7 +175,7 @@ export default function Hero({
             href="https://it.linkedin.com/company/afore-italia" 
             aria-label="LinkedIn"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer nofollow"
             className="p-2.5 sm:p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 active:bg-white/40 transition-all duration-200 shadow-lg border border-white/20"
           >
             <Image

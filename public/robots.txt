@@ -1,0 +1,28 @@
+# robots.txt for Afore Italia
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.afore.it/sitemap.xml
+
+# Disallow admin and private areas if any
+Disallow: /api/
+Disallow: /_next/
+
+# Allow all important pages for SEO
+Allow: /it/
+Allow: /en/
+Allow: /es/
+Allow: /it/prodotti/
+Allow: /en/prodotti/
+Allow: /es/prodotti/
+Allow: /it/documentazione/
+Allow: /en/documentazione/
+Allow: /es/documentazione/
+Allow: /it/garanzia/
+Allow: /en/garanzia/
+Allow: /es/garanzia/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+

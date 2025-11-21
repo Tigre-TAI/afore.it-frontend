@@ -8,6 +8,7 @@ import { existsSync } from "fs";
 import Link from "next/link";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
+import { StructuredData } from "@/components/SEO/StructuredData";
 
 type Props = { 
   params: Promise<{ 
@@ -36,17 +37,62 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { lang, category, id } = await params;
   const p = findProductBySlugs(category, id);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
   if (!p) return { title: "Prodotto non trovato" };
+  
+  // Generate SEO-optimized title and description with keywords
+  const getProductKeywords = (product: typeof p, lang: string) => {
+    const keywords = {
+      it: `Afore, Afore Italia, ${p.title}, inverter fotovoltaico, inverter ibrido, inverter di stringa, batteria accumulo, fotovoltaico, energia solare, ${p.subtitle || ''}`,
+      en: `Afore, Afore Italia, ${p.title}, solar inverter, hybrid inverter, string inverter, battery storage, photovoltaic, solar energy, ${p.subtitle || ''}`,
+      es: `Afore, Afore Italia, ${p.title}, inversor solar, inversor híbrido, inversor de cadena, baterías, fotovoltaico, energía solar, ${p.subtitle || ''}`,
+    };
+    return keywords[lang as keyof typeof keywords] || keywords.it;
+  };
+  
+  const description = {
+    it: `${p.title} di Afore Italia. ${p.subtitle || 'Inverter fotovoltaico e sistemi di accumulo per energia solare residenziale e commerciale.'} Scopri specifiche tecniche, certificazioni e documentazione completa.`,
+    en: `${p.title} by Afore Italia. ${p.subtitle || 'Solar inverter and battery storage systems for residential and commercial solar energy.'} Discover technical specifications, certifications and complete documentation.`,
+    es: `${p.title} de Afore Italia. ${p.subtitle || 'Inversor solar y sistemas de baterías para energía solar residencial y comercial.'} Descubre especificaciones técnicas, certificaciones y documentación completa.`,
+  };
+  
+  const metaDesc = description[lang as keyof typeof description] || description.it;
+  const keywords = getProductKeywords(p, lang);
+  
   return {
-    title: `${p.title} | Afore Italia`,
-    description: p.subtitle ?? p.title,
+    title: `${p.title} | Afore Italia - Inverter Fotovoltaico e Sistemi Solari`,
+    description: metaDesc,
+    keywords: keywords,
     alternates: {
-      canonical: `/${lang}/prodotti/${category}/${id}`,
+      canonical: `${baseUrl}/${lang}/prodotti/${category}/${id}`,
+      languages: {
+        'it': `${baseUrl}/it/prodotti/${category}/${id}`,
+        'en': `${baseUrl}/en/prodotti/${category}/${id}`,
+        'es': `${baseUrl}/es/prodotti/${category}/${id}`,
+      },
     },
     openGraph: {
-      title: p.title,
-      description: p.subtitle ?? p.title,
-      images: [p.image],
+      type: "website",
+      locale: lang === 'it' ? 'it_IT' : lang === 'es' ? 'es_ES' : 'en_US',
+      url: `${baseUrl}/${lang}/prodotti/${category}/${id}`,
+      title: `${p.title} | Afore Italia`,
+      description: metaDesc,
+      siteName: "Afore Italia",
+      images: [
+        {
+          url: `${baseUrl}${p.image}`,
+          width: 1200,
+          height: 630,
+          alt: p.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.title} | Afore Italia`,
+      description: metaDesc,
+      images: [`${baseUrl}${p.image}`],
     },
   };
 }
@@ -150,6 +196,13 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <main>
+      {/* Structured Data for SEO */}
+      <StructuredData type="Product" data={p} lang={lang} />
+      <StructuredData type="BreadcrumbList" data={{ items: crumbs.map((c, i) => ({ 
+        label: c.label, 
+        href: c.href ? `/${lang}${c.href}` : undefined
+      })) }} lang={lang} />
+      
       {/* Hero Section */}
       <section className="relative -mt-16 pt-16">
         <div className="absolute inset-0">

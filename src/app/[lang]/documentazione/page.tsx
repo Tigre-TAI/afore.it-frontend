@@ -7,6 +7,7 @@ import { getTranslations } from "@/lib/i18n";
 import itTranslations from "@/locales/it.json";
 import enTranslations from "@/locales/en.json";
 import esTranslations from "@/locales/es.json";
+import type { Metadata } from "next";
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -19,6 +20,63 @@ export async function generateStaticParams() {
     { lang: "en" },
     { lang: "es" },
   ];
+}
+
+/** SEO Metadata for documentazione page */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
+  const metadataByLang = {
+    it: {
+      title: "Documentazione Tecnica Afore - Certificati, Manuali, Guide | Afore Italia",
+      description: "Documentazione tecnica completa Afore: certificati CEI 0-21, test report, manuali, guide per inverter fotovoltaici, inverter ibridi, batterie di accumulo e sistemi all-in-one. Download gratuito di tutta la documentazione ufficiale.",
+      keywords: "Afore documentazione, certificati inverter, CEI 0-21, test report, manuali inverter, guide fotovoltaico, certificati Afore, documentazione tecnica inverter, Afore Italia certificati",
+    },
+    en: {
+      title: "Afore Technical Documentation - Certificates, Manuals, Guides | Afore Italia",
+      description: "Complete Afore technical documentation: CEI 0-21 certificates, test reports, manuals, guides for solar inverters, hybrid inverters, battery storage and all-in-one systems. Free download of all official documentation.",
+      keywords: "Afore documentation, inverter certificates, test reports, inverter manuals, solar guides, Afore certificates, technical documentation",
+    },
+    es: {
+      title: "Documentación Técnica Afore - Certificados, Manuales, Guías | Afore Italia",
+      description: "Documentación técnica completa Afore: certificados, informes de prueba, manuales, guías para inversores solares, inversores híbridos, baterías y sistemas all-in-one. Descarga gratuita de toda la documentación oficial.",
+      keywords: "documentación Afore, certificados inversor, informes prueba, manuales inversor, guías solar, certificados Afore",
+    },
+  };
+  
+  const meta = metadataByLang[validLang as keyof typeof metadataByLang] || metadataByLang.it;
+  
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    alternates: {
+      canonical: `${baseUrl}/${validLang}/documentazione`,
+      languages: {
+        'it': `${baseUrl}/it/documentazione`,
+        'en': `${baseUrl}/en/documentazione`,
+        'es': `${baseUrl}/es/documentazione`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : 'en_US',
+      url: `${baseUrl}/${validLang}/documentazione`,
+      title: meta.title,
+      description: meta.description,
+      siteName: "Afore Italia",
+      images: [
+        {
+          url: `${baseUrl}/image/documentazione_hero.jpg`,
+          width: 1200,
+          height: 630,
+          alt: "Afore Italia Documentazione",
+        },
+      ],
+    },
+  };
 }
 
 export default async function DocumentazionePage({ params }: Props) {

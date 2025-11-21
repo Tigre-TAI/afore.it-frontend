@@ -136,7 +136,7 @@ export default function Footer() {
               href="https://wa.me/393513399999" 
               aria-label="WhatsApp"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               <Image
                 src="/image/social/social_whatsapp.svg"
@@ -151,7 +151,7 @@ export default function Footer() {
               href="https://www.tiktok.com/@afore.italia?is_from_webapp=1&sender_device=pc" 
               aria-label="TikTok"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               <Image
                 src="/image/social/social_tiktok.svg"
@@ -166,7 +166,7 @@ export default function Footer() {
               href="https://x.com/aforeitalia" 
               aria-label="X (Twitter)"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               <Image
                 src="/image/social/social_x.svg"
@@ -181,7 +181,7 @@ export default function Footer() {
               href="https://www.facebook.com/profile.php?id=61570302226961" 
               aria-label="Facebook"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               <Image
                 src="/image/social/social_facebook.svg"
@@ -196,7 +196,7 @@ export default function Footer() {
               href="https://www.instagram.com/afore.italia/" 
               aria-label="Instagram"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               <Image
                 src="/image/social/social_instagram.svg"
@@ -211,7 +211,7 @@ export default function Footer() {
               href="https://www.youtube.com/@aforeitalia" 
               aria-label="YouTube"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               <Image
                 src="/image/social/social_youtube.svg"
@@ -226,7 +226,7 @@ export default function Footer() {
               href="https://it.linkedin.com/company/afore-italia" 
               aria-label="LinkedIn"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               <Image
                 src="/image/social/social_linkedin.svg"
