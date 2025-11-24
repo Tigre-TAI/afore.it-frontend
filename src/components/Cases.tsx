@@ -5,7 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
 import { withLang } from "@/lib/lang-utils";
-import { PRODUCTS, hrefOf } from "@/data/product-data";
+import {
+  PRODUCTS,
+  hrefOf,
+  getProductTitle,
+  getProductSubtitle,
+} from "@/data/product-data";
 
 type CaseStudy = {
   id: string;
@@ -14,6 +19,7 @@ type CaseStudy = {
   model?: string; // 产品型号，用于关联产品
   relatedImages?: string[]; // 相关图片
   productId?: string; // 关联的产品ID
+  productIds?: string[]; // 支持多个产品
 };
 
 export default function Cases() {
@@ -25,56 +31,66 @@ export default function Cases() {
   // Case studies data - 根据实际存在的图片文件
   // 图片位置: public/image/cases/
   // model字段用于关联产品，根据型号匹配产品
-  const allCases: CaseStudy[] = [
-    {
-      id: "case-1",
-      title: t("home.cases.case1.title"),
-      image: "/image/cases/case_01.jpg",
-      model: t("home.cases.case1.model"), // 从翻译中获取型号
-      productId: "ibrido-monofase-1-3-6kw", // 示例：关联到某个产品
-      relatedImages: ["/image/cases/case_01.jpg"],
-    },
-    {
-      id: "case-2",
-      title: t("home.cases.case2.title"),
-      image: "/image/cases/case_02.jpg",
-      model: t("home.cases.case2.model"),
-      productId: "stringa-3-6kw",
-      relatedImages: ["/image/cases/case_02.jpg"],
-    },
-    {
-      id: "case-3",
-      title: t("home.cases.case3.title"),
-      image: "/image/cases/case_03.jpg",
-      model: t("home.cases.case3.model"),
-      productId: "bat-afore-wall-5-10kwh",
-      relatedImages: ["/image/cases/case_03.jpg"],
-    },
-    {
-      id: "case-4",
-      title: t("home.cases.case4.title"),
-      image: "/image/cases/case_04.jpg",
-      model: t("home.cases.case4.model"),
-      productId: "aio-mono-lv-afore-3-6kw-af5000w-lh",
-      relatedImages: ["/image/cases/case_04.jpg"],
-    },
-    {
-      id: "case-5",
-      title: t("home.cases.case5.title"),
-      image: "/image/cases/case_05.jpg",
-      model: t("home.cases.case5.model"),
-      productId: "ibrido-trifase-3-15kw",
-      relatedImages: ["/image/cases/case_05.jpg"],
-    },
-    {
-      id: "case-6",
-      title: t("home.cases.case6.title"),
-      image: "/image/cases/case_06.jpg",
-      model: t("home.cases.case6.model"),
-      productId: "stringa-trifase-3-25kw",
-      relatedImages: ["/image/cases/case_06.jpg"],
-    },
-  ];
+  // 支持最多20个案例
+  const generateCaseData = (caseNum: number): CaseStudy | null => {
+    const caseKey = `case${caseNum}`;
+    const titleKey = `home.cases.${caseKey}.title`;
+    const modelKey = `home.cases.${caseKey}.model`;
+    
+    // 尝试获取翻译，如果不存在则返回 null
+    const title = t(titleKey as any);
+    const model = t(modelKey as any);
+    
+    // 如果翻译键不存在，t 函数会返回键本身，检查是否是有效的翻译
+    if (title === titleKey || model === modelKey) {
+      return null;
+    }
+    
+    // 根据案例编号映射产品ID（可以根据实际需求调整）
+    const productMapping: Record<number, { productIds: string[]; productId: string }> = {
+      1: { productIds: ["ibrido-trifase-3-15kw", "bat-hailei-atom-wb-5kwh-1"], productId: "ibrido-trifase-3-15kw" },
+      2: { productIds: ["ibrido-trifase-3-30kw"], productId: "ibrido-trifase-3-30kw" },
+      3: { productIds: ["ibrido-trifase-36-60kw", "bat-hailei-atom-hs-15-41kwh"], productId: "ibrido-trifase-36-60kw" },
+      4: { productIds: ["ibrido-trifase-3-30kw", "bat-afore-wall-5-10kwh"], productId: "ibrido-trifase-3-30kw" },
+      5: { productIds: ["ibrido-trifase-36-60kw", "bat-hailei-atom-hs-15-41kwh"], productId: "ibrido-trifase-36-60kw" },
+      6: { productIds: ["stringa-trifase-70-110kw"], productId: "stringa-trifase-70-110kw" },
+      7: { productIds: ["ibrido-monofase-plus-4-6kw", "bat-hailei-atom-wb-5-10kwh"], productId: "ibrido-monofase-plus-4-6kw" },
+      8: { productIds: ["ibrido-monofase-plus-4-6kw", "bat-hailei-atom-ls-10-15kwh"], productId: "ibrido-monofase-plus-4-6kw" },
+      9: { productIds: ["stringa-3-6kw"], productId: "stringa-3-6kw" },
+      10: { productIds: ["bat-hailei-atom-wb-5-10kwh"], productId: "bat-hailei-atom-wb-5-10kwh" },
+      11: { productIds: ["stringa-trifase-3-25kw"], productId: "stringa-trifase-3-25kw" },
+      12: { productIds: ["ibrido-monofase-1-3-6kw"], productId: "ibrido-monofase-1-3-6kw" },
+      13: { productIds: ["ibrido-trifase-3-15kw"], productId: "ibrido-trifase-3-15kw" },
+      14: { productIds: ["stringa-7-10kw"], productId: "stringa-7-10kw" },
+      15: { productIds: ["bat-afore-stack-hv-5kwh"], productId: "bat-afore-stack-hv-5kwh" },
+      16: { productIds: ["ibrido-monofase-plus-4-6kw"], productId: "ibrido-monofase-plus-4-6kw" },
+      17: { productIds: ["stringa-trifase-36-60kw"], productId: "stringa-trifase-36-60kw" },
+      18: { productIds: ["ibrido-trifase-36-60kw"], productId: "ibrido-trifase-36-60kw" },
+      19: { productIds: ["bat-hailei-atom-ls-10-15kwh"], productId: "bat-hailei-atom-ls-10-15kwh" },
+      20: { productIds: ["aio-mono-lv-afore-3-6kw-af5000w-lh"], productId: "aio-mono-lv-afore-3-6kw-af5000w-lh" },
+    };
+
+    const productInfo = productMapping[caseNum] || { productIds: [], productId: "" };
+    const imageNum = String(caseNum).padStart(2, '0');
+    
+    return {
+      id: `case-${caseNum}`,
+      title,
+      image: `/image/cases/case_${imageNum}.jpg`,
+      model,
+      ...productInfo,
+      relatedImages: [`/image/cases/case_${imageNum}.jpg`],
+    };
+  };
+
+  // 生成所有案例（最多20个）
+  const allCases: CaseStudy[] = [];
+  for (let i = 1; i <= 20; i++) {
+    const caseData = generateCaseData(i);
+    if (caseData) {
+      allCases.push(caseData);
+    }
+  }
 
   // 如果图片数量 <= 8，全部显示；否则初始显示8张，可以展开显示更多
   const initialDisplayCount = 8;
@@ -126,13 +142,12 @@ export default function Cases() {
     setSelectedCase(null);
   };
 
-  // Get related product based on productId
-  const getRelatedProduct = (productId?: string) => {
-    if (!productId) return null;
-    return PRODUCTS.find(p => p.id === productId);
-  };
-
-  const relatedProduct = selectedCase ? getRelatedProduct(selectedCase.productId) : null;
+  const relatedProducts =
+    selectedCase
+      ? (selectedCase.productIds ?? (selectedCase.productId ? [selectedCase.productId] : []))
+          .map(id => PRODUCTS.find(p => p.id === id))
+          .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      : [];
 
   return (
     <section className="py-8 md:py-16 lg:py-24 bg-white">
@@ -243,22 +258,70 @@ export default function Cases() {
                   {selectedCase.title}
                 </h3>
                 {selectedCase.model && (
-                  <p className="text-lg text-brand-600 font-semibold">
+                  <p className="text-lg text-gray-600 font-medium">
                     {t("home.cases.model")}: {selectedCase.model}
                   </p>
                 )}
               </div>
 
-              {/* Main Image */}
-              <div className="relative w-full aspect-video mb-6 rounded-lg overflow-hidden bg-slate-100">
-                <Image
-                  src={selectedCase.image}
-                  alt={selectedCase.title}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
+              {/* Product Images - Side by Side (max 2 products) */}
+              {relatedProducts.length > 0 && (
+                <div className="mb-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    {relatedProducts.slice(0, 2).map((product, idx) => {
+                      // 特殊产品的 PDF 路径映射（存储在 documentazione 目录）
+                      const specialPdfPaths: Record<string, string> = {
+                        'stringa-trifase-70-110kw': '/documentazione/SCHEDA_TECNICA/IT_Inverter_di_Stringa_Trifase_70-110kW_Scheda_Tecnica 70-110kW.pdf',
+                      };
+                      
+                      // 构建 PDF 文件路径
+                      let pdfPath: string;
+                      if (specialPdfPaths[product.id]) {
+                        // 使用特殊路径
+                        pdfPath = specialPdfPaths[product.id];
+                      } else {
+                        // 默认路径：/prodotti/{productId}/downloads/
+                        const pdfDir = `/prodotti/${product.id}/downloads/`;
+                        const langPrefix = lang === 'it' ? 'IT' : lang === 'en' ? 'EN' : 'ES';
+                        const pdfFileName = `${langPrefix}_${product.id.replace(/-/g, '_')}_Scheda_Tecnica.pdf`;
+                        pdfPath = `${pdfDir}${pdfFileName}`;
+                      }
+                      
+                      return (
+                        <div key={product.id} className="flex flex-col">
+                          {/* Product Image */}
+                          <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-transparent mb-3">
+                            <Image
+                              src={product.image}
+                              alt={getProductTitle(product, lang) || product.title}
+                              fill
+                              className="object-contain p-4"
+                              sizes="(max-width: 640px) 50vw, 50vw"
+                              unoptimized
+                            />
+                          </div>
+                          
+                          {/* Scheda Tecnica Button - directly below the product */}
+                          {product.schedaKey && (
+                            <a
+                              href={pdfPath}
+                              download
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full inline-flex items-center justify-center px-4 py-3 bg-white text-brand-600 border-2 border-brand-600 text-sm font-semibold rounded-lg hover:bg-brand-50 transition-all duration-300"
+                            >
+                              <svg className="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              {t("home.cases.viewSpecs")}
+                            </a>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Related Images */}
               {selectedCase.relatedImages && selectedCase.relatedImages.length > 0 && (
@@ -281,45 +344,6 @@ export default function Cases() {
                   </div>
                 </div>
               )}
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                {relatedProduct && (
-                  <>
-                    <Link
-                      href={hrefOf(relatedProduct, lang)}
-                      className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-brand-600 text-white text-base font-semibold rounded-lg hover:bg-brand-700 transition-all duration-300 transform hover:scale-105"
-                    >
-                      {t("home.cases.viewProduct")}
-                      <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-7-7l7 7-7 7" />
-                      </svg>
-                    </Link>
-                    {relatedProduct.schedaKey && (
-                      <Link
-                        href={withLang(`/documentazione/scheda-tecnica?product=${relatedProduct.schedaKey}`, lang)}
-                        className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-white text-brand-600 border-2 border-brand-600 text-base font-semibold rounded-lg hover:bg-brand-50 transition-all duration-300"
-                      >
-                        {t("home.cases.viewSpecs")}
-                        <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      </Link>
-                    )}
-                  </>
-                )}
-                {!relatedProduct && (
-                  <Link
-                    href={withLang("/prodotti", lang)}
-                    className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-brand-600 text-white text-base font-semibold rounded-lg hover:bg-brand-700 transition-all duration-300 transform hover:scale-105"
-                  >
-                    {t("home.cases.viewProducts")}
-                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-7-7l7 7-7 7" />
-                    </svg>
-                  </Link>
-                )}
-              </div>
             </div>
           </div>
         </div>

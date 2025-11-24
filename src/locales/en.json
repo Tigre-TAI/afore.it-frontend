@@ -36,51 +36,35 @@
       "viewProducts": "View Products",
       "case1": {
         "title": "Residential Photovoltaic System",
-        "model": "AF3K-SL"
+        "model": "AF10K-MTH + ATOM WB-512100-1"
       },
       "case2": {
-        "title": "TopBrand 2025 - Excellence Recognition",
-        "model": "HNS5000TL"
+        "title": "Commercial Photovoltaic System",
+        "model": "AF30K-TH"
       },
       "case3": {
-        "title": "Installer Training Webinar",
-        "model": "BAT-AFORE-5KWH"
+        "title": "Industrial Photovoltaic System",
+        "model": "AF50K-TH + ATOM HS"
       },
       "case4": {
-        "title": "Commercial Photovoltaic System",
-        "model": "AIO-3.6KW"
+        "title": "Residential Photovoltaic System",
+        "model": "AF10K-TH + AF5000W-LF"
       },
       "case5": {
-        "title": "Hybrid System with Storage",
-        "model": "AF10K-TL"
+        "title": "Industrial Photovoltaic System",
+        "model": "AF50K-TH + ATOM HS"
       },
       "case6": {
-        "title": "Industrial Solar Energy Project",
-        "model": "BNT025KTL"
+        "title": "Industrial Photovoltaic System",
+        "model": "BNT110KTL"
       },
       "case7": {
-        "title": "Premium Residential Installation",
-        "model": "AF3.6K-SL"
+        "title": "Residential Photovoltaic System",
+        "model": "AF6K-SLP + ATOM WB-512100"
       },
       "case8": {
-        "title": "Integrated All-in-One System",
-        "model": "AIO-4.6KW"
-      },
-      "case9": {
-        "title": "Scalable Photovoltaic Project",
-        "model": "HNS6000TL"
-      },
-      "case10": {
-        "title": "System with Hailei Battery",
-        "model": "BAT-HAILEI-10KWH"
-      },
-      "case11": {
-        "title": "Three-Phase Commercial System",
-        "model": "BNT015KTL"
-      },
-      "case12": {
-        "title": "Smart Residential Installation",
-        "model": "AF2K-SL"
+        "title": "Residential Photovoltaic System",
+        "model": "AF6K-SLP + ATOM Ls"
       }
     }
   },

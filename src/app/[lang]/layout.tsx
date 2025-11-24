@@ -97,6 +97,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         { url: "/image/logos/logo_afore_favicon.ico", sizes: "180x180", type: "image/x-icon" },
       ],
     },
+    verification: {
+      google: "wTytJgj5Dkeb30p4TLBPcD085_ssnf-3FJ5Ju07aCnI",
+    },
   };
 }
 
@@ -114,9 +117,6 @@ export default async function LangLayout({
   return (
     <html lang={validLang}>
       <head>
-        {/* Google Search Console Verification */}
-        <meta name="google-site-verification" content="wTytJgj5Dkeb30p4TLBPcD085_ssnf-3FJ5Ju07aCnI" />
-        
         {/* Hreflang tags for multilingual SEO */}
         <link rel="alternate" hrefLang="it" href={`${baseUrl}/it`} />
         <link rel="alternate" hrefLang="en" href={`${baseUrl}/en`} />

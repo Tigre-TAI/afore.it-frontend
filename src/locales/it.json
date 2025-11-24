@@ -35,52 +35,36 @@
       "viewSpecs": "Scheda Tecnica",
       "viewProducts": "Vedi Prodotti",
       "case1": {
-        "title": "Impianto Fotovoltaico Residenziale",
-        "model": "AF3K-SL"
+        "title": "Sistema Fotovoltaico Residenziale",
+        "model": "AF10K-MTH + ATOM WB-512100-1"
       },
       "case2": {
-        "title": "TopBrand 2025 - Riconoscimento Eccellenza",
-        "model": "HNS5000TL"
+        "title": "Sistema Fotovoltaico Commerciale",
+        "model": "AF30K-TH"
       },
       "case3": {
-        "title": "Webinar Formazione Installatori",
-        "model": "BAT-AFORE-5KWH"
+        "title": "Sistema Fotovoltaico Industriale",
+        "model": "AF50K-TH + ATOM HS"
       },
       "case4": {
-        "title": "Sistema Commerciale Fotovoltaico",
-        "model": "AIO-3.6KW"
+        "title": "Sistema Fotovoltaico Residenziale",
+        "model": "AF10K-TH + AF5000W-LF"
       },
       "case5": {
-        "title": "Impianto Ibrido con Accumulo",
-        "model": "AF10K-TL"
+        "title": "Sistema Fotovoltaico Industriale",
+        "model": "AF50K-TH + ATOM HS"
       },
       "case6": {
-        "title": "Progetto Energia Solare Industriale",
-        "model": "BNT025KTL"
+        "title": "Sistema Fotovoltaico Industriale",
+        "model": "BNT110KTL"
       },
       "case7": {
-        "title": "Installazione Residenziale Premium",
-        "model": "AF3.6K-SL"
+        "title": "Sistema Fotovoltaico Residenziale",
+        "model": "AF6K-SLP + ATOM WB-512100"
       },
       "case8": {
-        "title": "Sistema All-in-One Integrato",
-        "model": "AIO-4.6KW"
-      },
-      "case9": {
-        "title": "Progetto Fotovoltaico Scalabile",
-        "model": "HNS6000TL"
-      },
-      "case10": {
-        "title": "Impianto con Batteria Hailei",
-        "model": "BAT-HAILEI-10KWH"
-      },
-      "case11": {
-        "title": "Sistema Trifase Commerciale",
-        "model": "BNT015KTL"
-      },
-      "case12": {
-        "title": "Installazione Residenziale Smart",
-        "model": "AF2K-SL"
+        "title": "Sistema Fotovoltaico Residenziale",
+        "model": "AF6K-SLP + ATOM Ls"
       }
     }
   },

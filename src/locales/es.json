@@ -36,51 +36,35 @@
       "viewProducts": "Ver Productos",
       "case1": {
         "title": "Sistema Fotovoltaico Residencial",
-        "model": "AF3K-SL"
+        "model": "AF10K-MTH + ATOM WB-512100-1"
       },
       "case2": {
-        "title": "TopBrand 2025 - Reconocimiento de Excelencia",
-        "model": "HNS5000TL"
+        "title": "Sistema Fotovoltaico Comercial",
+        "model": "AF30K-TH"
       },
       "case3": {
-        "title": "Webinar de Formación para Instaladores",
-        "model": "BAT-AFORE-5KWH"
+        "title": "Sistema Fotovoltaico Industrial",
+        "model": "AF50K-TH + ATOM HS"
       },
       "case4": {
-        "title": "Sistema Fotovoltaico Comercial",
-        "model": "AIO-3.6KW"
+        "title": "Sistema Fotovoltaico Residencial",
+        "model": "AF10K-TH + AF5000W-LF"
       },
       "case5": {
-        "title": "Sistema Híbrido con Almacenamiento",
-        "model": "AF10K-TL"
+        "title": "Sistema Fotovoltaico Industrial",
+        "model": "AF50K-TH + ATOM HS"
       },
       "case6": {
-        "title": "Proyecto de Energía Solar Industrial",
-        "model": "BNT025KTL"
+        "title": "Sistema Fotovoltaico Industrial",
+        "model": "BNT110KTL"
       },
       "case7": {
-        "title": "Instalación Residencial Premium",
-        "model": "AF3.6K-SL"
+        "title": "Sistema Fotovoltaico Residencial",
+        "model": "AF6K-SLP + ATOM WB-512100"
       },
       "case8": {
-        "title": "Sistema All-in-One Integrado",
-        "model": "AIO-4.6KW"
-      },
-      "case9": {
-        "title": "Proyecto Fotovoltaico Escalable",
-        "model": "HNS6000TL"
-      },
-      "case10": {
-        "title": "Sistema con Batería Hailei",
-        "model": "BAT-HAILEI-10KWH"
-      },
-      "case11": {
-        "title": "Sistema Comercial Trifásico",
-        "model": "BNT015KTL"
-      },
-      "case12": {
-        "title": "Instalación Residencial Inteligente",
-        "model": "AF2K-SL"
+        "title": "Sistema Fotovoltaico Residencial",
+        "model": "AF6K-SLP + ATOM Ls"
       }
     }
   },
