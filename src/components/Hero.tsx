@@ -28,10 +28,62 @@ export default function Hero({
   centerContent = false,
 }: HeroProps) {
   const [isMuted, setIsMuted] = useState(true);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const idleCallbackRef = useRef<number>();
 
-  // 初始视频 URL（静音）
-  const videoUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+  // 初始视频 URL（静音）——只在需要时构建，避免多余字符串运算
+  const videoUrl = shouldLoadVideo
+    ? `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`
+    : "";
+
+  // 检测移动端与 reduced motion，优先渲染轻量海报图来收敛 LCP
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const updateFlags = () => {
+      setIsMobile(mediaQuery.matches);
+      setPrefersReducedMotion(reducedMotionQuery.matches);
+    };
+
+    updateFlags();
+    mediaQuery.addEventListener("change", updateFlags);
+    reducedMotionQuery.addEventListener("change", updateFlags);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateFlags);
+      reducedMotionQuery.removeEventListener("change", updateFlags);
+    };
+  }, []);
+
+  // 延迟加载 iframe：跳过移动端 & 减少首屏 JS，利用 requestIdleCallback 提升 LCP
+  useEffect(() => {
+    if (isMobile || prefersReducedMotion) return;
+    if (shouldLoadVideo) return;
+
+    const triggerLoad = () => setShouldLoadVideo(true);
+    if ("requestIdleCallback" in window) {
+      idleCallbackRef.current = (window as any).requestIdleCallback(triggerLoad, { timeout: 2000 });
+    } else {
+      idleCallbackRef.current = window.setTimeout(triggerLoad, 1500) as unknown as number;
+    }
+
+    return () => {
+      if (idleCallbackRef.current) {
+        if ("cancelIdleCallback" in window) {
+          (window as any).cancelIdleCallback(idleCallbackRef.current);
+        } else {
+          window.clearTimeout(idleCallbackRef.current);
+        }
+      }
+    };
+  }, [isMobile, prefersReducedMotion, shouldLoadVideo]);
 
   // 切换静音状态，使用 YouTube IFrame API
   const toggleMute = () => {
@@ -53,21 +105,19 @@ export default function Hero({
     }
   };
 
-  // 加载 YouTube IFrame API
+  // 加载 YouTube IFrame API——仅在需要展示视频时才拉取，减小 INP/LCP 的阻塞脚本
   useEffect(() => {
-    // 检查是否已经加载了 YouTube API
+    if (!shouldLoadVideo) return;
     if ((window as any).YT && (window as any).YT.Player) {
       return;
     }
 
-    // 加载 YouTube IFrame API 脚本
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
+    tag.defer = true;
     const firstScriptTag = document.getElementsByTagName("script")[0];
-    if (firstScriptTag.parentNode) {
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-  }, []);
+    firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
+  }, [shouldLoadVideo]);
 
   const textAlignClass = {
     left: "text-left items-start",
@@ -79,28 +129,44 @@ export default function Hero({
 
   return (
     <section className={`relative ${heightClass} w-full overflow-hidden -mt-16`}>
-      {/* YouTube Video Background */}
+      {/* 优先渲染轻量海报图片，确保 LCP 可快速绘制 */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <iframe
-          ref={iframeRef}
-          id="youtube-player"
-          className="absolute top-0 left-0 w-full h-full"
-          src={videoUrl}
-          title={backgroundAlt || title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          style={{
-            pointerEvents: "none",
-            width: "100vw",
-            height: "56.25vw",
-            minHeight: "100%",
-            minWidth: "177.77vh",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
+        <Image
+          src="/image/heroes/hero_universal.jpg"
+          alt={backgroundAlt || title}
+          fill
+          priority
+          sizes="100vw"
+          className={`object-cover transition-opacity duration-500 ${
+            isVideoReady ? "opacity-0" : "opacity-100"
+          }`}
         />
+
+        {/* 延迟加载的 YouTube Video Background */}
+        {shouldLoadVideo && (
+          <iframe
+            ref={iframeRef}
+            id="youtube-player"
+            className="absolute top-0 left-0 w-full h-full"
+            src={videoUrl}
+            title={backgroundAlt || title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            onLoad={() => setIsVideoReady(true)}
+            style={{
+              pointerEvents: "none",
+              width: "100vw",
+              height: "56.25vw",
+              minHeight: "100%",
+              minWidth: "177.77vh",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+        )}
+
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/40" />
       </div>

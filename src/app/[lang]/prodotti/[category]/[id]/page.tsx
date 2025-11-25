@@ -9,6 +9,7 @@ import Link from "next/link";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import { StructuredData } from "@/components/SEO/StructuredData";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 type Props = { 
   params: Promise<{ 
@@ -205,14 +206,7 @@ export default async function ProductPage({ params }: Props) {
       
       {/* Hero Section */}
       <section className="relative -mt-16 pt-16">
-        <div className="absolute inset-0">
-          <img
-            src="/image/product_bg.jpg"
-            alt={p.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+        <HeroBackground src="/image/product_bg.jpg" alt={p.title} />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
           <Breadcrumbs items={crumbs} theme="dark" />

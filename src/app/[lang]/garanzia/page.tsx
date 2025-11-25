@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Breadcrumb from "@/components/ui/Breadcrumbs";
 import { useTranslation } from "@/hooks/useTranslation";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 export default function GaranziaPage() {
   const { t } = useTranslation();
@@ -29,14 +30,8 @@ export default function GaranziaPage() {
     <>
       {/* Hero */}
       <section className="relative -mt-16 pt-16">
-        <div className="absolute inset-0">
-          <img
-            src="/image/documentazione_hero.jpg"
-            alt="Garanzia"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+        {/* next/image priority hero keeps this page's LCP element cached & responsive */}
+        <HeroBackground src="/image/heroes/warranty_hero.jpg" alt="Garanzia" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
           <Breadcrumb

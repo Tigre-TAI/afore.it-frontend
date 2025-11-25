@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useRef, Suspense } from "react";
+import { useMemo, useState, useEffect, startTransition, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { bySchedaKey } from "@/data/product-data";
 
@@ -98,14 +98,19 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
     if (docType) qs.set("tipo", docType);
     if (lang) qs.set("lingua", lang);
     if (region) qs.set("regione", region);
-    router.push(`/documentazione?${qs.toString()}`);
+    // startTransition 避免在主线程上同步 push，降低按钮交互 INP
+    startTransition(() => {
+      router.push(`/documentazione?${qs.toString()}`);
+    });
   };
 
   // 还原
   const resetAll = () => {
     setProduct(""); setSeries(""); setPower("");
     setDocType(""); setLang(""); setRegion("");
-    router.push(`/documentazione`);
+    startTransition(() => {
+      router.push(`/documentazione`);
+    });
   };
 
   const seriesDisabled = !product || seriesOptions.length === 0;

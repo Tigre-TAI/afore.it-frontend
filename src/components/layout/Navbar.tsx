@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -59,7 +59,9 @@ export default function Navbar() {
     // 构建新路径：语言 + 剩余路径
     const newPath = `/${newLang}${restPath}`;
     // 使用 scroll: false 保持当前滚动位置
-    router.push(newPath, { scroll: false });
+    startTransition(() => {
+      router.push(newPath, { scroll: false });
+    });
   };
 
   // 生成带语言的导航链接

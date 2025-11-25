@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/ui/Breadcrumbs";
 import ProductCard from "@/components/ProductCard";
 import { useParams } from "next/navigation";
 import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 /** 分类判断 */
 const has = (p: any, slug: string) => p?.categories?.some((c: any) => c.slug === slug);
@@ -19,14 +20,7 @@ export default function InverterDiStringaPage() {
     <main className="page-content font-sans">
       {/* Hero */}
       <section className="relative -mt-16 pt-16">
-        <div className="absolute inset-0">
-          <img
-            src="/image/product_bg.jpg"
-            alt="Inverter di Stringa"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+        <HeroBackground src="/image/product_bg.jpg" alt="Inverter di Stringa" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
           <Breadcrumb

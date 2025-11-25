@@ -2,6 +2,7 @@ import Breadcrumb from "@/components/ui/Breadcrumbs";
 import Filters from "../_components/Filters";
 import DocumentList from "../_components/DocumentList";
 import { scanDocumentazioneDirectory } from "@/lib/document-utils";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 /** 预渲染所有语言版本的页面（静态导出必需） */
 export async function generateStaticParams() {
@@ -21,14 +22,7 @@ export default async function ManualePage() {
     <>
       {/* Hero */}
       <section className="relative -mt-16 pt-16">
-        <div className="absolute inset-0">
-          <img
-            src="/image/documentazione_hero.jpg"
-            alt="Manuale"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+        <HeroBackground src="/image/documentazione_hero.jpg" alt="Manuale" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
           <Breadcrumb

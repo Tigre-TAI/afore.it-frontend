@@ -9,6 +9,7 @@ import enTranslations from "@/locales/en.json";
 import esTranslations from "@/locales/es.json";
 import frTranslations from "@/locales/fr.json";
 import type { Metadata } from "next";
+import HeroBackground from "@/components/ui/HeroBackground";
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -135,14 +136,7 @@ export default async function DocumentazionePage({ params }: Props) {
     <main>
       {/* Hero */}
       <section className="relative -mt-16 pt-16">
-        <div className="absolute inset-0">
-          <img
-            src="/image/documentazione_hero.jpg"
-            alt="Documentazione"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+        <HeroBackground src="/image/documentazione_hero.jpg" alt="Documentazione" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
           {/* [CHANGED] 新版面包屑：深色背景 -> 白色主题 */}
