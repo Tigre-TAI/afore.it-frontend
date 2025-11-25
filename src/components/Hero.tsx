@@ -33,7 +33,7 @@ export default function Hero({
   const [isMobile, setIsMobile] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const idleCallbackRef = useRef<number>();
+  const idleCallbackRef = useRef<ReturnType<typeof setTimeout> | number | null>(null);
 
   // 初始视频 URL（静音）——只在需要时构建，避免多余字符串运算
   const videoUrl = shouldLoadVideo
@@ -71,7 +71,7 @@ export default function Hero({
     if ("requestIdleCallback" in window) {
       idleCallbackRef.current = (window as any).requestIdleCallback(triggerLoad, { timeout: 2000 });
     } else {
-      idleCallbackRef.current = window.setTimeout(triggerLoad, 1500) as unknown as number;
+      idleCallbackRef.current = setTimeout(triggerLoad, 1500);
     }
 
     return () => {
@@ -79,7 +79,7 @@ export default function Hero({
         if ("cancelIdleCallback" in window) {
           (window as any).cancelIdleCallback(idleCallbackRef.current);
         } else {
-          window.clearTimeout(idleCallbackRef.current);
+          clearTimeout(idleCallbackRef.current);
         }
       }
     };
