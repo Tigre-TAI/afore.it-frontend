@@ -1,8 +1,6 @@
 // Structured Data (Schema.org) for SEO
-import { PRODUCTS } from '@/data/product-data';
-
 interface StructuredDataProps {
-  type: 'Organization' | 'Product' | 'BreadcrumbList' | 'WebSite';
+  type: 'Organization' | 'WebPage' | 'BreadcrumbList' | 'WebSite';
   data?: any;
   lang?: string;
 }
@@ -70,27 +68,23 @@ export function StructuredData({ type, data, lang = 'it' }: StructuredDataProps)
           })),
         };
       
-      case 'Product':
+      case 'WebPage':
         if (!data) return null;
         return {
           '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: data.title,
-          description: data.subtitle || data.title,
-          image: `${baseUrl}${data.image}`,
-          brand: {
-            '@type': 'Brand',
-            name: 'Afore',
+          '@type': 'WebPage',
+          name: data.title || data.name,
+          description: data.description || data.subtitle || data.title || data.name,
+          url: data.url || `${baseUrl}${data.path || ''}`,
+          inLanguage: lang === 'it' ? 'it-IT' : lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : lang === 'de' ? 'de-DE' : 'en-US',
+          isPartOf: {
+            '@type': 'WebSite',
+            name: 'Afore Italia',
+            url: baseUrl,
           },
-          manufacturer: {
+          about: {
             '@type': 'Organization',
             name: 'Afore Italia',
-          },
-          category: data.categories?.map((c: any) => c.label).join(', ') || 'Inverter Fotovoltaico',
-          offers: {
-            '@type': 'Offer',
-            availability: 'https://schema.org/InStock',
-            priceCurrency: 'EUR',
           },
         };
       

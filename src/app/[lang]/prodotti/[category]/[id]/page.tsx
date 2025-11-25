@@ -195,10 +195,19 @@ export default async function ProductPage({ params }: Props) {
     { label: p.title },
   ];
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  const currentUrl = `${baseUrl}/${lang}/prodotti/${category}/${id}`;
+
   return (
     <main>
       {/* Structured Data for SEO */}
-      <StructuredData type="Product" data={p} lang={lang} />
+      <StructuredData type="Organization" lang={lang} />
+      <StructuredData type="WebPage" data={{ 
+        title: p.title,
+        description: p.subtitle || p.title,
+        url: currentUrl,
+        path: `/${lang}/prodotti/${category}/${id}`
+      }} lang={lang} />
       <StructuredData type="BreadcrumbList" data={{ items: crumbs.map((c, i) => ({ 
         label: c.label, 
         href: c.href ? `/${lang}${c.href}` : undefined
@@ -300,21 +309,6 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </section>
       )}
-
-      {/* 结构化数据（SEO 丰富摘要） */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: p.title,
-            description: p.subtitle ?? p.title,
-            image: [p.image],
-            category: p.categories.map((c) => c.label),
-          }),
-        }}
-      />
       </div>
     </main>
   );
