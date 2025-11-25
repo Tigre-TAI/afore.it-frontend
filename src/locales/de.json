@@ -1,0 +1,234 @@
+{
+  "nav": {
+    "home": "STARTSEITE",
+    "prodotti": "PRODUKTE",
+    "documentazione": "DOKUMENTATION",
+    "garanzia": "GARANTIE"
+  },
+  "home": {
+    "title": "Afore Italia",
+    "prodotti": "Produkte",
+    "documentazione": "Dokumentation",
+    "hero": {
+      "title": "WELTWEITER MARKTFÜHRER FÜR PHOTOVOLTAIK-PRODUKTE",
+      "badge": "TopBrand 2025",
+      "cta": "Produkte entdecken"
+    },
+    "productsSection": {
+      "title": "Unsere Produkte",
+      "description": "Komplette Lösungen für private und gewerbliche Photovoltaik.",
+      "cta": "Alle Produkte anzeigen"
+    },
+    "featured_products": {
+      "title": "Ausgewählte Produkte",
+      "description": "Entdecken Sie unser komplettes Sortiment an Photovoltaik-Lösungen",
+      "cta": "Alle Produkte anzeigen"
+    },
+    "cases": {
+      "title": "Unsere Fallstudien",
+      "description": "Entdecken Sie Projekte, die mit unseren Photovoltaik-Lösungen realisiert wurden",
+      "showAll": "Alle anzeigen",
+      "showLess": "Weniger anzeigen",
+      "model": "Modell",
+      "relatedImages": "Verwandte Bilder",
+      "viewProduct": "Produkt anzeigen",
+      "viewSpecs": "Technisches Datenblatt",
+      "viewProducts": "Produkte anzeigen",
+      "case1": {
+        "title": "Wohngebäude-Photovoltaikanlage",
+        "model": "AF10K-MTH + ATOM WB-512100-1"
+      },
+      "case2": {
+        "title": "Gewerbliche Photovoltaikanlage",
+        "model": "AF30K-TH"
+      },
+      "case3": {
+        "title": "Industrielle Photovoltaikanlage",
+        "model": "AF50K-TH + ATOM HS"
+      },
+      "case4": {
+        "title": "Wohngebäude-Photovoltaikanlage",
+        "model": "AF10K-TH + AF5000W-LF"
+      },
+      "case5": {
+        "title": "Industrielle Photovoltaikanlage",
+        "model": "AF50K-TH + ATOM HS"
+      },
+      "case6": {
+        "title": "Industrielle Photovoltaikanlage",
+        "model": "BNT110KTL"
+      },
+      "case7": {
+        "title": "Wohngebäude-Photovoltaikanlage",
+        "model": "AF6K-SLP + ATOM WB-512100"
+      },
+      "case8": {
+        "title": "Wohngebäude-Photovoltaikanlage",
+        "model": "AF6K-SLP + ATOM Ls"
+      }
+    }
+  },
+  "prodotti": {
+    "title": "Produkte",
+    "subtitle": "Vollständiger Katalog der AFORE-Lösungen",
+    "pvInverter": {
+      "title": "PV-Wechselrichter",
+      "subtitle": "Komplette Lösungen für die Umwandlung von Solarenergie",
+      "inverterDiStringa": {
+        "title": "String-Wechselrichter",
+        "subtitle": "Einphasige und dreiphasige String-Wechselrichter für Photovoltaikanlagen"
+      },
+      "inverterIbrido": {
+        "title": "Hybrid-Wechselrichter",
+        "subtitle": "Einphasige und dreiphasige Hybrid-Wechselrichter mit integriertem Speicher"
+      }
+    },
+    "batteriaDiAccumulo": {
+      "title": "Batteriespeicher",
+      "subtitle": "Energiespeichersysteme für Solarenergie"
+    },
+    "allInOne": {
+      "title": "All-in-One",
+      "subtitle": "Integrierte Systeme mit Wechselrichter und Speicher in einer Lösung"
+    },
+    "evCharger": {
+      "title": "EV-Ladestation",
+      "subtitle": "Ladesysteme für Elektrofahrzeuge"
+    },
+    "schedaTecnica": "Technisches Datenblatt"
+  },
+  "documentazione": {
+    "title": "Dokumentation",
+    "subtitle": "Garantien, Zertifikate, Kompatibilität, Archiv und soziale Verantwortung.",
+    "scopriDiPiu": "Mehr erfahren",
+    "categories": {
+      "pvInverter": {
+        "title": "String PV-Wechselrichter-Zertifikate",
+        "description": "Offizielle Dokumente für CEI-Ausrichtung und Konformitätstests.",
+        "bullets": [
+          "CEI 0-21 Standardkonformität",
+          "Testbericht",
+          "Anleitung zur Erstellung der Betriebsvorschriften",
+          "Anleitung zur Erstellung des technischen Anhangs und Konformitätsprüfung"
+        ]
+      },
+      "inverterIbridi": {
+        "title": "Hybrid-Wechselrichter-Zertifikate",
+        "description": "Hailei-Speicher empfohlen von Afore",
+        "bullets": [
+          "CEI 0-21 Standardkonformität",
+          "Testbericht",
+          "Anleitung zur Erstellung der Betriebsvorschriften"
+        ]
+      },
+      "accumuloAfore": {
+        "title": "Afore-Speicher",
+        "description": "Technische Dokumente und Zertifikate für Afore-Speichersysteme.",
+        "bullets": [
+          "CEI 0-21 Standardkonformität",
+          "Testbericht",
+          "Anleitung zur Erstellung der Betriebsvorschriften"
+        ]
+      },
+      "allInOne": {
+        "title": "All-in-One-Zertifikate",
+        "description": "Technische Downloads für integrierte Wohn- und Gewerbesysteme.",
+        "bullets": [
+          "CEI 0-21 Standardkonformität",
+          "Testbericht",
+          "Anleitung zur Erstellung der Betriebsvorschriften"
+        ]
+      }
+    },
+    "schedaTecnica": {
+      "title": "Technisches Datenblatt",
+      "subtitle": "Laden Sie die vollständigen technischen Datenblätter unserer Produkte herunter"
+    },
+    "manuale": {
+      "title": "Handbuch",
+      "subtitle": "Benutzer- und Installationshandbücher"
+    },
+    "cei": {
+      "title": "CEI-16 & CEI-021",
+      "subtitle": "CEI-Regulierungsdokumentation"
+    },
+    "certificatiInverterStringa": {
+      "title": "String-Wechselrichter-Zertifikate",
+      "subtitle": "CEI-Regulierungsdokumentation"
+    },
+    "certificatiInverterIbridi": {
+      "title": "Hybrid-Wechselrichter-Zertifikate",
+      "subtitle": "Zertifikate und Anleitungen für die Integration von Hybridsystemen von Afore."
+    },
+    "accumuloAfore": {
+      "title": "Afore-Speicher",
+      "subtitle": "Technische Dokumente und Zertifikate für Afore-Speichersysteme."
+    },
+    "certificatiAllInOne": {
+      "title": "All-in-One-Zertifikate",
+      "subtitle": "Technische Downloads für integrierte Wohn- und Gewerbesysteme."
+    },
+    "archivio": {
+      "title": "Dokumentationsarchiv",
+      "subtitle": "Vollständiges Dokumentationsarchiv"
+    }
+  },
+  "garanzia": {
+    "title": "Garantie",
+    "subtitle": "Informationen zur Garantie unserer Produkte",
+    "verificaGaranzia": "Garantie prüfen",
+    "numeroSerie": "Seriennummer",
+    "inserisciNumeroSerie": "Geben Sie die Seriennummer ein",
+    "verifica": "Garantie prüfen",
+    "apriSistema": "Garantiesystem öffnen",
+    "descrizione": "Geben Sie die Seriennummer des Produkts ein, um den Garantiestatus zu überprüfen.",
+    "garanzia10Anni": {
+      "title": "10-Jahres-Garantie",
+      "description": "Laden Sie das offizielle 10-Jahres-Garantiedokument herunter."
+    }
+  },
+  "common": {
+    "home": "Startseite",
+    "download": "Herunterladen",
+    "breadcrumb": {
+      "home": "Startseite"
+    }
+  },
+  "footer": {
+    "afore": "Afore",
+    "prodotti": "Produkte",
+    "documentazione": "Dokumentation",
+    "garanzia": "Garantie",
+    "contatti": "Kontakte",
+    "copyright": "© {year} Afore Italia S.R.L. Alle Rechte vorbehalten.",
+    "address": "Commercity, MODULO N25, Viale Alexandre Gustave Eiffel, 100, 00148 Roma RM"
+  },
+  "cookie": {
+    "title": "Wir Verwenden Cookies",
+    "description": "Wir verwenden Cookies, um Ihr Browsing-Erlebnis zu verbessern, den Website-Traffic zu analysieren und Inhalte zu personalisieren. Durch die Annahme von Cookies erlauben Sie uns, diese Informationen zu verwenden.",
+    "acceptAll": "Alle Akzeptieren",
+    "rejectAll": "Alle Ablehnen",
+    "customize": "Anpassen",
+    "savePreferences": "Einstellungen Speichern",
+    "settingsTitle": "Cookie-Einstellungen",
+    "settingsDescription": "Wählen Sie, welche Cookies Sie akzeptieren möchten. Notwendige Cookies sind immer aktiv, um die ordnungsgemäße Funktion der Website sicherzustellen.",
+    "necessary": {
+      "title": "Notwendige Cookies",
+      "description": "Diese Cookies sind für das Funktionieren der Website unerlässlich und können nicht deaktiviert werden."
+    },
+    "analytics": {
+      "title": "Analyse-Cookies",
+      "description": "Helfen uns zu verstehen, wie Besucher mit unserer Website interagieren."
+    },
+    "marketing": {
+      "title": "Marketing-Cookies",
+      "description": "Werden verwendet, um relevante Werbung und Inhalte für Sie bereitzustellen."
+    },
+    "functional": {
+      "title": "Funktionale Cookies",
+      "description": "Ermöglichen es der Website, Ihre Auswahl zu speichern und erweiterte Funktionen bereitzustellen."
+    },
+    "manageCookies": "Cookies Verwalten"
+  }
+}
+

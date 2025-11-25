@@ -75,7 +75,7 @@ export default function Breadcrumbs({ theme = "light", items }: BreadcrumbProps)
   /** 2) 自动模式 —— 通用页备用 */
   // 移除语言段
   let parts = pathname === "/" ? [] : pathname.split("/").filter(Boolean);
-  if (parts.length > 0 && ["it", "en", "es"].includes(parts[0])) {
+  if (parts.length > 0 && ["it", "en", "es", "fr", "de"].includes(parts[0])) {
     parts = parts.slice(1);
   }
 

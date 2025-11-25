@@ -10,6 +10,8 @@
 import itTranslations from '@/locales/it.json';
 import enTranslations from '@/locales/en.json';
 import esTranslations from '@/locales/es.json';
+import frTranslations from '@/locales/fr.json';
+import deTranslations from '@/locales/de.json';
 
 type TranslationKey = string;
 type Translations = typeof itTranslations;
@@ -18,15 +20,17 @@ const translations: Record<string, Translations> = {
   it: itTranslations,
   en: enTranslations,
   es: esTranslations,
+  fr: frTranslations,
+  de: deTranslations,
 };
 
 /**
  * 获取翻译函数
- * @param lang 语言代码 ('it' | 'en' | 'es')
+ * @param lang 语言代码 ('it' | 'en' | 'es' | 'fr' | 'de')
  * @returns 翻译函数
  */
 export function getTranslations(lang: string = 'it') {
-  const validLang = ['it', 'en', 'es'].includes(lang) ? lang : 'it';
+  const validLang = ['it', 'en', 'es', 'fr', 'de'].includes(lang) ? lang : 'it';
   const t = translations[validLang] || translations.it;
 
   /**
@@ -69,7 +73,7 @@ export function getTranslations(lang: string = 'it') {
  * 获取所有支持的语言
  */
 export function getSupportedLanguages(): string[] {
-  return ['it', 'en', 'es'];
+  return ['it', 'en', 'es', 'fr', 'de'];
 }
 
 /**

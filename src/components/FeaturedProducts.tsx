@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
-import { PRODUCTS, hrefOf } from "@/data/product-data";
+import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import ProductCard from "@/components/ProductCard";
 import { withLang } from "@/lib/lang-utils";
 
@@ -32,8 +32,8 @@ export default function FeaturedProducts() {
             >
               <ProductCard
                 href={hrefOf(product, lang)}
-                title={product.title}
-                subtitle={product.subtitle}
+                title={getProductTitle(product, lang)}
+                subtitle={getProductSubtitle(product, lang)}
                 image={product.image}
                 schedaKey={product.schedaKey}
               />

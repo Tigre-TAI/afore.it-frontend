@@ -4,7 +4,7 @@
 import { useParams } from "next/navigation";
 import Breadcrumb from "@/components/ui/Breadcrumbs";
 import ProductCard from "@/components/ProductCard";
-import { PRODUCTS, hrefOf } from "@/data/product-data";
+import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import { useTranslation } from "@/hooks/useTranslation";
 
 /** 分类判断 */
@@ -80,8 +80,8 @@ function Card({ p }: { p: any }) {
   return (
     <ProductCard
         href={hrefOf(p, lang)}
-      title={p.title}
-      subtitle={p.subtitle}
+      title={getProductTitle(p, lang)}
+      subtitle={getProductSubtitle(p, lang)}
       image={p.image}
         schedaKey={p.schedaKey}
     />

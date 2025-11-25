@@ -12,6 +12,7 @@ export default function Navbar() {
   const { t } = useTranslation();
   const [solid, setSolid] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 10);
@@ -20,11 +21,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // 点击外部关闭语言下拉菜单
+  useEffect(() => {
+    if (!langDropdownOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.language-switcher-container')) {
+        setLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [langDropdownOpen]);
+
   // 从路径中提取当前语言和剩余路径
   const getLangAndPath = () => {
     const segments = pathname.split("/").filter(Boolean);
     const firstSegment = segments[0];
-    if (["it", "en", "es"].includes(firstSegment)) {
+    if (["it", "en", "es", "fr", "de"].includes(firstSegment)) {
       const remainingSegments = segments.slice(1);
       return {
         lang: firstSegment,
@@ -51,7 +65,7 @@ export default function Navbar() {
   // 生成带语言的导航链接
   const navLink = (path: string) => {
     // 如果路径已经是绝对路径且包含语言，直接返回
-    if (path.startsWith("/") && ["/it", "/en", "/es"].some(l => path.startsWith(l + "/") || path === l)) {
+    if (path.startsWith("/") && ["/it", "/en", "/es", "/fr", "/de"].some(l => path.startsWith(l + "/") || path === l)) {
       return path;
     }
     // 否则添加当前语言前缀
@@ -76,53 +90,81 @@ export default function Navbar() {
     }
   };
 
-  // 语言切换器 - 三个按钮放在一起
-  const LanguageSwitcher = () => (
-    <div className="flex items-center gap-1 border rounded-lg overflow-hidden flex-shrink-0" style={{ borderColor: solid ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.3)' }}>
-      <button
-        onClick={() => switchLanguage("it")}
-        className={`px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold transition-colors ${
-          currentLang === "it"
-            ? solid
-              ? "text-white bg-slate-800"
-              : "text-slate-900 bg-white"
-            : solid
-            ? "text-slate-600 hover:text-slate-800 hover:bg-slate-100"
-            : "text-white/70 hover:text-white hover:bg-white/10"
-        }`}
-      >
-        IT
-      </button>
-      <button
-        onClick={() => switchLanguage("en")}
-        className={`px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold transition-colors border-l ${
-          currentLang === "en"
-            ? solid
-              ? "text-white bg-slate-800 border-slate-600"
-              : "text-slate-900 bg-white border-slate-300"
-            : solid
-            ? "text-slate-600 hover:text-slate-800 hover:bg-slate-100 border-slate-200"
-            : "text-white/70 hover:text-white hover:bg-white/10 border-white/20"
-        }`}
-      >
-        EN
-      </button>
-      <button
-        onClick={() => switchLanguage("es")}
-        className={`px-2 sm:px-3 py-1.5 text-[10px] sm:text-xs font-semibold transition-colors border-l ${
-          currentLang === "es"
-            ? solid
-              ? "text-white bg-slate-800 border-slate-600"
-              : "text-slate-900 bg-white border-slate-300"
-            : solid
-            ? "text-slate-600 hover:text-slate-800 hover:bg-slate-100 border-slate-200"
-            : "text-white/70 hover:text-white hover:bg-white/10 border-white/20"
-        }`}
-      >
-        ES
-      </button>
-    </div>
-  );
+  // 语言切换器 - 下拉菜单
+  const LanguageSwitcher = () => {
+    const languages = [
+      { code: 'it', label: 'IT' },
+      { code: 'en', label: 'EN' },
+      { code: 'es', label: 'ES' },
+      { code: 'fr', label: 'FR' },
+      { code: 'de', label: 'DE' },
+    ];
+
+    const currentLangLabel = languages.find(l => l.code === currentLang)?.label || 'IT';
+
+    return (
+      <div className="relative flex-shrink-0 language-switcher-container">
+        <button
+          onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+          className={`px-2 py-1 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1 ${
+            solid
+              ? "text-slate-800 hover:text-slate-900"
+              : "text-white hover:text-white/90"
+          }`}
+        >
+          <span>{currentLangLabel}</span>
+          <svg
+            className={`w-3 h-3 transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        {/* 下拉菜单 */}
+        {langDropdownOpen && (
+          <>
+            {/* 背景遮罩，点击关闭 */}
+            <div
+              className="fixed inset-0 z-10"
+              onClick={() => setLangDropdownOpen(false)}
+            />
+            {/* 下拉选项 */}
+            <div
+              className={`absolute right-0 top-full mt-2 min-w-[80px] rounded-lg border shadow-lg z-20 ${
+                solid
+                  ? "bg-white border-slate-200"
+                  : "bg-black/95 backdrop-blur-md border-white/20"
+              }`}
+            >
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => {
+                    switchLanguage(lang.code);
+                    setLangDropdownOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2 text-sm font-semibold transition-colors first:rounded-t-lg last:rounded-b-lg ${
+                    lang.code === currentLang
+                      ? solid
+                        ? "text-slate-900 bg-slate-100"
+                        : "text-white bg-white/20"
+                      : solid
+                      ? "text-slate-700 hover:bg-slate-50"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 h-16 transition-all duration-300">

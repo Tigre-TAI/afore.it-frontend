@@ -20,7 +20,7 @@ type Props = {
 
 /** 预渲染所有产品详情页（利于 SEO） */
 export async function generateStaticParams() {
-  const langs = ["it", "en", "es"];
+  const langs = ["it", "en", "es", "fr", "de"];
   const params: Array<{ lang: string; category: string; id: string }> = [];
   
   for (const lang of langs) {

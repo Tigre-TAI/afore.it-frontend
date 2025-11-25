@@ -6,13 +6,15 @@ export async function generateStaticParams() {
     { lang: "it" },
     { lang: "en" },
     { lang: "es" },
+    { lang: "fr" },
+    { lang: "de" },
   ];
 }
 
 /** SEO Metadata for prodotti page */
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
   
   const metadataByLang = {
@@ -31,6 +33,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: "Catálogo completo de productos Afore: inversores solares monofásicos y trifásicos, inversores híbridos, baterías Afore y Hailei, sistemas all-in-one, cargadores EV. Líder mundial en soluciones fotovoltaicas para residencial y comercial.",
       keywords: "productos Afore, inversor solar, inversor híbrido, inversor de cadena, baterías, sistemas fotovoltaicos, paneles solares, energía solar, inversor Afore, baterías Hailei",
     },
+    fr: {
+      title: "Produits Afore - Onduleur Solaire, Onduleur Hybride, Batteries | Afore Italia",
+      description: "Catalogue complet des produits Afore: onduleurs solaires monophasés et triphasés, onduleurs hybrides, batteries Afore et Hailei, systèmes tout-en-un, chargeurs EV. Leader mondial en solutions photovoltaïques pour résidentiel et commercial.",
+      keywords: "produits Afore, onduleur solaire, onduleur hybride, onduleur de chaîne, batteries, systèmes photovoltaïques, panneaux solaires, énergie solaire, onduleur Afore, batteries Hailei",
+    },
+    de: {
+      title: "Afore Produkte - Solar-Wechselrichter, Hybrid-Wechselrichter, Batterien | Afore Italia",
+      description: "Vollständiger Afore-Produktkatalog: einphasige und dreiphasige Solar-Wechselrichter, Hybrid-Wechselrichter, Afore- und Hailei-Batterien, All-in-One-Systeme, EV-Ladestationen. Weltmarktführer in Photovoltaik-Lösungen für Wohn- und Gewerbegebäude.",
+      keywords: "Afore Produkte, Solar-Wechselrichter, Hybrid-Wechselrichter, String-Wechselrichter, Batterien, Photovoltaik-Systeme, Solarmodule, Solarenergie, Afore Wechselrichter, Hailei Batterien",
+    },
   };
   
   const meta = metadataByLang[validLang as keyof typeof metadataByLang] || metadataByLang.it;
@@ -45,11 +57,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'it': `${baseUrl}/it/prodotti`,
         'en': `${baseUrl}/en/prodotti`,
         'es': `${baseUrl}/es/prodotti`,
+        'fr': `${baseUrl}/fr/prodotti`,
+        'de': `${baseUrl}/de/prodotti`,
       },
     },
     openGraph: {
       type: "website",
-      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : 'en_US',
+      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : validLang === 'fr' ? 'fr_FR' : validLang === 'de' ? 'de_DE' : 'en_US',
       url: `${baseUrl}/${validLang}/prodotti`,
       title: meta.title,
       description: meta.description,

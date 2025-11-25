@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 // Dynamic metadata based on language
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
   
@@ -39,6 +39,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: "Afore Italia: líder mundial en inversores solares, inversores híbridos, baterías y sistemas fotovoltaicos. Soluciones completas para energía solar residencial y comercial.",
       keywords: "Afore, Afore Italia, inversor solar, inversor híbrido, inversor de cadena, baterías, fotovoltaico, energía solar, sistemas solares",
     },
+    fr: {
+      title: "Afore Italia - Onduleur Solaire, Onduleur Hybride, Batteries | Leader Mondial",
+      description: "Afore Italia: leader mondial en onduleurs solaires, onduleurs hybrides, batteries et systèmes photovoltaïques. Solutions complètes pour l'énergie solaire résidentielle et commerciale.",
+      keywords: "Afore, Afore Italia, onduleur solaire, onduleur hybride, onduleur de chaîne, batteries, photovoltaïque, énergie solaire, systèmes solaires",
+    },
+    de: {
+      title: "Afore Italia - Solar-Wechselrichter, Hybrid-Wechselrichter, Batterien | Weltmarktführer",
+      description: "Afore Italia: Weltmarktführer in Solar-Wechselrichtern, Hybrid-Wechselrichtern, Batterien und Photovoltaik-Systemen. Komplette Lösungen für private und gewerbliche Solarenergie.",
+      keywords: "Afore, Afore Italia, Solar-Wechselrichter, Hybrid-Wechselrichter, String-Wechselrichter, Batterien, Photovoltaik, Solarenergie, Solar-Systeme",
+    },
   };
   
   const meta = metadataByLang[validLang as keyof typeof metadataByLang] || metadataByLang.it;
@@ -57,7 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     openGraph: {
       type: "website",
-      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : 'en_US',
+      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : validLang === 'fr' ? 'fr_FR' : validLang === 'de' ? 'de_DE' : 'en_US',
       url: `${baseUrl}/${validLang}`,
       title: meta.title,
       description: meta.description,
@@ -111,7 +121,7 @@ export default async function LangLayout({
   params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
 
   return (
@@ -121,6 +131,8 @@ export default async function LangLayout({
         <link rel="alternate" hrefLang="it" href={`${baseUrl}/it`} />
         <link rel="alternate" hrefLang="en" href={`${baseUrl}/en`} />
         <link rel="alternate" hrefLang="es" href={`${baseUrl}/es`} />
+        <link rel="alternate" hrefLang="fr" href={`${baseUrl}/fr`} />
+        <link rel="alternate" hrefLang="de" href={`${baseUrl}/de`} />
         <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/it`} />
         
         {/* Structured Data for SEO */}

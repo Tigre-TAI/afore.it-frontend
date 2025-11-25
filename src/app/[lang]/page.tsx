@@ -12,13 +12,15 @@ export async function generateStaticParams() {
     { lang: "it" },
     { lang: "en" },
     { lang: "es" },
+    { lang: "fr" },
+    { lang: "de" },
   ];
 }
 
 /** SEO Metadata for homepage */
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
   const t = getTranslations(validLang);
   
@@ -38,6 +40,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: "Afore Italia es líder mundial en inversores solares, inversores híbridos, baterías y sistemas fotovoltaicos completos. Descubre nuestra gama de inversores de cadena, inversores híbridos, baterías Afore y Hailei para energía solar residencial y comercial.",
       keywords: "Afore, Afore Italia, inversor solar, inversor híbrido, inversor de cadena, baterías, energía solar, sistemas fotovoltaicos, TopBrand 2025",
     },
+    fr: {
+      title: "Afore Italia - Leader Mondial Onduleur Solaire et Systèmes Solaires | TopBrand 2025",
+      description: "Afore Italia est leader mondial en onduleurs solaires, onduleurs hybrides, batteries et systèmes photovoltaïques complets. Découvrez notre gamme d'onduleurs de chaîne, onduleurs hybrides, batteries Afore et Hailei pour l'énergie solaire résidentielle et commerciale.",
+      keywords: "Afore, Afore Italia, onduleur solaire, onduleur hybride, onduleur de chaîne, batteries, énergie solaire, systèmes photovoltaïques, TopBrand 2025",
+    },
+    de: {
+      title: "Afore Italia - Weltmarktführer Solar-Wechselrichter und Solar-Systeme | TopBrand 2025",
+      description: "Afore Italia ist Weltmarktführer in Solar-Wechselrichtern, Hybrid-Wechselrichtern, Batterien und vollständigen Photovoltaik-Systemen. Entdecken Sie unser Sortiment an String-Wechselrichtern, Hybrid-Wechselrichtern, Afore- und Hailei-Batterien für private und gewerbliche Solarenergie.",
+      keywords: "Afore, Afore Italia, Solar-Wechselrichter, Hybrid-Wechselrichter, String-Wechselrichter, Batterien, Solarenergie, Photovoltaik-Systeme, TopBrand 2025",
+    },
   };
   
   const meta = metadataByLang[validLang as keyof typeof metadataByLang] || metadataByLang.it;
@@ -52,11 +64,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'it': `${baseUrl}/it`,
         'en': `${baseUrl}/en`,
         'es': `${baseUrl}/es`,
+        'fr': `${baseUrl}/fr`,
+        'de': `${baseUrl}/de`,
       },
     },
     openGraph: {
       type: "website",
-      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : 'en_US',
+      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : validLang === 'fr' ? 'fr_FR' : validLang === 'de' ? 'de_DE' : 'en_US',
       url: `${baseUrl}/${validLang}`,
       title: meta.title,
       description: meta.description,
@@ -85,7 +99,7 @@ export default async function Home({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const t = getTranslations(validLang);
 
   return (

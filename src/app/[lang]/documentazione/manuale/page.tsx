@@ -9,6 +9,8 @@ export async function generateStaticParams() {
     { lang: "it" },
     { lang: "en" },
     { lang: "es" },
+    { lang: "fr" },
+    { lang: "de" },
   ];
 }
 

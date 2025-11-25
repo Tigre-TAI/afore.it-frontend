@@ -272,7 +272,7 @@ export const PRODUCTS: Product[] = [
   },
 ]
 
-type LangCode = "it" | "en" | "es";
+type LangCode = "it" | "en" | "es" | "fr" | "de";
 
 type ProductCopy = {
   title?: Partial<Record<LangCode, string>>;
@@ -284,183 +284,296 @@ const PRODUCT_COPY: Record<string, ProductCopy> = {
     title: {
       en: "Single-phase String Inverter 1–3kW",
       es: "Inversor de cadena monofásico 1–3kW",
+      fr: "Onduleur de chaîne monophasé 1–3kW",
+      de: "Einphasiger String-Wechselrichter 1–3kW",
     },
   },
   "stringa-3-6kw": {
     title: {
       en: "Single-phase String Inverter 3–6kW",
       es: "Inversor de cadena monofásico 3–6kW",
+      fr: "Onduleur de chaîne monophasé 3–6kW",
+      de: "Einphasiger String-Wechselrichter 3–6kW",
     },
   },
   "stringa-7-10kw": {
     title: {
       en: "Single-phase String Inverter 7–10kW",
       es: "Inversor de cadena monofásico 7–10kW",
+      fr: "Onduleur de chaîne monophasé 7–10kW",
+      de: "Einphasiger String-Wechselrichter 7–10kW",
     },
   },
   "stringa-trifase-3-25kw": {
     title: {
       en: "Three-phase String Inverter 3–25kW",
       es: "Inversor de cadena trifásico 3–25kW",
+      fr: "Onduleur de chaîne triphasé 3–25kW",
+      de: "Dreiphasiger String-Wechselrichter 3–25kW",
     },
   },
   "stringa-trifase-30kw": {
     title: {
       en: "Three-phase String Inverter 30kW",
       es: "Inversor de cadena trifásico 30kW",
+      fr: "Onduleur de chaîne triphasé 30kW",
+      de: "Dreiphasiger String-Wechselrichter 30kW",
     },
   },
   "stringa-trifase-36-60kw": {
     title: {
       en: "Three-phase String Inverter 36–60kW",
       es: "Inversor de cadena trifásico 36–60kW",
+      fr: "Onduleur de chaîne triphasé 36–60kW",
+      de: "Dreiphasiger String-Wechselrichter 36–60kW",
     },
   },
   "stringa-trifase-70-110kw": {
     title: {
       en: "Three-phase String Inverter 70–110kW",
       es: "Inversor de cadena trifásico 70–110kW",
+      fr: "Onduleur de chaîne triphasé 70–110kW",
+      de: "Dreiphasiger String-Wechselrichter 70–110kW",
     },
   },
   "ibrido-monofase-1-3-6kw": {
     title: {
       en: "Single-phase Hybrid Inverter 1–3.6kW",
       es: "Inversor híbrido monofásico 1–3.6kW",
+      fr: "Onduleur hybride monophasé 1–3.6kW",
+      de: "Einphasiger Hybrid-Wechselrichter 1–3.6kW",
     },
   },
   "ibrido-monofase-plus-4-6kw": {
     title: {
       en: "Single-phase Hybrid Inverter 4–6kW · Plus Series",
       es: "Inversor híbrido monofásico 4–6kW · Serie Plus",
+      fr: "Onduleur hybride monophasé 4–6kW · Série Plus",
+      de: "Einphasiger Hybrid-Wechselrichter 4–6kW · Plus Serie",
     },
   },
   "ibrido-trifase-plus-8-12kw": {
     title: {
       en: "Three-phase Hybrid Inverter 8–12kW · Plus Series",
       es: "Inversor híbrido trifásico 8–12kW · Serie Plus",
+      fr: "Onduleur hybride triphasé 8–12kW · Série Plus",
+      de: "Dreiphasiger Hybrid-Wechselrichter 8–12kW · Plus Serie",
     },
   },
   "ibrido-trifase-3-15kw": {
     title: {
       en: "Three-phase Hybrid Inverter 3–15kW",
       es: "Inversor híbrido trifásico 3–15kW",
+      fr: "Onduleur hybride triphasé 3–15kW",
+      de: "Dreiphasiger Hybrid-Wechselrichter 3–15kW",
     },
   },
   "ibrido-trifase-plus-3-12kw": {
     title: {
       en: "Three-phase Hybrid Inverter 3–12kW · Plus Series",
       es: "Inversor híbrido trifásico 3–12kW · Serie Plus",
+      fr: "Onduleur hybride triphasé 3–12kW · Série Plus",
+      de: "Dreiphasiger Hybrid-Wechselrichter 3–12kW · Plus Serie",
     },
   },
   "ibrido-trifase-3-30kw": {
     title: {
       en: "Three-phase Hybrid Inverter 3–30kW",
       es: "Inversor híbrido trifásico 3–30kW",
+      fr: "Onduleur hybride triphasé 3–30kW",
+      de: "Dreiphasiger Hybrid-Wechselrichter 3–30kW",
     },
   },
   "ibrido-trifase-36-60kw": {
     title: {
       en: "Three-phase Hybrid Inverter 36–60kW",
       es: "Inversor híbrido trifásico 36–60kW",
+      fr: "Onduleur hybride triphasé 36–60kW",
+      de: "Dreiphasiger Hybrid-Wechselrichter 36–60kW",
     },
   },
   "bat-afore-wall-5-10kwh": {
     title: {
       en: "Wall-mounted Storage Battery (5–10kWh)",
       es: "Batería de almacenamiento mural (5–10kWh)",
+      fr: "Batterie de stockage murale (5–10kWh)",
+      de: "Wandmontierte Speicherbatterie (5–10kWh)",
     },
   },
   "bat-afore-stack-hv-5kwh": {
     title: {
       en: "Stackable High-voltage Storage Battery",
       es: "Batería de almacenamiento apilable de alta tensión",
+      fr: "Batterie de stockage empilable haute tension",
+      de: "Stapelbare Hochspannungs-Speicherbatterie",
     },
   },
   "bat-afore-stack-lv-2-5-5kwh": {
     title: {
       en: "Stackable Low-voltage Storage Battery",
       es: "Batería de almacenamiento apilable de baja tensión",
+      fr: "Batterie de stockage empilable basse tension",
+      de: "Stapelbare Niederspannungs-Speicherbatterie",
+    },
+  },
+  "bat-hailei-atom-wb-5kwh-1": {
+    title: {
+      en: "ATOM WB 5kWh-1",
+      es: "ATOM WB 5kWh-1",
+      fr: "ATOM WB 5kWh-1",
+      de: "ATOM WB 5kWh-1",
+    },
+    subtitle: {
+      en: "ATOM WB-512100-1",
+      es: "ATOM WB-512100-1",
+      fr: "ATOM WB-512100-1",
+      de: "ATOM WB-512100-1",
     },
   },
   "bat-hailei-atom-wb-5-10kwh": {
     title: {
+      en: "ATOM WB 5kWh / 10kWh · Wall-mounted LiFePO4",
       es: "ATOM WB 5kWh / 10kWh · LiFePO4 de pared",
+      fr: "ATOM WB 5kWh / 10kWh · LiFePO4 mural",
+      de: "ATOM WB 5kWh / 10kWh · Wandmontiertes LiFePO4",
+    },
+    subtitle: {
+      en: "ATOM WB-512100, ATOM WB MAX-512200",
+      es: "ATOM WB-512100, ATOM WB MAX-512200",
+      fr: "ATOM WB-512100, ATOM WB MAX-512200",
+      de: "ATOM WB-512100, ATOM WB MAX-512200",
+    },
+  },
+  "bat-hailei-atom-ls-10-15kwh": {
+    title: {
+      en: "ATOM LS",
+      es: "ATOM LS",
+      fr: "ATOM LS",
+      de: "ATOM LS",
+    },
+    subtitle: {
+      en: "ATOM LS-10.24, ATOM LS-15.36",
+      es: "ATOM LS-10.24, ATOM LS-15.36",
+      fr: "ATOM LS-10.24, ATOM LS-15.36",
+      de: "ATOM LS-10.24, ATOM LS-15.36",
+    },
+  },
+  "bat-hailei-atom-hs-15-41kwh": {
+    title: {
+      en: "ATOM HS",
+      es: "ATOM HS",
+      fr: "ATOM HS",
+      de: "ATOM HS",
+    },
+    subtitle: {
+      en: "ATOM HS-15.36, ATOM HS-20.48, ATOM HS-25.6, ATOM HS-30.72, ATOM HS-35.84, ATOM HS-40.96",
+      es: "ATOM HS-15.36, ATOM HS-20.48, ATOM HS-25.6, ATOM HS-30.72, ATOM HS-35.84, ATOM HS-40.96",
+      fr: "ATOM HS-15.36, ATOM HS-20.48, ATOM HS-25.6, ATOM HS-30.72, ATOM HS-35.84, ATOM HS-40.96",
+      de: "ATOM HS-15.36, ATOM HS-20.48, ATOM HS-25.6, ATOM HS-30.72, ATOM HS-35.84, ATOM HS-40.96",
     },
   },
   "aio-mono-lv-afore-3-6kw-af5000w-lh": {
     title: {
       en: "All in One · Single-phase (LV)",
       es: "All in One · Monofásico (LV)",
+      fr: "Tout-en-un · Monophasé (BT)",
+      de: "All-in-One · Einphasig (NS)",
     },
     subtitle: {
       en: "Inverter: AF3K-ASL / AF6K-ASL · Storage: AF5000W-LH",
       es: "Inversor: AF3K-ASL / AF6K-ASL · Almacenamiento: AF5000W-LH",
+      fr: "Onduleur: AF3K-ASL / AF6K-ASL · Stockage: AF5000W-LH",
+      de: "Wechselrichter: AF3K-ASL / AF6K-ASL · Speicher: AF5000W-LH",
     },
   },
   "aio-mono-lv-afore-3-6kw-atom-aes-5-12": {
     title: {
       en: "All in One · Single-phase (LV)",
       es: "All in One · Monofásico (LV)",
+      fr: "Tout-en-un · Monophasé (BT)",
+      de: "All-in-One · Einphasig (NS)",
     },
     subtitle: {
       en: "Inverter: AF3K-ASL / AF6K-ASL · Storage: ATOM AES-5.12",
       es: "Inversor: AF3K-ASL / AF6K-ASL · Almacenamiento: ATOM AES-5.12",
+      fr: "Onduleur: AF3K-ASL / AF6K-ASL · Stockage: ATOM AES-5.12",
+      de: "Wechselrichter: AF3K-ASL / AF6K-ASL · Speicher: ATOM AES-5.12",
     },
   },
   "aio-mono-lv-atom-aes-3-6kw-atom-aes-5-12": {
     title: {
       en: "All in One · Single-phase (LV)",
       es: "All in One · Monofásico (LV)",
+      fr: "Tout-en-un · Monophasé (BT)",
+      de: "All-in-One · Einphasig (NS)",
     },
     subtitle: {
       en: "Inverter: ATOM AES 3–6kW · Storage: ATOM AES-5.12",
       es: "Inversor: ATOM AES 3–6kW · Almacenamiento: ATOM AES-5.12",
+      fr: "Onduleur: ATOM AES 3–6kW · Stockage: ATOM AES-5.12",
+      de: "Wechselrichter: ATOM AES 3–6kW · Speicher: ATOM AES-5.12",
     },
   },
   "aio-trifase-hv-plus-4-6kw": {
     title: {
       en: "All in One · Three-phase (HV) · Plus Series",
       es: "All in One · Trifásico (HV) · Serie Plus",
+      fr: "Tout-en-un · Triphasé (HT) · Série Plus",
+      de: "All-in-One · Dreiphasig (HS) · Plus Serie",
     },
     subtitle: {
       en: "AF4K-SLP, AF4.6K-SLP, AF5K-SLP, AF5.5K-SLP, AF6K-SLP",
       es: "AF4K-SLP, AF4.6K-SLP, AF5K-SLP, AF5.5K-SLP, AF6K-SLP",
+      fr: "AF4K-SLP, AF4.6K-SLP, AF5K-SLP, AF5.5K-SLP, AF6K-SLP",
+      de: "AF4K-SLP, AF4.6K-SLP, AF5K-SLP, AF5.5K-SLP, AF6K-SLP",
     },
   },
   "ev-diamond": {
     title: {
       en: "EV Charger · Diamond Shape",
       es: "Cargador EV · Forma de diamante",
+      fr: "Chargeur VE · Forme diamant",
+      de: "EV-Ladestation · Diamantform",
     },
     subtitle: {
       en: "Custom series",
       es: "Serie personalizada",
+      fr: "Série personnalisée",
+      de: "Individuelle Serie",
     },
   },
   "ev-oval": {
     title: {
       en: "EV Charger · Oval Shape",
       es: "Cargador EV · Forma ovalada",
+      fr: "Chargeur VE · Forme ovale",
+      de: "EV-Ladestation · Ovalform",
     },
     subtitle: {
       en: "Custom series",
       es: "Serie personalizada",
+      fr: "Série personnalisée",
+      de: "Individuelle Serie",
     },
   },
   "ev-square": {
     title: {
       en: "EV Charger · Square Shape",
       es: "Cargador EV · Forma cuadrada",
+      fr: "Chargeur VE · Forme carrée",
+      de: "EV-Ladestation · Quadratische Form",
     },
     subtitle: {
       en: "Custom series",
       es: "Serie personalizada",
+      fr: "Série personnalisée",
+      de: "Individuelle Serie",
     },
   },
 };
 
 function normalizeLang(lang: string): LangCode {
-  return (["it", "en", "es"].includes(lang) ? lang : "it") as LangCode;
+  return (["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it") as LangCode;
 }
 
 function translateField(

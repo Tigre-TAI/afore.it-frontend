@@ -5,6 +5,8 @@ import { getTranslations } from "@/lib/i18n";
 import itTranslations from "@/locales/it.json";
 import enTranslations from "@/locales/en.json";
 import esTranslations from "@/locales/es.json";
+import frTranslations from "@/locales/fr.json";
+import deTranslations from "@/locales/de.json";
 import { readdir, stat } from "fs/promises";
 import { join } from "path";
 
@@ -123,12 +125,14 @@ export async function generateStaticParams() {
     { lang: "it" },
     { lang: "en" },
     { lang: "es" },
+    { lang: "fr" },
+    { lang: "de" },
   ];
 }
 
 export default async function CertificatiAllInOnePage({ params }: Props) {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const t = getTranslations(validLang);
   
   const translations: Record<string, any> = {

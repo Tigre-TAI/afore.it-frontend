@@ -269,7 +269,44 @@ export default function Cases() {
                 <div className="mb-6">
                   <div className="grid grid-cols-2 gap-4">
                     {relatedProducts.slice(0, 2).map((product, idx) => {
-                      // 特殊产品的 PDF 路径映射（存储在 documentazione 目录）
+                      // 产品ID到PDF文件名的完整映射表
+                      // 格式: { productId: { it: 'filename.pdf', en: 'filename.pdf', es: 'filename.pdf' } }
+                      const productPdfMapping: Record<string, Record<string, string>> = {
+                        // Inverter di Stringa
+                        'stringa-1-3kw': { it: 'IT_Inverter_di_Stringa_Monofase_1-3kW_Scheda_Tecnica.pdf' },
+                        'stringa-3-6kw': { it: 'IT_Inverter_di_Stringa_Monofase_3-6kW_Scheda_Tecnica.pdf' },
+                        'stringa-7-10kw': { it: 'IT_Inverter_di_Stringa_Monofase_7-10kW_Scheda_Tecnica.pdf' },
+                        'stringa-trifase-3-25kw': { it: 'IT_Inverter_di_Stringa_3-25kW_Scheda_Tecnica.pdf' },
+                        'stringa-trifase-36-60kw': { it: 'IT_Inverter_di_Stringa_Trifase_30-60kW_Scheda_Tecnica.pdf' },
+                        'stringa-trifase-70-110kw': { it: 'IT_Inverter_di_Stringa_Trifase_70-110kW_Scheda_Tecnica 70-110kW.pdf' },
+                        
+                        // Inverter Ibrido
+                        'ibrido-monofase-1-3-6kw': { it: 'IT_Inverter_Ibrido_Monofase_1-3.6kW_Scheda_Tecnica.pdf' },
+                        'ibrido-monofase-plus-4-6kw': { it: 'IT_Inverter_Ibrido_Monofase_4-6kW_Plus_Scheda_Tecnica.pdf' },
+                        'ibrido-trifase-3-15kw': { it: 'IT_Inverter_Ibrido_Trifase_3-15kW_Scheda_Tecnica.pdf' },
+                        'ibrido-trifase-3-30kw': { it: 'IT_Inverter_Ibrido_Trifase_3-30kW_Scheda_Tecnica.pdf' },
+                        'ibrido-trifase-36-60kw': { it: 'IT_Inverter_Ibrido_Trifase_36-60kW_Scheda_Tecnica.pdf' },
+                        'ibrido-trifase-plus-3-12kw': { it: 'IT_Inverter_Ibrido_Trifase__3-12kW_Plus_Scheda_Tecnica.pdf' },
+                        'ibrido-trifase-plus-8-12kw': { it: 'IT_Inverter_Ibrido_Monofase_8-12kW_Scheda_Tecnica.pdf' },
+                        
+                        // Batteria
+                        'bat-afore-wall-5-10kwh': { it: 'IT_Batteria_Montaggio_a_parete_Scheda_Tecnica.pdf' },
+                        'bat-afore-stack-hv-5kwh': { it: 'IT_batteria_afore_trifase_5kWh.pdf' },
+                        'bat-hailei-atom-wb-5-10kwh': { it: 'IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf' },
+                        'bat-hailei-atom-wb-5kwh-1': { it: 'IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf' }, // 使用相同的PDF
+                        'bat-hailei-atom-ls-10-15kwh': { it: 'IT_Batteria_ATOM_LS_Scheda_Tecnica.pdf' },
+                        'bat-hailei-atom-hs-15-41kwh': { it: 'IT_Batteria_ATOM_HS_Scheda_Tecnica.pdf' },
+                        
+                        // All in One
+                        'aio-mono-lv-afore-3-6kw-af5000w-lh': { it: 'IT_allin1_afore_Monofase.pdf' },
+                        'aio-trifase-hv-plus-4-6kw': { it: 'IT_All-in-One_AFORE_Trifase_Scheda_Tecnica.pdf' },
+                        
+                        // EV Charger
+                        'ev-oval': { en: 'EN_EV_Charger_Oval_Scheda_Tecnica.pdf' },
+                        'ev-square': { en: 'EN_EV_Charger_Square_Scheda_Tecnica.pdf' },
+                      };
+                      
+                      // 特殊路径（存储在 documentazione 目录）
                       const specialPdfPaths: Record<string, string> = {
                         'stringa-trifase-70-110kw': '/documentazione/SCHEDA_TECNICA/IT_Inverter_di_Stringa_Trifase_70-110kW_Scheda_Tecnica 70-110kW.pdf',
                       };
@@ -277,12 +314,25 @@ export default function Cases() {
                       // 构建 PDF 文件路径
                       let pdfPath: string;
                       if (specialPdfPaths[product.id]) {
-                        // 使用特殊路径
+                        // 使用特殊路径（documentazione 目录）
                         pdfPath = specialPdfPaths[product.id];
+                      } else if (productPdfMapping[product.id]) {
+                        // 使用映射表
+                            const langKey = lang === 'it' ? 'it' : lang === 'en' ? 'en' : lang === 'es' ? 'es' : lang === 'fr' ? 'fr' : lang === 'de' ? 'de' : 'it';
+                        const pdfFileName = productPdfMapping[product.id][langKey] || productPdfMapping[product.id]['it'] || productPdfMapping[product.id]['en'];
+                        if (pdfFileName) {
+                          pdfPath = `/prodotti/${product.id}/downloads/${pdfFileName}`;
+                        } else {
+                          // 回退到默认路径
+                          const pdfDir = `/prodotti/${product.id}/downloads/`;
+                          const langPrefix = lang === 'it' ? 'IT' : lang === 'en' ? 'EN' : lang === 'es' ? 'ES' : lang === 'fr' ? 'FR' : lang === 'de' ? 'DE' : 'IT';
+                          const defaultFileName = `${langPrefix}_${product.id.replace(/-/g, '_')}_Scheda_Tecnica.pdf`;
+                          pdfPath = `${pdfDir}${defaultFileName}`;
+                        }
                       } else {
                         // 默认路径：/prodotti/{productId}/downloads/
                         const pdfDir = `/prodotti/${product.id}/downloads/`;
-                        const langPrefix = lang === 'it' ? 'IT' : lang === 'en' ? 'EN' : 'ES';
+                        const langPrefix = lang === 'it' ? 'IT' : lang === 'en' ? 'EN' : lang === 'es' ? 'ES' : lang === 'fr' ? 'FR' : lang === 'de' ? 'DE' : 'IT';
                         const pdfFileName = `${langPrefix}_${product.id.replace(/-/g, '_')}_Scheda_Tecnica.pdf`;
                         pdfPath = `${pdfDir}${pdfFileName}`;
                       }

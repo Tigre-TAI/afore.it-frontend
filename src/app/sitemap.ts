@@ -9,7 +9,7 @@ export const revalidate = false;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.afore.it';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const languages = ['it', 'en', 'es'];
+  const languages = ['it', 'en', 'es', 'fr', 'de'];
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   // Add homepage for each language
@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
           it: `${baseUrl}/it`,
           en: `${baseUrl}/en`,
           es: `${baseUrl}/es`,
+          fr: `${baseUrl}/fr`,
+          de: `${baseUrl}/de`,
         },
       },
     });
@@ -48,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             it: `${baseUrl}/it/${path}`,
             en: `${baseUrl}/en/${path}`,
             es: `${baseUrl}/es/${path}`,
+            fr: `${baseUrl}/fr/${path}`,
           },
         },
       });

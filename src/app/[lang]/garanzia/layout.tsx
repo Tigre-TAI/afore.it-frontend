@@ -6,13 +6,15 @@ export async function generateStaticParams() {
     { lang: "it" },
     { lang: "en" },
     { lang: "es" },
+    { lang: "fr" },
+    { lang: "de" },
   ];
 }
 
 /** SEO Metadata for garanzia page */
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
   
   const metadataByLang = {
@@ -31,6 +33,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: "Garantía de 10 años en inversores solares Afore y Hailei. Verifica la garantía de tu producto ingresando el número de serie. Descarga certificados de garantía para Afore, Hailei y Hailei Card. Soporte al cliente Afore Italia.",
       keywords: "garantía Afore, garantía 10 años, garantía inversor solar, verificar garantía Afore, certificado garantía, garantía Hailei",
     },
+    fr: {
+      title: "Garantie 10 Ans Afore - Vérifier Garantie Onduleur Solaire | Afore Italia",
+      description: "Garantie de 10 ans sur les onduleurs solaires Afore et Hailei. Vérifiez la garantie de votre produit en entrant le numéro de série. Téléchargez les certificats de garantie pour Afore, Hailei et Hailei Card. Support client Afore Italia.",
+      keywords: "garantie Afore, garantie 10 ans, garantie onduleur solaire, vérifier garantie Afore, certificat garantie, garantie Hailei",
+    },
+    de: {
+      title: "Afore 10-Jahres-Garantie - Solar-Wechselrichter-Garantie Prüfen | Afore Italia",
+      description: "10-Jahres-Garantie auf Afore- und Hailei-Solar-Wechselrichter. Überprüfen Sie die Garantie Ihres Produkts, indem Sie die Seriennummer eingeben. Laden Sie Garantiezertifikate für Afore, Hailei und Hailei Card herunter. Afore Italia Kundensupport.",
+      keywords: "Afore Garantie, 10-Jahres-Garantie, Solar-Wechselrichter-Garantie, Afore Garantie prüfen, Garantiezertifikat, Hailei Garantie",
+    },
   };
   
   const meta = metadataByLang[validLang as keyof typeof metadataByLang] || metadataByLang.it;
@@ -45,11 +57,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'it': `${baseUrl}/it/garanzia`,
         'en': `${baseUrl}/en/garanzia`,
         'es': `${baseUrl}/es/garanzia`,
+        'fr': `${baseUrl}/fr/garanzia`,
+        'de': `${baseUrl}/de/garanzia`,
       },
     },
     openGraph: {
       type: "website",
-      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : 'en_US',
+      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : validLang === 'fr' ? 'fr_FR' : validLang === 'de' ? 'de_DE' : 'en_US',
       url: `${baseUrl}/${validLang}/garanzia`,
       title: meta.title,
       description: meta.description,

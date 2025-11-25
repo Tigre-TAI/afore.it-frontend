@@ -7,6 +7,7 @@ import { getTranslations } from "@/lib/i18n";
 import itTranslations from "@/locales/it.json";
 import enTranslations from "@/locales/en.json";
 import esTranslations from "@/locales/es.json";
+import frTranslations from "@/locales/fr.json";
 import type { Metadata } from "next";
 
 type Props = {
@@ -19,13 +20,15 @@ export async function generateStaticParams() {
     { lang: "it" },
     { lang: "en" },
     { lang: "es" },
+    { lang: "fr" },
+    { lang: "de" },
   ];
 }
 
 /** SEO Metadata for documentazione page */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
   
   const metadataByLang = {
@@ -44,6 +47,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: "Documentación técnica completa Afore: certificados, informes de prueba, manuales, guías para inversores solares, inversores híbridos, baterías y sistemas all-in-one. Descarga gratuita de toda la documentación oficial.",
       keywords: "documentación Afore, certificados inversor, informes prueba, manuales inversor, guías solar, certificados Afore",
     },
+    fr: {
+      title: "Documentation Technique Afore - Certificats, Manuels, Guides | Afore Italia",
+      description: "Documentation technique complète Afore: certificats CEI 0-21, rapports de test, manuels, guides pour onduleurs solaires, onduleurs hybrides, batteries et systèmes tout-en-un. Téléchargement gratuit de toute la documentation officielle.",
+      keywords: "documentation Afore, certificats onduleur, rapports test, manuels onduleur, guides solaire, certificats Afore",
+    },
+    de: {
+      title: "Afore Technische Dokumentation - Zertifikate, Handbücher, Anleitungen | Afore Italia",
+      description: "Vollständige Afore-Technische Dokumentation: CEI 0-21-Zertifikate, Testberichte, Handbücher, Anleitungen für Solar-Wechselrichter, Hybrid-Wechselrichter, Batterien und All-in-One-Systeme. Kostenloser Download der gesamten offiziellen Dokumentation.",
+      keywords: "Afore Dokumentation, Wechselrichter-Zertifikate, Testberichte, Wechselrichter-Handbücher, Solar-Anleitungen, Afore-Zertifikate",
+    },
   };
   
   const meta = metadataByLang[validLang as keyof typeof metadataByLang] || metadataByLang.it;
@@ -58,11 +71,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'it': `${baseUrl}/it/documentazione`,
         'en': `${baseUrl}/en/documentazione`,
         'es': `${baseUrl}/es/documentazione`,
+        'fr': `${baseUrl}/fr/documentazione`,
+        'de': `${baseUrl}/de/documentazione`,
       },
     },
     openGraph: {
       type: "website",
-      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : 'en_US',
+      locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : validLang === 'fr' ? 'fr_FR' : validLang === 'de' ? 'de_DE' : 'en_US',
       url: `${baseUrl}/${validLang}/documentazione`,
       title: meta.title,
       description: meta.description,
@@ -81,7 +96,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function DocumentazionePage({ params }: Props) {
   const { lang } = await params;
-  const validLang = ["it", "en", "es"].includes(lang) ? lang : "it";
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
   const t = getTranslations(validLang);
   
   const translations: Record<string, any> = {
