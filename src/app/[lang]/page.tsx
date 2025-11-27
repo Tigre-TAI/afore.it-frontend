@@ -1,10 +1,24 @@
 import Hero from "@/components/Hero";
 import ScrollingBanner from "@/components/ScrollingBanner";
-import ProductCategories from "@/components/ProductCategories";
-import FeaturedProducts from "@/components/FeaturedProducts";
-import Cases from "@/components/Cases";
 import { getTranslations } from "@/lib/i18n";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+// Lazy load below-fold components to improve LCP
+const ProductCategories = dynamic(() => import("@/components/ProductCategories"), {
+  loading: () => <div className="py-8 md:py-16 lg:py-24 bg-white" />,
+  ssr: true, // Still SSR for SEO, but code-split
+});
+
+const FeaturedProducts = dynamic(() => import("@/components/FeaturedProducts"), {
+  loading: () => <div className="py-8 md:py-16 lg:py-24 bg-gray-50" />,
+  ssr: true,
+});
+
+const Cases = dynamic(() => import("@/components/Cases"), {
+  loading: () => <div className="py-8 md:py-16 lg:py-24 bg-white" />,
+  ssr: true,
+});
 
 /** 预渲染所有语言版本的主页（静态导出必需） */
 export async function generateStaticParams() {

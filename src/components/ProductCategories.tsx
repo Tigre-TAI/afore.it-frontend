@@ -88,7 +88,8 @@ export default function ProductCategories() {
                     alt={category.title}
                     fill
                     className="object-contain group-hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
+                    loading="lazy"
                     onError={(e) => {
                       console.error('Image failed to load:', category.image);
                     }}

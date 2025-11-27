@@ -21,7 +21,7 @@ export default function ScrollingBanner() {
           className="object-contain h-full w-auto"
           style={{ maxHeight: "100%" }}
           draggable={false}
-          priority
+          loading="lazy"
         />
       </div>
       
@@ -35,7 +35,7 @@ export default function ScrollingBanner() {
           className="object-contain h-full w-auto"
           style={{ maxHeight: "100%" }}
           draggable={false}
-          priority
+          loading="lazy"
         />
       </div>
       

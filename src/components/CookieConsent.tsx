@@ -53,9 +53,22 @@ export default function CookieConsent() {
     // 检查用户是否已经同意Cookie
     const hasConsent = hasCookieConsent();
     if (!hasConsent) {
-      // 延迟显示，让页面先加载
-      const timer = setTimeout(() => setShowBanner(true), 1000);
-      return () => clearTimeout(timer);
+      // Defer cookie banner to reduce INP - wait for page to be interactive
+      // Use requestIdleCallback if available, otherwise setTimeout with longer delay
+      const showBanner = () => setShowBanner(true);
+      
+      if ('requestIdleCallback' in window) {
+        const idleId = (window as any).requestIdleCallback(showBanner, { timeout: 3000 });
+        return () => {
+          if ('cancelIdleCallback' in window) {
+            (window as any).cancelIdleCallback(idleId);
+          }
+        };
+      } else {
+        // Fallback: wait 2 seconds after page load
+        const timer = setTimeout(showBanner, 2000);
+        return () => clearTimeout(timer);
+      }
     }
   }, []);
 

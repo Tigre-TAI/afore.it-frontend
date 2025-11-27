@@ -137,6 +137,7 @@ export default function Hero({
           fill
           priority
           sizes="100vw"
+          quality={85}
           className={`object-cover transition-opacity duration-500 ${
             isVideoReady ? "opacity-0" : "opacity-100"
           }`}
@@ -233,6 +234,7 @@ export default function Hero({
               height={20}
               className="opacity-90 hover:opacity-100 transition-opacity"
               unoptimized
+              loading="lazy"
             />
           </a>
           
@@ -251,6 +253,7 @@ export default function Hero({
               height={20}
               className="opacity-90 hover:opacity-100 transition-opacity"
               unoptimized
+              loading="lazy"
             />
           </a>
           

@@ -25,6 +25,7 @@ export default function Footer() {
               height={36}
               className="opacity-95"
               unoptimized
+              loading="lazy"
             />
           </div>
 

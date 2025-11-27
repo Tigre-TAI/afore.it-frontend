@@ -9,11 +9,15 @@ import CookieConsent from "@/components/CookieConsent";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // Not critical for LCP
 });
 
 // Dynamic metadata based on language
@@ -127,6 +131,14 @@ export default async function LangLayout({
   return (
     <html lang={validLang}>
       <head>
+        {/* Preload hero image for faster LCP */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/image/heroes/hero_universal.jpg"
+          fetchPriority="high"
+        />
+        
         {/* Hreflang tags for multilingual SEO */}
         <link rel="alternate" hrefLang="it" href={`${baseUrl}/it`} />
         <link rel="alternate" hrefLang="en" href={`${baseUrl}/en`} />
@@ -147,6 +159,7 @@ export default async function LangLayout({
           {children}
         </main>
         <Footer />
+        {/* Defer CookieConsent to reduce INP - load after page is interactive */}
         <CookieConsent />
       </body>
     </html>
