@@ -1,5 +1,13 @@
 // src/app/documentazione/inverter-ibridi/page.tsx
 import Link from "next/link";
+import Breadcrumb from "@/components/ui/Breadcrumbs";
+import { withLang } from "@/lib/lang-utils";
+import { getTranslations } from "@/lib/i18n";
+import HeroBackground from "@/components/ui/HeroBackground";
+
+type Props = {
+  params: Promise<{ lang: string }>;
+};
 
 /** 预渲染所有语言版本的页面（静态导出必需） */
 export async function generateStaticParams() {
@@ -59,7 +67,11 @@ function Section({ title, sections }: { title: string; sections: DocSection[] })
   );
 }
 
-export default function InverterIbridiPage() {
+export default async function InverterIbridiPage({ params }: Props) {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
+  const t = getTranslations(validLang);
+  
   // Base prefix for local PDFs
   const base = "/documentazione";
 
@@ -213,12 +225,21 @@ export default function InverterIbridiPage() {
   return (
     <>
       <section className="relative -mt-16 pt-16">
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-14 text-white">
-          <h1 className="text-3xl lg:text-5xl font-extrabold tracking-tight">
-            Certificati PV Inverter Ibridi
+        <HeroBackground src="/image/documentazione_hero.jpg" alt="Certificati Inverter Ibridi" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
+          <Breadcrumb
+            theme="dark"
+            items={[
+              { label: t("common.breadcrumb.home"), href: withLang("/", validLang) },
+              { label: t("documentazione.title"), href: withLang("/documentazione", validLang) },
+              { label: t("documentazione.certificatiInverterIbridi.title") || "Certificati PV Inverter Ibridi" },
+            ]}
+          />
+          <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight break-words">
+            {t("documentazione.certificatiInverterIbridi.title") || "Certificati PV Inverter Ibridi"}
           </h1>
-          <p className="mt-3 max-w-2xl text-white/85">
-            Certificazioni e guide aggiornate con compatibilità batteria.
+          <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/85">
+            {t("documentazione.certificatiInverterIbridi.subtitle") || "Certificazioni e guide aggiornate con compatibilità batteria."}
           </p>
         </div>
       </section>
