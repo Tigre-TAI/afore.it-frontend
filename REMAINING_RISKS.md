@@ -144,3 +144,4 @@ sizes="(max-width: 768px) 100vw, 100vw"  // Could add mobile-specific size
    - Measure actual LCP/INP in production
    - Prioritize based on real user data
 
+

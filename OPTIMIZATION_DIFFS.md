@@ -386,3 +386,4 @@ useEffect(() => {
 - **Initial JS Bundle:** Reduced by ~50KB
 - **Initial Image Load:** Reduced by ~200-400KB
 
+
