@@ -10,6 +10,7 @@ import deTranslations from "@/locales/de.json";
 import { readdir, stat } from "fs/promises";
 import { join } from "path";
 import HeroBackground from "@/components/ui/HeroBackground";
+import type { Metadata } from "next";
 
 type DocumentFile = {
   fileName: string;
@@ -129,6 +130,28 @@ export async function generateStaticParams() {
     { lang: "fr" },
     { lang: "de" },
   ];
+}
+
+/** SEO Metadata for certificati-all-in-one page */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
+  return {
+    title: "Certificati All-in-One - Documentazione Tecnica | Afore Italia",
+    description: "Certificazioni e documentazione tecnica per sistemi all-in-one Afore: CEI 0-21, test report, guide per regolamento di esercizio.",
+    alternates: {
+      canonical: `${baseUrl}/${validLang}/documentazione/certificati-all-in-one`,
+      languages: {
+        'it': `${baseUrl}/it/documentazione/certificati-all-in-one`,
+        'en': `${baseUrl}/en/documentazione/certificati-all-in-one`,
+        'es': `${baseUrl}/es/documentazione/certificati-all-in-one`,
+        'fr': `${baseUrl}/fr/documentazione/certificati-all-in-one`,
+        'de': `${baseUrl}/de/documentazione/certificati-all-in-one`,
+      },
+    },
+  };
 }
 
 export default async function CertificatiAllInOnePage({ params }: Props) {

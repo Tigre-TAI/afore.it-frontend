@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/ui/Breadcrumbs";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import HeroBackground from "@/components/ui/HeroBackground";
+import type { Metadata } from "next";
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -19,6 +20,28 @@ export async function generateStaticParams() {
     { lang: "fr" },
     { lang: "de" },
   ];
+}
+
+/** SEO Metadata for archivio page */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
+  return {
+    title: "Archivio Documentazione - Documentazione Tecnica Afore | Afore Italia",
+    description: "Archivio completo della documentazione tecnica Afore: certificati, manuali, guide e test report per tutti i prodotti.",
+    alternates: {
+      canonical: `${baseUrl}/${validLang}/documentazione/archivio`,
+      languages: {
+        'it': `${baseUrl}/it/documentazione/archivio`,
+        'en': `${baseUrl}/en/documentazione/archivio`,
+        'es': `${baseUrl}/es/documentazione/archivio`,
+        'fr': `${baseUrl}/fr/documentazione/archivio`,
+        'de': `${baseUrl}/de/documentazione/archivio`,
+      },
+    },
+  };
 }
 
 export default async function ArchivioPage({ params }: Props) {

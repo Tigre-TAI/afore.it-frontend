@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/ui/Breadcrumbs";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import HeroBackground from "@/components/ui/HeroBackground";
+import type { Metadata } from "next";
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -19,6 +20,28 @@ export async function generateStaticParams() {
     { lang: "fr" },
     { lang: "de" },
   ];
+}
+
+/** SEO Metadata for guida page */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
+  return {
+    title: "Guide - Documentazione Tecnica Afore | Afore Italia",
+    description: "Guide tecniche per l'installazione e la configurazione di inverter fotovoltaici, inverter ibridi e sistemi di accumulo Afore.",
+    alternates: {
+      canonical: `${baseUrl}/${validLang}/documentazione/guida`,
+      languages: {
+        'it': `${baseUrl}/it/documentazione/guida`,
+        'en': `${baseUrl}/en/documentazione/guida`,
+        'es': `${baseUrl}/es/documentazione/guida`,
+        'fr': `${baseUrl}/fr/documentazione/guida`,
+        'de': `${baseUrl}/de/documentazione/guida`,
+      },
+    },
+  };
 }
 
 export default async function GuidaPage({ params }: Props) {

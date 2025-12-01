@@ -51,6 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             en: `${baseUrl}/en/${path}`,
             es: `${baseUrl}/es/${path}`,
             fr: `${baseUrl}/fr/${path}`,
+            de: `${baseUrl}/de/${path}`,
           },
         },
       });
@@ -71,6 +72,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             it: `${baseUrl}/it/prodotti/${family}/${product.id}`,
             en: `${baseUrl}/en/prodotti/${family}/${product.id}`,
             es: `${baseUrl}/es/prodotti/${family}/${product.id}`,
+            fr: `${baseUrl}/fr/prodotti/${family}/${product.id}`,
+            de: `${baseUrl}/de/prodotti/${family}/${product.id}`,
           },
         },
       });
@@ -102,6 +105,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             it: `${baseUrl}/it/documentazione/${docPage}`,
             en: `${baseUrl}/en/documentazione/${docPage}`,
             es: `${baseUrl}/es/documentazione/${docPage}`,
+            fr: `${baseUrl}/fr/documentazione/${docPage}`,
+            de: `${baseUrl}/de/documentazione/${docPage}`,
           },
         },
       });

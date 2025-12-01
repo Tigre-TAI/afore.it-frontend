@@ -61,6 +61,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'de': `${baseUrl}/de/prodotti`,
       },
     },
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
       type: "website",
       locale: validLang === 'it' ? 'it_IT' : validLang === 'es' ? 'es_ES' : validLang === 'fr' ? 'fr_FR' : validLang === 'de' ? 'de_DE' : 'en_US',

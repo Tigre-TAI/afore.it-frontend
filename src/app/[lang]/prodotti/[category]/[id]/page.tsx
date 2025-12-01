@@ -71,6 +71,8 @@ export async function generateMetadata({ params }: Props) {
         'it': `${baseUrl}/it/prodotti/${category}/${id}`,
         'en': `${baseUrl}/en/prodotti/${category}/${id}`,
         'es': `${baseUrl}/es/prodotti/${category}/${id}`,
+        'fr': `${baseUrl}/fr/prodotti/${category}/${id}`,
+        'de': `${baseUrl}/de/prodotti/${category}/${id}`,
       },
     },
     openGraph: {

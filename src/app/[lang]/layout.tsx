@@ -67,6 +67,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'it': `${baseUrl}/it`,
         'en': `${baseUrl}/en`,
         'es': `${baseUrl}/es`,
+        'fr': `${baseUrl}/fr`,
+        'de': `${baseUrl}/de`,
       },
     },
     openGraph: {
@@ -139,13 +141,8 @@ export default async function LangLayout({
           fetchPriority="high"
         />
         
-        {/* Hreflang tags for multilingual SEO */}
-        <link rel="alternate" hrefLang="it" href={`${baseUrl}/it`} />
-        <link rel="alternate" hrefLang="en" href={`${baseUrl}/en`} />
-        <link rel="alternate" hrefLang="es" href={`${baseUrl}/es`} />
-        <link rel="alternate" hrefLang="fr" href={`${baseUrl}/fr`} />
-        <link rel="alternate" hrefLang="de" href={`${baseUrl}/de`} />
-        <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/it`} />
+        {/* Note: Hreflang tags are handled via metadata.alternates.languages in each page's generateMetadata */}
+        {/* This ensures each page has correct hreflang pointing to its own language variants */}
         
         {/* Structured Data for SEO */}
         <StructuredData type="Organization" lang={validLang} />

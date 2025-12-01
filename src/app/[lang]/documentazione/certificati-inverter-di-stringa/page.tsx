@@ -114,6 +114,8 @@ function extractLang(fileName: string): string {
   return 'IT';
 }
 
+import type { Metadata } from "next";
+
 type Props = {
   params: Promise<{ lang: string }>;
 };
@@ -127,6 +129,28 @@ export async function generateStaticParams() {
     { lang: "fr" },
     { lang: "de" },
   ];
+}
+
+/** SEO Metadata for certificati-inverter-di-stringa page */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
+  return {
+    title: "Certificati Inverter di Stringa - Documentazione Tecnica | Afore Italia",
+    description: "Certificazioni e documentazione tecnica per inverter di stringa Afore: CEI 0-21, test report, guide per regolamento di esercizio e addendum tecnico.",
+    alternates: {
+      canonical: `${baseUrl}/${validLang}/documentazione/certificati-inverter-di-stringa`,
+      languages: {
+        'it': `${baseUrl}/it/documentazione/certificati-inverter-di-stringa`,
+        'en': `${baseUrl}/en/documentazione/certificati-inverter-di-stringa`,
+        'es': `${baseUrl}/es/documentazione/certificati-inverter-di-stringa`,
+        'fr': `${baseUrl}/fr/documentazione/certificati-inverter-di-stringa`,
+        'de': `${baseUrl}/de/documentazione/certificati-inverter-di-stringa`,
+      },
+    },
+  };
 }
 
 export default async function CEIPage({ params }: Props) {

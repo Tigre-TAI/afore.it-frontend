@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/ui/Breadcrumbs";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import HeroBackground from "@/components/ui/HeroBackground";
+import type { Metadata } from "next";
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -18,6 +19,28 @@ export async function generateStaticParams() {
     { lang: "fr" },
     { lang: "de" },
   ];
+}
+
+/** SEO Metadata for inverter-ibridi page */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
+  return {
+    title: "Certificati Inverter Ibridi - Documentazione Tecnica | Afore Italia",
+    description: "Certificazioni e documentazione tecnica per inverter ibridi Afore: CEI 0-21, test report, guide per regolamento di esercizio e addendum tecnico.",
+    alternates: {
+      canonical: `${baseUrl}/${validLang}/documentazione/inverter-ibridi`,
+      languages: {
+        'it': `${baseUrl}/it/documentazione/inverter-ibridi`,
+        'en': `${baseUrl}/en/documentazione/inverter-ibridi`,
+        'es': `${baseUrl}/es/documentazione/inverter-ibridi`,
+        'fr': `${baseUrl}/fr/documentazione/inverter-ibridi`,
+        'de': `${baseUrl}/de/documentazione/inverter-ibridi`,
+      },
+    },
+  };
 }
 
 type DocItem = {

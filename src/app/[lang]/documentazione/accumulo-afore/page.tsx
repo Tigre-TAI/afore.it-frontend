@@ -8,6 +8,7 @@ import esTranslations from "@/locales/es.json";
 import { readdir, stat } from "fs/promises";
 import { join } from "path";
 import HeroBackground from "@/components/ui/HeroBackground";
+import type { Metadata } from "next";
 
 type DocumentFile = {
   fileName: string;
@@ -127,6 +128,28 @@ export async function generateStaticParams() {
     { lang: "fr" },
     { lang: "de" },
   ];
+}
+
+/** SEO Metadata for accumulo-afore page */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  const validLang = ["it", "en", "es", "fr", "de"].includes(lang) ? lang : "it";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.afore.it";
+  
+  return {
+    title: "Accumulo Afore - Documentazione Tecnica e Certificati | Afore Italia",
+    description: "Documentazione tecnica completa per sistemi di accumulo Afore: CEI 0-21, test report, guide per regolamento di esercizio e addendum tecnico.",
+    alternates: {
+      canonical: `${baseUrl}/${validLang}/documentazione/accumulo-afore`,
+      languages: {
+        'it': `${baseUrl}/it/documentazione/accumulo-afore`,
+        'en': `${baseUrl}/en/documentazione/accumulo-afore`,
+        'es': `${baseUrl}/es/documentazione/accumulo-afore`,
+        'fr': `${baseUrl}/fr/documentazione/accumulo-afore`,
+        'de': `${baseUrl}/de/documentazione/accumulo-afore`,
+      },
+    },
+  };
 }
 
 export default async function AccumuloAforePage({ params }: Props) {
