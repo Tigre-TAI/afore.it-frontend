@@ -1,0 +1,166 @@
+{
+  "description": "Complete redirect map for SEO consolidation - All non-canonical URLs redirect to /it versions",
+  "baseUrl": "https://www.afore.it",
+  "canonicalLanguage": "it",
+  "redirects": [
+    {
+      "from": "/",
+      "to": "/it",
+      "type": 301,
+      "reason": "Root page redirects to Italian (canonical) homepage"
+    },
+    {
+      "from": "/prodotti",
+      "to": "/it/prodotti",
+      "type": 301,
+      "reason": "Language-less prodotti page"
+    },
+    {
+      "from": "/documentazione",
+      "to": "/it/documentazione",
+      "type": 301,
+      "reason": "Language-less documentazione page"
+    },
+    {
+      "from": "/garanzia",
+      "to": "/it/garanzia",
+      "type": 301,
+      "reason": "Language-less garanzia page"
+    },
+    {
+      "from": "/prodotti/allin1",
+      "to": "/it/prodotti/allin1",
+      "type": 301,
+      "reason": "Language-less allin1 category"
+    },
+    {
+      "from": "/prodotti/inverter-di-stringa",
+      "to": "/it/prodotti/inverter-di-stringa",
+      "type": 301,
+      "reason": "Language-less inverter-di-stringa category"
+    },
+    {
+      "from": "/prodotti/ibrido",
+      "to": "/it/prodotti/ibrido",
+      "type": 301,
+      "reason": "Language-less ibrido category"
+    },
+    {
+      "from": "/prodotti/batteria-di-accumulo",
+      "to": "/it/prodotti/batteria-di-accumulo",
+      "type": 301,
+      "reason": "Language-less batteria-di-accumulo category"
+    },
+    {
+      "from": "/prodotti/ev-charger",
+      "to": "/it/prodotti/ev-charger",
+      "type": 301,
+      "reason": "Language-less ev-charger category"
+    },
+    {
+      "from": "/prodotti/pv-inverter",
+      "to": "/it/prodotti/pv-inverter",
+      "type": 301,
+      "reason": "Language-less pv-inverter category"
+    },
+    {
+      "from": "/prodotti/pv-inverter/inverter-di-stringa",
+      "to": "/it/prodotti/pv-inverter/inverter-di-stringa",
+      "type": 301,
+      "reason": "Language-less pv-inverter sub-category"
+    },
+    {
+      "from": "/prodotti/pv-inverter/inverter-ibrido",
+      "to": "/it/prodotti/pv-inverter/inverter-ibrido",
+      "type": 301,
+      "reason": "Language-less pv-inverter sub-category"
+    },
+    {
+      "from": "/prodotti/allin1/sistema-di-accumulo-afore",
+      "to": "/it/prodotti/allin1/sistema-di-accumulo-afore",
+      "type": 301,
+      "reason": "Language-less allin1 sub-category"
+    },
+    {
+      "from": "/prodotti/allin1/sistema-di-accumulo-hailei",
+      "to": "/it/prodotti/allin1/sistema-di-accumulo-hailei",
+      "type": 301,
+      "reason": "Language-less allin1 sub-category"
+    },
+    {
+      "from": "/prodotti/batteria-di-accumulo/serie-afore",
+      "to": "/it/prodotti/batteria-di-accumulo/serie-afore",
+      "type": 301,
+      "reason": "Language-less batteria-di-accumulo sub-category"
+    },
+    {
+      "from": "/prodotti/batteria-di-accumulo/serie-accumulo-hailei",
+      "to": "/it/prodotti/batteria-di-accumulo/serie-accumulo-hailei",
+      "type": 301,
+      "reason": "Language-less batteria-di-accumulo sub-category"
+    },
+    {
+      "from": "/documentazione/guida",
+      "to": "/it/documentazione/guida",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/manuale",
+      "to": "/it/documentazione/manuale",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/archivio",
+      "to": "/it/documentazione/archivio",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/inverter-ibridi",
+      "to": "/it/documentazione/inverter-ibridi",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/certificati-inverter-di-stringa",
+      "to": "/it/documentazione/certificati-inverter-di-stringa",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/certificati-inverter-ibridi",
+      "to": "/it/documentazione/certificati-inverter-ibridi",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/certificati-all-in-one",
+      "to": "/it/documentazione/certificati-all-in-one",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/accumulo-afore",
+      "to": "/it/documentazione/accumulo-afore",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    },
+    {
+      "from": "/documentazione/scheda-tecnica",
+      "to": "/it/documentazione/scheda-tecnica",
+      "type": 301,
+      "reason": "Language-less documentazione sub-page"
+    }
+  ],
+  "rules": {
+    "languageLessRedirect": "Any URL without language prefix (/it, /en, etc.) redirects to /it version",
+    "rootRedirect": "Root / redirects to /it",
+    "queryParams": "Query parameters are preserved in redirects",
+    "trailingSlash": "Trailing slashes are removed before redirect",
+    "htmlExtension": ".html extensions are removed before redirect",
+    "preventChains": "Redirects are checked to prevent chains (redirecting to another redirect)"
+  }
+}
+

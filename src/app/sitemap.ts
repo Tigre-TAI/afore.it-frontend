@@ -7,112 +7,111 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.afore.it';
+const canonicalLang = 'it'; // Only include canonical /it URLs
 
+/**
+ * Sitemap for CloudFront static site
+ * 
+ * Rules:
+ * - Include only canonical 200 URLs under /it
+ * - Exclude URLs that redirect (301/302) - root / is excluded
+ * - Exclude noindex pages - root / has robots.index = false
+ * - Ensure lastmod is present
+ * - Single sitemap (no sitemap index needed for this size)
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const languages = ['it', 'en', 'es', 'fr', 'de'];
   const sitemapEntries: MetadataRoute.Sitemap = [];
+  const now = new Date();
 
-  // Add homepage for each language
-  languages.forEach(lang => {
-    sitemapEntries.push({
-      url: `${baseUrl}/${lang}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-      alternates: {
-        languages: {
-          it: `${baseUrl}/it`,
-          en: `${baseUrl}/en`,
-          es: `${baseUrl}/es`,
-          fr: `${baseUrl}/fr`,
-          de: `${baseUrl}/de`,
-        },
-      },
-    });
+  // 1. Homepage - /it (canonical)
+  sitemapEntries.push({
+    url: `${baseUrl}/${canonicalLang}`,
+    lastModified: now,
+    changeFrequency: 'daily',
+    priority: 1.0,
   });
 
-  // Add main category pages
+  // 2. Main category pages - /it versions only
   const mainPages = [
-    { path: 'prodotti', priority: 0.9 },
-    { path: 'documentazione', priority: 0.8 },
-    { path: 'garanzia', priority: 0.8 },
+    { path: 'prodotti', priority: 0.9, changeFrequency: 'weekly' as const },
+    { path: 'documentazione', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: 'garanzia', priority: 0.8, changeFrequency: 'monthly' as const },
   ];
 
-  mainPages.forEach(({ path, priority }) => {
-    languages.forEach(lang => {
-      sitemapEntries.push({
-        url: `${baseUrl}/${lang}/${path}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority,
-        alternates: {
-          languages: {
-            it: `${baseUrl}/it/${path}`,
-            en: `${baseUrl}/en/${path}`,
-            es: `${baseUrl}/es/${path}`,
-            fr: `${baseUrl}/fr/${path}`,
-            de: `${baseUrl}/de/${path}`,
-          },
-        },
-      });
+  mainPages.forEach(({ path, priority, changeFrequency }) => {
+    sitemapEntries.push({
+      url: `${baseUrl}/${canonicalLang}/${path}`,
+      lastModified: now,
+      changeFrequency,
+      priority,
     });
   });
 
-  // Add product pages
+  // 3. Product category pages - /it versions only
+  const productCategoryPages = [
+    { path: 'prodotti/allin1', priority: 0.85 },
+    { path: 'prodotti/inverter-di-stringa', priority: 0.85 },
+    { path: 'prodotti/ibrido', priority: 0.85 },
+    { path: 'prodotti/batteria-di-accumulo', priority: 0.85 },
+    { path: 'prodotti/ev-charger', priority: 0.85 },
+    { path: 'prodotti/pv-inverter', priority: 0.85 },
+    { path: 'prodotti/pv-inverter/inverter-di-stringa', priority: 0.8 },
+    { path: 'prodotti/pv-inverter/inverter-ibrido', priority: 0.8 },
+    { path: 'prodotti/allin1/sistema-di-accumulo-afore', priority: 0.75 },
+    { path: 'prodotti/allin1/sistema-di-accumulo-hailei', priority: 0.75 },
+    { path: 'prodotti/batteria-di-accumulo/serie-afore', priority: 0.75 },
+    { path: 'prodotti/batteria-di-accumulo/serie-accumulo-hailei', priority: 0.75 },
+  ];
+
+  productCategoryPages.forEach(({ path, priority }) => {
+    sitemapEntries.push({
+      url: `${baseUrl}/${canonicalLang}/${path}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority,
+    });
+  });
+
+  // 4. Product detail pages - /it versions only
   PRODUCTS.forEach(product => {
     const { family } = resolvePath(product);
-    languages.forEach(lang => {
-      sitemapEntries.push({
-        url: `${baseUrl}/${lang}/prodotti/${family}/${product.id}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.7,
-        alternates: {
-          languages: {
-            it: `${baseUrl}/it/prodotti/${family}/${product.id}`,
-            en: `${baseUrl}/en/prodotti/${family}/${product.id}`,
-            es: `${baseUrl}/es/prodotti/${family}/${product.id}`,
-            fr: `${baseUrl}/fr/prodotti/${family}/${product.id}`,
-            de: `${baseUrl}/de/prodotti/${family}/${product.id}`,
-          },
-        },
-      });
+    sitemapEntries.push({
+      url: `${baseUrl}/${canonicalLang}/prodotti/${family}/${product.id}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     });
   });
 
-  // Add documentation sub-pages
+  // 5. Documentation sub-pages - /it versions only
   const docPages = [
-    'archivio',
-    'guida',
-    'manuale',
-    'scheda-tecnica',
-    'inverter-ibridi',
-    'certificati-inverter-di-stringa',
-    'certificati-inverter-ibridi',
-    'certificati-all-in-one',
-    'accumulo-afore',
+    { path: 'documentazione/archivio', priority: 0.6 },
+    { path: 'documentazione/guida', priority: 0.6 },
+    { path: 'documentazione/manuale', priority: 0.6 },
+    { path: 'documentazione/inverter-ibridi', priority: 0.6 },
+    { path: 'documentazione/certificati-inverter-di-stringa', priority: 0.6 },
+    { path: 'documentazione/certificati-inverter-ibridi', priority: 0.6 },
+    { path: 'documentazione/certificati-all-in-one', priority: 0.6 },
+    { path: 'documentazione/accumulo-afore', priority: 0.6 },
+    // Note: scheda-tecnica is a dynamic page, not included in sitemap
   ];
 
-  docPages.forEach(docPage => {
-    languages.forEach(lang => {
-      sitemapEntries.push({
-        url: `${baseUrl}/${lang}/documentazione/${docPage}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.6,
-        alternates: {
-          languages: {
-            it: `${baseUrl}/it/documentazione/${docPage}`,
-            en: `${baseUrl}/en/documentazione/${docPage}`,
-            es: `${baseUrl}/es/documentazione/${docPage}`,
-            fr: `${baseUrl}/fr/documentazione/${docPage}`,
-            de: `${baseUrl}/de/documentazione/${docPage}`,
-          },
-        },
-      });
+  docPages.forEach(({ path, priority }) => {
+    sitemapEntries.push({
+      url: `${baseUrl}/${canonicalLang}/${path}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority,
     });
+  });
+
+  // Sort by priority (highest first), then by URL
+  sitemapEntries.sort((a, b) => {
+    if (a.priority !== b.priority) {
+      return (b.priority || 0) - (a.priority || 0);
+    }
+    return a.url.localeCompare(b.url);
   });
 
   return sitemapEntries;
 }
-
