@@ -84,3 +84,6 @@ export default function BatteriaDiAccumuloLayout({
   return <>{children}</>;
 }
 
+
+
+

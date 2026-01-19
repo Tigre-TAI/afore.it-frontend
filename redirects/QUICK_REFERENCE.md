@@ -74,3 +74,6 @@ curl -I https://www.afore.it/garanzia
 - `DEPLOYMENT_GUIDE.md` - Full deployment instructions
 - `QUICK_REFERENCE.md` - This file
 
+
+
+

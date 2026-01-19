@@ -209,7 +209,7 @@ export default async function CertificatiInverterIbridiPage({ params }: Props) {
              category === 'Guida alla compilazione del regolamento di esercizio' ||
              category === 'Guida alla compilazione dell\'addendum tecnico' ||
              category === 'TEST VERIFICATION OF CONFORMITY') &&
-             (fileName.includes('ibrido') || fileName.includes('af-sl') || fileName.includes('af-th'));
+             (fileName.includes('ibrido') || fileName.includes('af-sl') || fileName.includes('af-th') || fileName.includes('atom-hvs') || fileName.includes('atom-hv'));
     });
   })();
 
@@ -231,6 +231,9 @@ export default async function CertificatiInverterIbridiPage({ params }: Props) {
       } else if (fileName.includes('af-th') || (fileName.includes('ibrido') && fileName.includes('trifase'))) {
         groupKey = 'afth';
         groupTitle = 'Inverter Ibrido Trifase AF-TH';
+      } else if (fileName.includes('atom-hvs') || fileName.includes('atom-hv')) {
+        groupKey = 'atomhvs';
+        groupTitle = 'Inverter Ibrido ATOM-HVS';
       } else {
         return; // Skip other types
       }

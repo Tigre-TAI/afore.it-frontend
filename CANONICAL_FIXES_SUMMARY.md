@@ -209,3 +209,6 @@ Created layout files with `generateMetadata()` for all product category routes:
 - All pages now have proper hreflang tags for language alternates
 - Root page is set to `noindex` to prevent duplicate content issues
 
+
+
+

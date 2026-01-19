@@ -84,3 +84,6 @@ export default function SerieAccumuloHaileiLayout({
   return <>{children}</>;
 }
 
+
+
+

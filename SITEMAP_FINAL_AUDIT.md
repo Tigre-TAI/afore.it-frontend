@@ -278,3 +278,6 @@ grep -oP '<loc>\K[^<]+' out/sitemap.xml | grep -v "^https://www.afore.it/it"
 - Single sitemap (no index needed)
 - Ready for deployment
 
+
+
+
