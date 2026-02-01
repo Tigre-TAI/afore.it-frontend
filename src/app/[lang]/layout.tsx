@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { StructuredData } from "@/components/SEO/StructuredData";
 import CookieConsent from "@/components/CookieConsent";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -158,6 +159,8 @@ export default async function LangLayout({
         <Footer />
         {/* Defer CookieConsent to reduce INP - load after page is interactive */}
         <CookieConsent />
+        {/* Google Analytics - only loads if user consents to analytics cookies */}
+        <GoogleAnalytics />
       </body>
     </html>
   );
