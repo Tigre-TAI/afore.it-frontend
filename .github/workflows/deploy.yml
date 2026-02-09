@@ -38,29 +38,30 @@ jobs:
 
       - name: Fix language route structure for S3
         run: |
-          # Create index.html for each language route to support /it, /en, /es paths
-          # S3 looks for it/index.html when accessing /it, not it.html
-          # Also fix sub-routes like /it/garanzia, /it/prodotti, etc.
-          for lang in it en es; do
+          # For every .html file under out/<lang>/, create a matching directory
+          # with index.html so S3 can serve clean URLs without extensions.
+          # This handles ALL depth levels (e.g. /it/documentazione/certificati-spagna).
+          for lang in it en es fr de; do
             if [ -d "out/$lang" ]; then
-              # Create index.html for the language root
+              # Create index.html for the language root (e.g. out/it/index.html)
               if [ -f "out/${lang}.html" ]; then
                 mkdir -p "out/$lang"
                 cp "out/${lang}.html" "out/$lang/index.html"
+                echo "Created out/$lang/index.html"
               fi
-              
-              # Create index.html for all sub-routes (garanzia, prodotti, documentazione, etc.)
-              for html_file in out/$lang/*.html; do
-                if [ -f "$html_file" ] && [ "$(basename "$html_file")" != "index.html" ]; then
-                  page_name=$(basename "$html_file" .html)
-                  mkdir -p "out/$lang/$page_name"
-                  cp "$html_file" "out/$lang/$page_name/index.html"
-                  echo "Created out/$lang/$page_name/index.html"
-                fi
+
+              # Recursively find ALL .html files under out/<lang>/ and create
+              # directory/index.html for each one (skipping existing index.html)
+              find "out/$lang" -name '*.html' ! -name 'index.html' | while read html_file; do
+                # Strip the .html extension to get the directory path
+                dir_path="${html_file%.html}"
+                mkdir -p "$dir_path"
+                cp "$html_file" "$dir_path/index.html"
+                echo "Created $dir_path/index.html"
               done
             fi
           done
-          echo "✓ Fixed all language route structures for S3"
+          echo "✓ Fixed all language route structures for S3 (all depth levels)"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
