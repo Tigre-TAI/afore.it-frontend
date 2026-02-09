@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/layout/Navbar";
@@ -159,8 +160,10 @@ export default async function LangLayout({
         <Footer />
         {/* Defer CookieConsent to reduce INP - load after page is interactive */}
         <CookieConsent />
-        {/* Google Analytics - only loads if user consents to analytics cookies */}
-        <GoogleAnalytics />
+        {/* Google Analytics - wrapped in Suspense for SSG compatibility (useSearchParams) */}
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
       </body>
     </html>
   );
