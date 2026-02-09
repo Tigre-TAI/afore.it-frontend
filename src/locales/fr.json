@@ -138,6 +138,16 @@
           "Rapport de Test",
           "Guide de compilation du règlement d'exploitation"
         ]
+      },
+      "certificadosEspana": {
+        "title": "Certificats pour l'Espagne",
+        "description": "Certificats officiels pour le marché espagnol selon les normes UNE et RD 647/2020.",
+        "bullets": [
+          "UNE 217001 – Code de Réseau",
+          "UNE 217002 – RD 647/2020",
+          "UNE 217002 – IEC 62116 Anti-Îlotage",
+          "NTS Type A – Normes Techniques de Supervision"
+        ]
       }
     },
     "schedaTecnica": {

@@ -138,6 +138,16 @@
           "Test Report",
           "Guida alla compilazione del regolamento di esercizio"
         ]
+      },
+      "certificadosEspana": {
+        "title": "Certificati per la Spagna",
+        "description": "Certificati ufficiali per il mercato spagnolo secondo le norme UNE e RD 647/2020.",
+        "bullets": [
+          "UNE 217001 – Código de Red",
+          "UNE 217002 – RD 647/2020",
+          "UNE 217002 – IEC 62116 Anti-Islanding",
+          "NTS Type A – Normas Técnicas de Supervisión"
+        ]
       }
     },
     "schedaTecnica": {

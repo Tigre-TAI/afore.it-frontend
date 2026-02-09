@@ -138,6 +138,16 @@
           "Test Report",
           "Guide to compiling the operating regulations"
         ]
+      },
+      "certificadosEspana": {
+        "title": "Certificates for Spain",
+        "description": "Official certificates for the Spanish market under UNE standards and RD 647/2020.",
+        "bullets": [
+          "UNE 217001 – Grid Code",
+          "UNE 217002 – RD 647/2020",
+          "UNE 217002 – IEC 62116 Anti-Islanding",
+          "NTS Type A – Technical Supervision Standards"
+        ]
       }
     },
     "schedaTecnica": {

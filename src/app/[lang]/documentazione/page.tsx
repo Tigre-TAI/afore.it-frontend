@@ -130,6 +130,11 @@ export default async function DocumentazionePage({ params }: Props) {
       icon: "/image/landing/products/category_all_in_one.png",
       href: withLang("/documentazione/certificati-all-in-one", lang),
     },
+    {
+      key: "certificadosEspana",
+      icon: "/image/landing/products/category_pv_inverter.png",
+      href: withLang("/documentazione/certificati-spagna", lang),
+    },
   ];
 
   return (

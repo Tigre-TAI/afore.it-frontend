@@ -138,6 +138,16 @@
           "Testbericht",
           "Anleitung zur Erstellung der Betriebsvorschriften"
         ]
+      },
+      "certificadosEspana": {
+        "title": "Zertifikate für Spanien",
+        "description": "Offizielle Zertifikate für den spanischen Markt nach UNE-Normen und RD 647/2020.",
+        "bullets": [
+          "UNE 217001 – Netzanschlusskodex",
+          "UNE 217002 – RD 647/2020",
+          "UNE 217002 – IEC 62116 Anti-Islanding",
+          "NTS Typ A – Technische Überwachungsnormen"
+        ]
       }
     },
     "schedaTecnica": {
