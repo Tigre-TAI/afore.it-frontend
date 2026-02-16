@@ -45,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: 'webinar', priority: 0.75, changeFrequency: 'monthly' as const },
     { path: 'webinar/afore-hailei', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: 'contatti', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: 'ricerca', priority: 0.7, changeFrequency: 'weekly' as const },
   ];
 
   mainPages.forEach(({ path, priority, changeFrequency }) => {

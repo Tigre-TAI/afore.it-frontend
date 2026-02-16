@@ -5,7 +5,22 @@
     "resultsFor": "Risultati per",
     "close": "Chiudere la ricerca",
     "ariaLabel": "Ricerca",
-    "submit": "Cerca"
+    "submit": "Cerca",
+    "noResults": "Nessun risultato trovato. Prova con altri termini.",
+    "resultSingular": "risultato",
+    "resultPlural": "risultati",
+    "types": {
+      "product": "Prodotti",
+      "documentazione": "Documentazione",
+      "eventi": "Eventi",
+      "webinar": "Webinar",
+      "comunicati-stampa": "Comunicati stampa",
+      "video": "Video",
+      "assistenza": "Assistenza",
+      "contatti": "Contatti",
+      "prodotti": "Categorie prodotti",
+      "home": "Home"
+    }
   },
   "topbar": {
     "comunicatiStampa": "Comunicati stampa",

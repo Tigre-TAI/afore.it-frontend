@@ -27,7 +27,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
       const value = inputRef.current?.value?.trim();
       if (value) {
         onClose();
-        router.push(`/${currentLang}/prodotti?search=${encodeURIComponent(value)}`);
+        router.push(`/${currentLang}/ricerca?q=${encodeURIComponent(value)}`);
       }
     },
     [currentLang, onClose, router]

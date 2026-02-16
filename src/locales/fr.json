@@ -3,6 +3,21 @@
     "label": "Rechercher",
     "placeholder": "Noms de produits, mots-clés, documents, etc...",
     "resultsFor": "Résultats pour",
+    "noResults": "Aucun résultat. Essayez d'autres termes.",
+    "resultSingular": "résultat",
+    "resultPlural": "résultats",
+    "types": {
+      "product": "Produits",
+      "documentazione": "Documentation",
+      "eventi": "Événements",
+      "webinar": "Webinar",
+      "comunicati-stampa": "Communiqués de presse",
+      "video": "Vidéo",
+      "assistenza": "Assistance",
+      "contatti": "Contact",
+      "prodotti": "Catégories de produits",
+      "home": "Accueil"
+    },
     "close": "Fermer la recherche",
     "ariaLabel": "Recherche",
     "submit": "Rechercher"
