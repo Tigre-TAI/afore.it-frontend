@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, Suspense } from "react";
+import Button from "@/components/ui/Button";
 import { PRODUCTS } from "@/data/product-data";
 import { useParams, useSearchParams } from "next/navigation";
 import type { DocumentFile } from "@/lib/document-utils";
@@ -223,7 +224,7 @@ function DocumentListContent({
                     {sections.map((sec) => (
                       <div key={sec.heading}>
                         <h4 className="text-lg font-bold text-slate-800 mb-3">{sec.heading}</h4>
-                        <ul className="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
+                        <ul className="divide-y divide-slate-200">
                           {sec.items.map((item, idx) => (
                             <li
                               key={`${item.href}-${idx}`}
@@ -235,15 +236,16 @@ function DocumentListContent({
                                   <p className="text-xs text-slate-500 mt-0.5">Lingua: {item.lang}</p>
                                 )}
                               </div>
-                              <a
+                              <Button
                                 href={item.href}
+                                variant="primary"
                                 download
-                                className="shrink-0 rounded-md bg-slate-900 px-4 py-2 text-white text-sm font-bold hover:bg-slate-800 transition-colors shadow-sm border border-slate-800 whitespace-nowrap inline-block"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                className="shrink-0 whitespace-nowrap"
                               >
                                 Download
-                              </a>
+                              </Button>
                             </li>
                           ))}
                         </ul>

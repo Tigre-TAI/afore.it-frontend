@@ -2,8 +2,10 @@
 
 ## 📁 文件夹结构
 
+**注意**: 实际路径为 `public/image/`（单数）
+
 ```
-public/images/
+public/image/
 ├── products/          # 产品图片
 │   ├── inverters/     # 逆变器产品
 │   ├── batteries/     # 电池产品
@@ -38,10 +40,17 @@ public/images/
 - `detail` - 细节
 
 ### Hero背景图 (heroes/)
-**格式**: `hero_{page}_{variant}.{ext}`
-- **示例**: `hero_homepage_main.jpg`
-- **示例**: `hero_products_background.jpg`
-- **示例**: `hero_solutions_energy.jpg`
+**存放路径**: `public/image/heroes/`
+
+**命名格式**（二选一）:
+- `hero_{page}_{variant}.{ext}` — 示例: `hero_homepage_main.jpg`, `hero_products_background.jpg`
+- `{page}_hero.{ext}` — 示例: `warranty_hero.jpg`, `contact_hero.jpg`, `documentation_hero.jpg`
+
+**引用路径**: `/image/heroes/你的文件名.jpg`
+
+**示例**:
+- 首页 Hero: `hero_universal.jpg` → 用于 `<Hero>` 组件
+- 子页 Hero: `warranty_hero.jpg`, `contact_hero.jpg` → 用于 `<HeroBackground>` 组件
 
 ### 图标 (icons/)
 **格式**: `icon_{category}_{name}.svg`

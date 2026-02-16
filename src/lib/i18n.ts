@@ -18,10 +18,10 @@ type Translations = typeof itTranslations;
 
 const translations: Record<string, Translations> = {
   it: itTranslations,
-  en: enTranslations,
-  es: esTranslations,
-  fr: frTranslations,
-  de: deTranslations,
+  en: enTranslations as Translations,
+  es: esTranslations as Translations,
+  fr: frTranslations as Translations,
+  de: deTranslations as Translations,
 };
 
 /**
@@ -41,20 +41,24 @@ export function getTranslations(lang: string = 'it') {
    */
   return function translate(key: TranslationKey, params?: Record<string, string | number>): string {
     const keys = key.split('.');
-    let value: any = t;
-
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k as keyof typeof value];
-      } else {
-        // 如果找不到翻译，返回键本身（开发时便于发现缺失的翻译）
-        console.warn(`Translation missing for key: ${key} in language: ${validLang}`);
-        return key;
+    function lookup(dict: Translations): string | null {
+      let v: any = dict;
+      for (const k of keys) {
+        if (v && typeof v === 'object' && k in v) {
+          v = v[k as keyof typeof v];
+        } else {
+          return null;
+        }
       }
+      return typeof v === 'string' ? v : null;
     }
 
-    if (typeof value !== 'string') {
-      console.warn(`Translation value is not a string for key: ${key} in language: ${validLang}`);
+    let value = lookup(t);
+    if (value === null && validLang !== 'it') {
+      value = lookup(translations.it);
+    }
+    if (value === null) {
+      console.warn(`Translation missing for key: ${key} in language: ${validLang}`);
       return key;
     }
 

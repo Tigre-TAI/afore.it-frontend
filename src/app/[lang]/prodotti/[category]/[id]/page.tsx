@@ -1,15 +1,129 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import Button from "@/components/ui/Button";
 import { PRODUCTS, findProductBySlugs, resolvePath, labelOf } from "@/data/product-data";
 import { readdir } from "fs/promises";
 import { join } from "path";
 import { existsSync } from "fs";
-import Link from "next/link";
-import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import { StructuredData } from "@/components/SEO/StructuredData";
 import HeroBackground from "@/components/ui/HeroBackground";
+import DownloadSection from "@/components/DownloadSection";
+import YouTubeVideoWithTitle from "@/components/YouTubeVideoWithTitle";
+import { EV_CHARGER_ITEMS, type DownloadSectionItem } from "@/data/download-items";
+import { getSchedaPdfUrl } from "@/data/scheda-pdf-map";
+import { getProductDocConfig } from "@/data/product-documentazione-map";
+
+/** 读取 documentazione 文件夹并按产品过滤，生成 DownloadSectionItem */
+async function getDocumentazioneItems(
+  productId: string,
+  family: string,
+  docLabel: string
+): Promise<DownloadSectionItem[]> {
+  const cfg = getProductDocConfig(productId, family);
+  if (!cfg) return [];
+
+  const { folder: docFolder, include } = cfg;
+
+  // include 为空数组表示该产品无对应文档（如 Hailei 电池、stringa 70-110）
+  if (include.length === 0) return [];
+
+  const docPath = join(process.cwd(), "public", "documentazione", docFolder);
+  if (!existsSync(docPath)) return [];
+
+  try {
+    const entries = await readdir(docPath, { withFileTypes: true });
+    const files: Array<{ label: string; href: string }> = [];
+
+    const matchAll = include.includes("");
+    const patterns = include.filter((p) => p.length > 0);
+
+    for (const e of entries) {
+      if (e.isDirectory()) continue;
+      if (!e.name.toLowerCase().endsWith(".pdf")) continue;
+
+      const nameLower = e.name.toLowerCase();
+
+      if (!matchAll && patterns.length > 0) {
+        const matches = patterns.some((p) => nameLower.includes(p.toLowerCase()));
+        if (!matches) continue;
+      }
+
+      const href = `/documentazione/${docFolder}/${e.name}`;
+      const label = e.name.replace(/\.pdf$/i, "").replace(/_/g, " ");
+      files.push({ label, href });
+    }
+
+    files.sort((a, b) => a.label.localeCompare(b.label));
+
+    if (files.length === 0) return [];
+    return [
+      {
+        type: "folder",
+        label: docLabel,
+        items: files.map((f) => ({ type: "file" as const, label: f.label, href: f.href })),
+      },
+    ];
+  } catch {
+    return [];
+  }
+}
+
+/** 构建产品页的 Area Download 列表 */
+async function buildProductDownloadItems(
+  p: { id: string; schedaKey?: string },
+  family: string,
+  lang: string,
+  allDownloads: Array<{ file: string; name: string; lang?: string }>,
+  schedaLabel: string,
+  docLabel: string
+): Promise<DownloadSectionItem[]> {
+  const items: DownloadSectionItem[] = [];
+
+  // 1. Scheda Tecnica（仅非 EV Charger；EV Charger 在 EV_CHARGER_ITEMS 里已有）
+  if (family !== "ev-charger") {
+    const schedaFromMap = p.schedaKey && getSchedaPdfUrl(p.schedaKey, p.id, lang as "it" | "en" | "es" | "fr" | "de");
+    const schedaFromDisk = allDownloads.find(
+      (d) => d.name?.toLowerCase().includes("scheda") || d.file?.toLowerCase().includes("scheda")
+    );
+
+    if (schedaFromDisk) {
+      items.push({
+        type: "file",
+        label: `${schedaFromDisk.name}${schedaFromDisk.lang ? ` (${schedaFromDisk.lang})` : ""}`,
+        href: `/prodotti/${p.id}/downloads/${schedaFromDisk.file}`,
+      });
+    } else if (schedaFromMap) {
+      items.push({ type: "file", label: schedaLabel, href: schedaFromMap });
+    }
+
+    // 其他产品专属文件（非 Scheda）
+    for (const d of allDownloads) {
+      if (d.name?.toLowerCase().includes("scheda") || d.file?.toLowerCase().includes("scheda")) continue;
+      items.push({
+        type: "file",
+        label: `${d.name}${d.lang ? ` (${d.lang})` : ""}`,
+        href: `/prodotti/${p.id}/downloads/${d.file}`,
+      });
+    }
+  }
+
+  // 2. EV Charger: EV_CHARGER_ITEMS
+  if (family === "ev-charger") {
+    for (const item of EV_CHARGER_ITEMS) {
+      items.push(item);
+    }
+  }
+
+  // 3. Documentazione 文件夹（按产品过滤）
+  const docItems = await getDocumentazioneItems(p.id, family, docLabel);
+  for (const item of docItems) {
+    items.push(item);
+  }
+
+  return items;
+}
 
 type Props = { 
   params: Promise<{ 
@@ -188,6 +302,16 @@ export default async function ProductPage({ params }: Props) {
   ];
 
   const t = getTranslations(lang);
+
+  // 构建 Area Download 列表（Scheda Tecnica + Documentazione）
+  const productDownloadItems = await buildProductDownloadItems(
+    p,
+    family,
+    lang,
+    allDownloads,
+    t("prodotti.schedaTecnica"),
+    t("prodotti.documentazione")
+  );
   
   // 面包屑：统一从数据推导（可覆盖全局 Breadcrumbs 的默认行为）
   const crumbs = [
@@ -216,16 +340,16 @@ export default async function ProductPage({ params }: Props) {
       })) }} lang={lang} />
       
       {/* Hero Section */}
-      <section className="relative -mt-16 pt-16">
-        <HeroBackground src="/image/product_bg.jpg" alt={p.title} />
+      <section className="relative -mt-[88px] pt-[88px]">
+        <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt={p.title} />
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
           <Breadcrumbs items={crumbs} theme="dark" />
-          <h1 className="mt-3 text-3xl lg:text-5xl font-extrabold tracking-tight">
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             {p.title}
           </h1>
           {p.subtitle && (
-            <p className="mt-3 max-w-2xl text-white/85">
+            <p className="mt-2 max-w-2xl text-sm text-white/85">
               {p.subtitle}
             </p>
           )}
@@ -236,13 +360,13 @@ export default async function ProductPage({ params }: Props) {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-10 space-y-10">
         {/* Hero：左图右文 */}
         <section className="grid gap-8 md:grid-cols-2 items-center">
-        <div>
+        <div className="w-full">
           <Image
             src={meta?.hero?.product ?? p.image}
             alt={p.title}
             width={1200}
             height={900}
-            className="w-full rounded-2xl bg-slate-50 object-contain"
+            className="w-full object-contain product-image-shadow"
             priority
           />
         </div>
@@ -253,64 +377,67 @@ export default async function ProductPage({ params }: Props) {
               {p.subtitle}
             </p>
           )}
+          {/* Scheda Tecnica 下载按钮 — 统一放在右列文本下方 */}
+          <div className="mt-6 flex flex-wrap gap-4">
+            {allDownloads.length > 0 && allDownloads.some((d: any) =>
+              d.name.toLowerCase().includes('scheda') ||
+              d.file.toLowerCase().includes('scheda')
+            ) ? (
+              allDownloads
+                .filter((d: any) =>
+                  d.name.toLowerCase().includes('scheda') ||
+                  d.file.toLowerCase().includes('scheda')
+                )
+                .map((d: any, idx: number) => (
+                  <Button
+                    key={idx}
+                    href={`/prodotti/${p.id}/downloads/${d.file}`}
+                    variant="primary"
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t("prodotti.schedaTecnica")}{d.lang ? ` (${d.lang})` : ""}
+                  </Button>
+                ))
+            ) : (() => {
+              const schedaUrl = p.schedaKey && getSchedaPdfUrl(p.schedaKey, p.id, lang as "it" | "en" | "es" | "fr" | "de");
+              return schedaUrl ? (
+                <Button
+                  href={schedaUrl}
+                  variant="primary"
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("prodotti.schedaTecnica")}
+                </Button>
+              ) : null;
+            })()}
+          </div>
         </div>
       </section>
 
-      {/* 操作按钮：Scheda Tecnica 和下载 */}
-      <section className="flex flex-wrap gap-4">
-        {/* 如果有 PDF 文件，优先显示直接下载链接 */}
-        {allDownloads.length > 0 && allDownloads.some((d: any) => 
-          d.name.toLowerCase().includes('scheda') || 
-          d.file.toLowerCase().includes('scheda')
-        ) ? (
-          allDownloads
-            .filter((d: any) => 
-              d.name.toLowerCase().includes('scheda') || 
-              d.file.toLowerCase().includes('scheda')
-            )
-            .map((d: any, idx: number) => (
-              <a
-                key={idx}
-                href={`/prodotti/${p.id}/downloads/${d.file}`}
-                target="_blank"
-                className="px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-500 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-              >
-                Scheda Tecnica {d.lang ? `(${d.lang})` : ""} ↓
-              </a>
-            ))
-        ) : p.schedaKey ? (
-          <Link
-            href={withLang(`/documentazione/scheda-tecnica?product=${p.schedaKey}`, lang)}
-            className="px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-500 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-          >
-            Scheda Tecnica
-          </Link>
-        ) : null}
-      </section>
-
-      {/* 下载（meta.json + 自动发现的文件） */}
-      {allDownloads.length > 0 && (
-        <section>
-          <h2 className="text-2xl font-bold mb-4">Download</h2>
-          <div className="grid gap-3">
-            {allDownloads.map((d: any, idx: number) => (
-              <a
-                key={idx}
-                href={`/prodotti/${p.id}/downloads/${d.file}`}
-                  target="_blank"
-                className="flex items-center gap-3 px-4 py-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors"
-                >
-                <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span className="text-slate-900 font-medium">
-                  {d.name} {d.lang ? `(${d.lang})` : ""}
-                </span>
-                </a>
-            ))}
+      {/* 所有产品：移动端 Area Download 在上 | Video 在下；桌面端 左 Video | 右 Area Download。样式与 assistenza 一致 */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-slate-200 bg-slate-50/50">
+        <div className="grid gap-8 lg:gap-12 items-start grid-cols-1 lg:grid-cols-2">
+          {/* Area Download — 移动端在上（order-1），桌面端在右（order-2） */}
+          <div className="order-1 lg:order-2 lg:pl-8 lg:border-l lg:border-slate-200">
+            <DownloadSection items={productDownloadItems} />
           </div>
-        </section>
-      )}
+          {/* Video — 移动端在下（order-2），桌面端在左（order-1）。标题来自 YouTube */}
+          <div className="order-2 lg:order-1">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8">{t("prodotti.video") || "Video"}</h2>
+            {p.youtubeId ? (
+              <YouTubeVideoWithTitle videoId={p.youtubeId} />
+            ) : (
+              <div className="relative w-full aspect-video overflow-hidden bg-slate-100 flex items-center justify-center">
+                <p className="text-slate-500 font-medium">{t("prodotti.videoInCorso") || "In corso"}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
       </div>
     </main>
   );

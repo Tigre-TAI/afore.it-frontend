@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState, startTransition, useCallback, useMemo } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "@/hooks/useTranslation";
+import SearchOverlay from "@/components/SearchOverlay";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -12,7 +14,17 @@ export default function Navbar() {
   const { t } = useTranslation();
   const [solid, setSolid] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [langDropdownPosition, setLangDropdownPosition] = useState({ top: 0, right: 0 });
+  const langButtonRef = useRef<HTMLButtonElement>(null);
+
+  useLayoutEffect(() => {
+    if (langDropdownOpen && langButtonRef.current) {
+      const rect = langButtonRef.current.getBoundingClientRect();
+      setLangDropdownPosition({ top: rect.bottom + 4, right: window.innerWidth - rect.right });
+    }
+  }, [langDropdownOpen]);
 
   // Debounced scroll handler to reduce INP
   useEffect(() => {
@@ -26,17 +38,15 @@ export default function Navbar() {
         ticking = true;
       }
     };
-    
-    // Initial check
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Click outside handler - memoized to reduce re-renders
+  // Click outside handler - exclude both trigger container AND portaled dropdown panel
   const handleClickOutside = useCallback((e: MouseEvent) => {
     const target = e.target as HTMLElement;
-    if (!target.closest('.language-switcher-container')) {
+    if (!target.closest('.language-switcher-container') && !target.closest('.language-dropdown-panel')) {
       setLangDropdownOpen(false);
     }
   }, []);
@@ -61,15 +71,6 @@ export default function Navbar() {
     return { lang: "it", restPath: pathname === "/" ? "" : pathname };
   }, [pathname]);
 
-  // Optimized switch language function
-  const switchLanguage = useCallback((newLang: string) => {
-    if (newLang === currentLang) return;
-    const newPath = `/${newLang}${restPath}`;
-    startTransition(() => {
-      router.push(newPath, { scroll: false });
-    });
-  }, [currentLang, restPath, router]);
-
   // Memoize nav link generation
   const navLink = useCallback((path: string) => {
     if (path.startsWith("/") && ["/it", "/en", "/es", "/fr", "/de"].some(l => path.startsWith(l + "/") || path === l)) {
@@ -82,70 +83,76 @@ export default function Navbar() {
   // Memoize nav link class calculation
   const navLinkClass = useCallback((matcher: (p: string) => boolean) => {
     const isActive = matcher(pathname);
+    const defaultText = solid ? "text-slate-800" : "text-white";
+    const baseClasses = "px-2.5 py-1.5 rounded transition-colors hover:text-[#C01C20]";
     if (isActive) {
-      return solid ? "text-white bg-slate-800 px-3 py-1 rounded font-extrabold" : "text-slate-900 bg-white/90 px-3 py-1 rounded font-extrabold";
+      return `${defaultText} font-extrabold ${baseClasses}`;
     }
-    if (solid) {
-      return "text-slate-800 hover:text-slate-900 hover:font-extrabold transition-colors";
-    } else {
-      return "text-white hover:text-white hover:font-extrabold transition-colors";
-    }
+    return `${defaultText} ${baseClasses}`;
   }, [pathname, solid]);
 
   // Language switcher component - memoized
-  const LanguageSwitcher = useMemo(() => {
-    const languages = [
-      { code: 'it', label: 'IT' },
-      { code: 'en', label: 'EN' },
-      { code: 'es', label: 'ES' },
-      { code: 'fr', label: 'FR' },
-      { code: 'de', label: 'DE' },
-    ];
+  const languages = useMemo(
+    () => [
+      { code: "it", label: "IT" },
+      { code: "en", label: "EN" },
+      { code: "es", label: "ES" },
+      { code: "fr", label: "FR" },
+      { code: "de", label: "DE" },
+    ],
+    []
+  );
+  const currentLangLabel = languages.find((l) => l.code === currentLang)?.label || "IT";
 
-    const currentLangLabel = languages.find(l => l.code === currentLang)?.label || 'IT';
-
-    return (
-      <div className="relative flex-shrink-0 language-switcher-container">
-        <button
-          onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-          className={`px-2 py-1 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1 ${
-            solid
-              ? "text-slate-800 hover:text-slate-900"
-              : "text-white hover:text-white/90"
-          }`}
+  const LanguageSwitcher = (
+    <div className="relative flex-shrink-0 language-switcher-container">
+      <button
+        ref={langButtonRef}
+        onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+        className={`px-2 py-1 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1 ${
+          solid ? "text-slate-800 hover:text-slate-900" : "text-white hover:text-white/90"
+        }`}
+      >
+        <span>{currentLangLabel}</span>
+        <svg
+          className={`w-3 h-3 transition-transform ${langDropdownOpen ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <span>{currentLangLabel}</span>
-          <svg
-            className={`w-3 h-3 transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
 
-        {langDropdownOpen && (
+      {langDropdownOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
           <>
             <div
-              className="fixed inset-0 z-10"
+              className="fixed inset-0 z-[199]"
               onClick={() => setLangDropdownOpen(false)}
+              aria-hidden
             />
             <div
-              className={`absolute right-0 top-full mt-2 min-w-[80px] rounded-lg border shadow-lg z-20 ${
+              className={`language-dropdown-panel fixed min-w-[80px] rounded-md border z-[200] ${
                 solid
                   ? "bg-white border-slate-200"
                   : "bg-black/95 backdrop-blur-md border-white/20"
               }`}
+              style={{
+                top: langDropdownPosition.top,
+                right: langDropdownPosition.right,
+              }}
             >
               {languages.map((lang) => (
                 <button
                   key={lang.code}
+                  type="button"
                   onClick={() => {
-                    switchLanguage(lang.code);
                     setLangDropdownOpen(false);
+                    router.push(`/${lang.code}${restPath}`, { scroll: false });
                   }}
-                  className={`w-full text-left px-4 py-2 text-sm font-semibold transition-colors first:rounded-t-lg last:rounded-b-lg ${
+                  className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-colors first:rounded-t-md last:rounded-b-md ${
                     lang.code === currentLang
                       ? solid
                         ? "text-slate-900 bg-slate-100"
@@ -159,30 +166,23 @@ export default function Navbar() {
                 </button>
               ))}
             </div>
-          </>
+          </>,
+          document.body
         )}
-      </div>
-    );
-  }, [currentLang, solid, langDropdownOpen, switchLanguage]);
+    </div>
+  );
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 h-16 transition-all duration-300">
-      <div className="pointer-events-none absolute inset-0">
-        <div
-          className={`absolute inset-0 transition-all duration-300 ${
-            solid
-              ? "bg-white/95 backdrop-blur-md shadow-sm"
-              : "bg-gradient-to-b from-black/60 via-black/30 to-transparent backdrop-blur-[2px]"
-          }`}
-        />
-        <div
-          className={`absolute bottom-0 left-0 right-0 h-px transition-colors ${
-            solid ? "bg-black/10" : "bg-white/25"
-          }`}
-        />
-      </div>
+    <header className="relative z-40 h-14 transition-all duration-200">
+      <div
+        className={`absolute inset-0 transition-all duration-200 ${
+          solid
+            ? "bg-white border-b border-slate-100"
+            : "bg-black/20"
+        }`}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between">
+      <div className="container relative z-10 h-full flex items-center justify-between">
         <Link href={navLink("/")} className="flex items-center gap-2 flex-shrink-0">
           <Image
             src={solid ? "/logos/logo_afore_dark.png" : "/logos/logo_afore_light.png"}
@@ -190,16 +190,16 @@ export default function Navbar() {
             width={132}
             height={40}
             priority
-            className="h-8 sm:h-10 w-auto"
+            className="h-7 sm:h-8 w-auto"
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-4 lg:gap-8 text-sm tracking-wide">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-6 text-sm">
           <Link 
             className={navLinkClass((p) => p === `/${currentLang}` || p === `/${currentLang}/`)} 
             href={navLink("/")}
           >
-            HOME
+            {t('nav.home')}
           </Link>
           <Link
             className={navLinkClass((p) => p.includes("/prodotti"))}
@@ -214,76 +214,127 @@ export default function Navbar() {
             {t('nav.documentazione')}
           </Link>
           <Link
-            className={navLinkClass((p) => p.includes("/garanzia"))}
-            href={navLink("/garanzia")}
+            className={navLinkClass((p) => p.includes("/assistenza"))}
+            href={navLink("/assistenza")}
           >
             {t('nav.garanzia')}
           </Link>
-          
-          {LanguageSwitcher}
         </nav>
 
-        <button
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label="Toggle menu"
-          className={`md:hidden text-2xl transition-colors flex-shrink-0 ml-2 ${
-            solid ? "text-slate-800" : "text-white"
-          }`}
-        >
-          ☰
-        </button>
-      </div>
-
-      {mobileOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40 md:hidden"
-            onClick={() => setMobileOpen(false)}
-          />
-          <div
-            className={`fixed top-16 left-0 right-0 bottom-0 md:hidden border-t overflow-y-auto z-50 ${
-              solid ? "bg-white text-slate-800" : "bg-black/95 backdrop-blur-md text-white"
+        {/* Mobile: Search, Lang, Hamburger - right aligned */}
+        <div className="md:hidden ml-auto flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label={t("topbar.search")}
+            className={`p-1.5 rounded transition-colors ${
+              solid ? "text-slate-800 hover:text-slate-900" : "text-white hover:text-white/90"
             }`}
           >
-            <nav className="flex flex-col px-4 sm:px-6 py-4 gap-3 text-base font-medium">
-              <Link 
-                href={navLink("/")} 
-                onClick={() => setMobileOpen(false)}
-                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
-              >
-                HOME
-              </Link>
-              <Link 
-                href={navLink("/prodotti")} 
-                onClick={() => setMobileOpen(false)}
-                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
-              >
-                {t('nav.prodotti')}
-              </Link>
-              <Link 
-                href={navLink("/documentazione")} 
-                onClick={() => setMobileOpen(false)}
-                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
-              >
-                {t('nav.documentazione')}
-              </Link>
-              <Link 
-                href={navLink("/garanzia")} 
-                onClick={() => setMobileOpen(false)}
-                className="py-2 px-2 rounded-lg hover:bg-white/10 transition-colors"
-              >
-                {t('nav.garanzia')}
-              </Link>
-              <div className="pt-4 mt-2 border-t border-white/20">
-                <p className="text-xs font-semibold uppercase tracking-wider mb-3 opacity-70">
-                  {t('common.language') || 'Language'}
-                </p>
-                {LanguageSwitcher}
-              </div>
-            </nav>
-          </div>
-        </>
-      )}
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+          {LanguageSwitcher}
+          <button
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className={`p-1.5 text-2xl transition-colors ${
+              solid ? "text-slate-800" : "text-white"
+            }`}
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+
+      {mobileOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <>
+            <div
+              className="fixed top-14 left-0 right-0 bottom-0 bg-black/40 z-40 md:hidden"
+              onClick={() => setMobileOpen(false)}
+              aria-hidden
+            />
+            <div
+              className="fixed top-14 left-0 right-0 bottom-0 md:hidden border-t border-slate-100 overflow-y-auto z-40 bg-white"
+            >
+              <nav className="flex flex-col px-4 sm:px-6 py-6 gap-0.5 text-sm">
+                {/* Nav links - on top */}
+                <Link
+                  href={navLink("/")}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-3 px-3 block text-slate-600 hover:text-slate-900 transition-colors font-medium"
+                >
+                  {t("nav.home")}
+                </Link>
+                <Link
+                  href={navLink("/prodotti")}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-3 px-3 block text-slate-600 hover:text-slate-900 transition-colors font-medium"
+                >
+                  {t("nav.prodotti")}
+                </Link>
+                <Link
+                  href={navLink("/documentazione")}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-3 px-3 block text-slate-600 hover:text-slate-900 transition-colors font-medium"
+                >
+                  {t("nav.documentazione")}
+                </Link>
+                <Link
+                  href={navLink("/assistenza")}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-3 px-3 block text-slate-600 hover:text-slate-900 transition-colors font-medium"
+                >
+                  {t("nav.garanzia")}
+                </Link>
+                {/* Topbar-style links - on bottom */}
+                <div className="pt-4 mt-2 border-t border-slate-100">
+                  <Link
+                    href={navLink("/documentazione/archivio")}
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 px-3 block text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    {t("topbar.comunicatiStampa")}
+                  </Link>
+                  <Link
+                    href={navLink("/eventi")}
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 px-3 block text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    {t("topbar.video")}
+                  </Link>
+                  <Link
+                    href={navLink("/contatti")}
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 px-3 block text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    {t("topbar.contatti")}
+                  </Link>
+                  <Link
+                    href={navLink("/eventi")}
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 px-3 block text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    {t("topbar.webinar")}
+                  </Link>
+                  <Link
+                    href={navLink("/eventi")}
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 px-3 block text-slate-500 hover:text-slate-900 transition-colors"
+                  >
+                    {t("topbar.eventi")}
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          </>,
+          document.body
+        )}
     </header>
   );
 }

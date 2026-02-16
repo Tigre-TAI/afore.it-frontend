@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/ui/Breadcrumbs";
+import Button from "@/components/ui/Button";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import { readdir, stat } from "fs/promises";
@@ -45,22 +46,23 @@ function DocumentSection({ title, sections }: { title: string; sections: DocSect
           {sections.map((sec) => (
             <div key={sec.heading}>
               <h3 className="text-base sm:text-lg font-bold text-slate-800 mb-3 break-words">{sec.heading}</h3>
-              <ul className="divide-y divide-slate-200 border border-slate-200 bg-white rounded-lg overflow-hidden">
+              <ul className="divide-y divide-slate-200">
                 {sec.items.map((it, idx) => (
                   <li key={`${it.href}-${idx}`} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 px-4 sm:px-6 py-4 hover:bg-slate-50 transition-colors">
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-sm sm:text-base text-slate-900 break-words">{it.title}</p>
                       <p className="text-xs text-slate-500 mt-1">Idioma: {it.lang}</p>
                     </div>
-                    <a
+                    <Button
                       href={it.href}
+                      variant="primary"
                       download
-                      className="shrink-0 w-full sm:w-auto text-center sm:text-left rounded-md bg-slate-900 px-4 py-2.5 sm:py-2 text-white text-sm font-semibold hover:bg-slate-800 active:bg-slate-700 transition-colors touch-manipulation inline-block"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="shrink-0 w-full sm:w-auto text-center sm:text-left touch-manipulation"
                     >
                       Download
-                    </a>
+                    </Button>
                   </li>
                 ))}
               </ul>
@@ -339,10 +341,10 @@ export default async function CertificatiSpagnaPage({ params }: Props) {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative -mt-16 pt-16">
+      <section className="relative -mt-[88px] pt-[88px]">
         <HeroBackground src="/image/documentazione_hero.jpg" alt="Documentazione" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
           <Breadcrumb
             theme="dark"
             items={[
@@ -352,14 +354,14 @@ export default async function CertificatiSpagnaPage({ params }: Props) {
             ]}
           />
 
-          <p className="mt-4 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+          <p className="mt-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
             DOCUMENTACIÓN
           </p>
 
-          <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight break-words">
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {pageContent.title}
           </h1>
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/85">
+          <p className="mt-2 max-w-2xl text-sm text-white/85">
             {pageContent.subtitle}
           </p>
 

@@ -1,6 +1,7 @@
 // src/app/documentazione/inverter-ibridi/page.tsx
 import Link from "next/link";
 import Breadcrumb from "@/components/ui/Breadcrumbs";
+import Button from "@/components/ui/Button";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import HeroBackground from "@/components/ui/HeroBackground";
@@ -63,22 +64,23 @@ function Section({ title, sections }: { title: string; sections: DocSection[] })
           {sections.map((sec) => (
             <div key={sec.heading}>
               <h3 className="text-lg font-bold text-slate-800">{sec.heading}</h3>
-              <ul className="mt-3 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
+              <ul className="mt-3 divide-y divide-slate-200">
                 {sec.items.map((it) => (
                   <li key={it.href} className="flex items-center justify-between px-4 py-3">
                     <div className="min-w-0">
                       <p className="font-semibold text-slate-900 truncate">{it.title}</p>
                       {it.meta ? <p className="text-xs text-slate-500 mt-0.5">{it.meta}</p> : null}
                     </div>
-                    <a
+                    <Button
                       href={it.href}
+                      variant="primary"
                       download
-                      className="shrink-0 rounded-md bg-brand-600 px-3 py-1.5 text-white text-sm font-semibold hover:bg-brand-500 inline-block"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="shrink-0"
                     >
                       Download
-                    </a>
+                    </Button>
                   </li>
                 ))}
               </ul>
@@ -247,9 +249,9 @@ export default async function InverterIbridiPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative -mt-16 pt-16">
+      <section className="relative -mt-[88px] pt-[88px]">
         <HeroBackground src="/image/documentazione_hero.jpg" alt="Certificati Inverter Ibridi" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
           <Breadcrumb
             theme="dark"
             items={[
@@ -258,10 +260,10 @@ export default async function InverterIbridiPage({ params }: Props) {
               { label: t("documentazione.certificatiInverterIbridi.title") || "Certificati PV Inverter Ibridi" },
             ]}
           />
-          <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight break-words">
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t("documentazione.certificatiInverterIbridi.title") || "Certificati PV Inverter Ibridi"}
           </h1>
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/85">
+          <p className="mt-2 max-w-2xl text-sm text-white/85">
             {t("documentazione.certificatiInverterIbridi.subtitle") || "Certificazioni e guide aggiornate con compatibilità batteria."}
           </p>
         </div>

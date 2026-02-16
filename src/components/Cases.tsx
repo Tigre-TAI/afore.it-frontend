@@ -11,6 +11,9 @@ import {
   getProductTitle,
   getProductSubtitle,
 } from "@/data/product-data";
+import { getSchedaPdfUrl } from "@/data/scheda-pdf-map";
+import FlatSection from "@/components/ui/FlatSection";
+import Button from "@/components/ui/Button";
 
 type CaseStudy = {
   id: string;
@@ -150,8 +153,8 @@ export default function Cases() {
       : [];
 
   return (
-    <section className="py-8 md:py-16 lg:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FlatSection bg="white">
+      <div className="container">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
             {t("home.cases.title")}
@@ -186,7 +189,7 @@ export default function Cases() {
                 src={caseStudy.image}
                 alt={caseStudy.title}
                 fill
-                className="object-contain group-hover:scale-105 transition-transform duration-500"
+                className="object-contain group-hover:scale-[1.02] transition-transform duration-300"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, (max-width: 1536px) 20vw, 16vw"
                 loading="lazy"
                 unoptimized
@@ -208,25 +211,14 @@ export default function Cases() {
         {/* Show All button */}
         {hasMoreCases && (
           <div className="text-center mt-8 md:mt-12">
-            <button
+            <Button
               onClick={handleToggleShowAll}
-              className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-brand-600 text-white text-sm md:text-base font-semibold rounded-lg hover:bg-brand-700 transition-all duration-300 transform hover:scale-105"
+              variant="primary"
+              trailingChevron
+              className={showAll ? "[&_.btn-chevron]:rotate-180" : ""}
             >
               {showAll ? t("home.cases.showLess") : t("home.cases.showAll")}
-              <svg
-                className={`ml-2 w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+            </Button>
           </div>
         )}
       </div>
@@ -238,13 +230,13 @@ export default function Cases() {
           onClick={handleCloseModal}
         >
           <div 
-            className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            className="relative bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 hover:bg-slate-100 transition-colors"
               aria-label="Close"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,102 +262,37 @@ export default function Cases() {
                 <div className="mb-6">
                   <div className="grid grid-cols-2 gap-4">
                     {relatedProducts.slice(0, 2).map((product, idx) => {
-                      // 产品ID到PDF文件名的完整映射表
-                      // 格式: { productId: { it: 'filename.pdf', en: 'filename.pdf', es: 'filename.pdf' } }
-                      const productPdfMapping: Record<string, Record<string, string>> = {
-                        // Inverter di Stringa
-                        'stringa-1-3kw': { it: 'IT_Inverter_di_Stringa_Monofase_1-3kW_Scheda_Tecnica.pdf' },
-                        'stringa-3-6kw': { it: 'IT_Inverter_di_Stringa_Monofase_3-6kW_Scheda_Tecnica.pdf' },
-                        'stringa-7-10kw': { it: 'IT_Inverter_di_Stringa_Monofase_7-10kW_Scheda_Tecnica.pdf' },
-                        'stringa-trifase-3-25kw': { it: 'IT_Inverter_di_Stringa_3-25kW_Scheda_Tecnica.pdf' },
-                        'stringa-trifase-36-60kw': { it: 'IT_Inverter_di_Stringa_Trifase_30-60kW_Scheda_Tecnica.pdf' },
-                        'stringa-trifase-70-110kw': { it: 'IT_Inverter_di_Stringa_Trifase_70-110kW_Scheda_Tecnica 70-110kW.pdf' },
-                        
-                        // Inverter Ibrido
-                        'ibrido-monofase-1-3-6kw': { it: 'IT_Inverter_Ibrido_Monofase_1-3.6kW_Scheda_Tecnica.pdf' },
-                        'ibrido-monofase-plus-4-6kw': { it: 'IT_Inverter_Ibrido_Monofase_4-6kW_Plus_Scheda_Tecnica.pdf' },
-                        'ibrido-trifase-3-15kw': { it: 'IT_Inverter_Ibrido_Trifase_3-15kW_Scheda_Tecnica.pdf' },
-                        'ibrido-trifase-3-30kw': { it: 'IT_Inverter_Ibrido_Trifase_3-30kW_Scheda_Tecnica.pdf' },
-                        'ibrido-trifase-36-60kw': { it: 'IT_Inverter_Ibrido_Trifase_36-60kW_Scheda_Tecnica.pdf' },
-                        'ibrido-trifase-plus-3-12kw': { it: 'IT_Inverter_Ibrido_Trifase__3-12kW_Plus_Scheda_Tecnica.pdf' },
-                        'ibrido-trifase-plus-8-12kw': { it: 'IT_Inverter_Ibrido_Monofase_8-12kW_Scheda_Tecnica.pdf' },
-                        
-                        // Batteria
-                        'bat-afore-wall-5-10kwh': { it: 'IT_Batteria_Montaggio_a_parete_Scheda_Tecnica.pdf' },
-                        'bat-afore-stack-hv-5kwh': { it: 'IT_batteria_afore_trifase_5kWh.pdf' },
-                        'bat-hailei-atom-wb-5-10kwh': { it: 'IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf' },
-                        'bat-hailei-atom-wb-5kwh-1': { it: 'IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf' }, // 使用相同的PDF
-                        'bat-hailei-atom-ls-10-15kwh': { it: 'IT_Batteria_ATOM_LS_Scheda_Tecnica.pdf' },
-                        'bat-hailei-atom-hs-15-41kwh': { it: 'IT_Batteria_ATOM_HS_Scheda_Tecnica.pdf' },
-                        
-                        // All in One
-                        'aio-mono-lv-afore-3-6kw-af5000w-lh': { it: 'IT_allin1_afore_Monofase.pdf' },
-                        'aio-trifase-hv-plus-4-6kw': { it: 'IT_All-in-One_AFORE_Trifase_Scheda_Tecnica.pdf' },
-                        
-                        // EV Charger
-                        'ev-oval': { en: 'EN_EV_Charger_Oval_Scheda_Tecnica.pdf' },
-                        'ev-square': { en: 'EN_EV_Charger_Square_Scheda_Tecnica.pdf' },
-                      };
-                      
-                      // 特殊路径（存储在 documentazione 目录）
-                      const specialPdfPaths: Record<string, string> = {
-                        'stringa-trifase-70-110kw': '/documentazione/SCHEDA_TECNICA/IT_Inverter_di_Stringa_Trifase_70-110kW_Scheda_Tecnica 70-110kW.pdf',
-                      };
-                      
-                      // 构建 PDF 文件路径
-                      let pdfPath: string;
-                      if (specialPdfPaths[product.id]) {
-                        // 使用特殊路径（documentazione 目录）
-                        pdfPath = specialPdfPaths[product.id];
-                      } else if (productPdfMapping[product.id]) {
-                        // 使用映射表
-                            const langKey = lang === 'it' ? 'it' : lang === 'en' ? 'en' : lang === 'es' ? 'es' : lang === 'fr' ? 'fr' : lang === 'de' ? 'de' : 'it';
-                        const pdfFileName = productPdfMapping[product.id][langKey] || productPdfMapping[product.id]['it'] || productPdfMapping[product.id]['en'];
-                        if (pdfFileName) {
-                          pdfPath = `/prodotti/${product.id}/downloads/${pdfFileName}`;
-                        } else {
-                          // 回退到默认路径
-                          const pdfDir = `/prodotti/${product.id}/downloads/`;
-                          const langPrefix = lang === 'it' ? 'IT' : lang === 'en' ? 'EN' : lang === 'es' ? 'ES' : lang === 'fr' ? 'FR' : lang === 'de' ? 'DE' : 'IT';
-                          const defaultFileName = `${langPrefix}_${product.id.replace(/-/g, '_')}_Scheda_Tecnica.pdf`;
-                          pdfPath = `${pdfDir}${defaultFileName}`;
-                        }
-                      } else {
-                        // 默认路径：/prodotti/{productId}/downloads/
-                        const pdfDir = `/prodotti/${product.id}/downloads/`;
-                        const langPrefix = lang === 'it' ? 'IT' : lang === 'en' ? 'EN' : lang === 'es' ? 'ES' : lang === 'fr' ? 'FR' : lang === 'de' ? 'DE' : 'IT';
-                        const pdfFileName = `${langPrefix}_${product.id.replace(/-/g, '_')}_Scheda_Tecnica.pdf`;
-                        pdfPath = `${pdfDir}${pdfFileName}`;
-                      }
-                      
+                      const pdfPath = product.schedaKey
+                        ? getSchedaPdfUrl(product.schedaKey, product.id, lang as "it" | "en" | "es" | "fr" | "de")
+                        : null;
+
                       return (
                         <div key={product.id} className="flex flex-col">
                           {/* Product Image */}
-                          <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-transparent mb-3">
+                          <div className="relative w-full aspect-[4/3] overflow-hidden mb-3">
                             <Image
                               src={product.image}
                               alt={getProductTitle(product, lang) || product.title}
                               fill
-                              className="object-contain p-4"
+                              className="object-contain p-4 product-image-shadow"
                               sizes="(max-width: 640px) 50vw, 50vw"
                               unoptimized
                             />
                           </div>
                           
                           {/* Scheda Tecnica Button - directly below the product */}
-                          {product.schedaKey && (
-                            <a
+                          {pdfPath && (
+                            <Button
                               href={pdfPath}
+                              variant="secondary"
+                              trailingChevron={false}
+                              className="w-full justify-center"
                               download
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-full inline-flex items-center justify-center px-4 py-3 bg-white text-brand-600 border-2 border-brand-600 text-sm font-semibold rounded-lg hover:bg-brand-50 transition-all duration-300"
                             >
-                              <svg className="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
                               {t("home.cases.viewSpecs")}
-                            </a>
+                            </Button>
                           )}
                         </div>
                       );
@@ -382,7 +309,7 @@ export default function Cases() {
                   </h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {selectedCase.relatedImages.map((img, idx) => (
-                      <div key={idx} className="relative aspect-square rounded-lg overflow-hidden bg-slate-100">
+                      <div key={idx} className="relative aspect-square overflow-hidden">
                         <Image
                           src={img}
                           alt={`${selectedCase.title} ${idx + 1}`}
@@ -399,7 +326,7 @@ export default function Cases() {
           </div>
         </div>
       )}
-    </section>
+    </FlatSection>
   );
 }
 

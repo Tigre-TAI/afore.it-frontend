@@ -53,10 +53,10 @@ export default async function GuidaPage({ params }: Props) {
   return (
     <main>
       {/* Hero */}
-      <section className="relative -mt-16 pt-16">
+      <section className="relative -mt-[88px] pt-[88px]">
         <HeroBackground src="/image/documentazione_hero.jpg" alt="Guida" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
           <Breadcrumb
             theme="dark"
             items={[
@@ -65,10 +65,10 @@ export default async function GuidaPage({ params }: Props) {
               { label: t("documentazione.cei.title") || "Guida Regolamento di Esercizio" },
             ]}
           />
-          <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight break-words">
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t("documentazione.cei.title") || "Guida Regolamento di Esercizio"}
           </h1>
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/85">
+          <p className="mt-2 max-w-2xl text-sm text-white/85">
             {t("documentazione.cei.subtitle") || "Procedure ufficiali per completare correttamente regolamenti, addendum tecnici e verifiche di conformità."}
           </p>
         </div>

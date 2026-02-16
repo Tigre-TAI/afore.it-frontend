@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       siteName: "Afore Italia",
       images: [
         {
-          url: `${baseUrl}/image/product_bg.jpg`,
+          url: `${baseUrl}/image/heroes/prodotti_hero.jpg`,
           width: 1200,
           height: 630,
           alt: "Afore Italia Prodotti",

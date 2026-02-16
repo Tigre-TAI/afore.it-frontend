@@ -140,10 +140,10 @@ export default async function DocumentazionePage({ params }: Props) {
   return (
     <main>
       {/* Hero */}
-      <section className="relative -mt-16 pt-16">
+      <section className="relative -mt-[88px] pt-[88px]">
         <HeroBackground src="/image/documentazione_hero.jpg" alt="Documentazione" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
           {/* [CHANGED] 新版面包屑：深色背景 -> 白色主题 */}
           <Breadcrumb
             theme="dark"
@@ -153,18 +153,19 @@ export default async function DocumentazionePage({ params }: Props) {
             ]}
           />
 
-          <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight break-words">
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t("documentazione.title")}
           </h1>
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/85">
+          <p className="mt-2 max-w-2xl text-sm text-white/85">
             {t("documentazione.subtitle")}
           </p>
         </div>
       </section>
 
       {/* Vertical category blocks */}
-      <section className="py-12 sm:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+      <section className="py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="divide-y divide-slate-200">
           {categories.map((item) => {
             const category = translationsObj.documentazione?.categories?.[item.key] || {};
             const title = category.title || "";
@@ -174,7 +175,7 @@ export default async function DocumentazionePage({ params }: Props) {
             return (
               <div
                 key={item.key}
-                className="group flex flex-col gap-4 sm:gap-6 rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg sm:flex-row sm:items-start sm:gap-8"
+                className="group flex flex-col gap-4 sm:gap-6 py-8 sm:py-10 first:pt-0 last:pb-0 sm:flex-row sm:items-start sm:gap-8"
               >
                 <div className="flex items-center justify-center shrink-0">
                   {(item as any).icon2 ? (
@@ -249,7 +250,7 @@ export default async function DocumentazionePage({ params }: Props) {
                 <div className="sm:self-end sm:ml-auto">
                   <Link
                     href={item.href}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#C01C20] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C01C20]"
                   >
                     {t("documentazione.scopriDiPiu")}
                     <svg
@@ -273,6 +274,7 @@ export default async function DocumentazionePage({ params }: Props) {
               </div>
             );
           })}
+          </div>
         </div>
       </section>
     </main>

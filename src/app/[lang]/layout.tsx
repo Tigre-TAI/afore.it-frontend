@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/layout/Navbar";
+import Topbar from "@/components/layout/Topbar";
 import Footer from "@/components/layout/Footer";
 import { StructuredData } from "@/components/SEO/StructuredData";
 import CookieConsent from "@/components/CookieConsent";
@@ -153,8 +154,11 @@ export default async function LangLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        <main className="min-h-screen">
+        <div className="sticky top-0 z-50 isolate w-full shrink-0 flex flex-col gap-y-0">
+          <Navbar />
+          <Topbar />
+        </div>
+        <main className="relative z-0 min-h-screen">
           {children}
         </main>
         <Footer />

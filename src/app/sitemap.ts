@@ -35,7 +35,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const mainPages = [
     { path: 'prodotti', priority: 0.9, changeFrequency: 'weekly' as const },
     { path: 'documentazione', priority: 0.8, changeFrequency: 'weekly' as const },
-    { path: 'garanzia', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: 'assistenza', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: 'eventi', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: 'comunicati-stampa', priority: 0.75, changeFrequency: 'monthly' as const },
+    { path: 'comunicati-stampa/key-energy-2026', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: 'comunicati-stampa/key-energy-2026/carica-foto', priority: 0.6, changeFrequency: 'monthly' as const },
+    { path: 'comunicati-stampa/spazio-900', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: 'video', priority: 0.75, changeFrequency: 'monthly' as const },
+    { path: 'webinar', priority: 0.75, changeFrequency: 'monthly' as const },
+    { path: 'webinar/afore-hailei', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: 'contatti', priority: 0.8, changeFrequency: 'monthly' as const },
   ];
 
   mainPages.forEach(({ path, priority, changeFrequency }) => {

@@ -1,12 +1,21 @@
 // src/app/prodotti/page.tsx
 "use client";
 
-import { useParams } from "next/navigation";
+import { Suspense } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import Breadcrumb from "@/components/ui/Breadcrumbs";
 import HeroBackground from "@/components/ui/HeroBackground";
 import ProductCard from "@/components/ProductCard";
-import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
+import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle, type Product } from "@/data/product-data";
 import { useTranslation } from "@/hooks/useTranslation";
+
+/** Match product by search query (title, subtitle, id) */
+function productMatchesSearch(p: Product, lang: string, q: string): boolean {
+  const displayTitle = getProductTitle(p, lang) || p.title;
+  const displaySub = getProductSubtitle(p, lang) || p.subtitle || "";
+  const searchable = `${displayTitle} ${displaySub} ${p.id}`.toLowerCase();
+  return searchable.includes(q.toLowerCase());
+}
 
 /** 分类判断 */
 const has = (p: any, slug: string) => p?.categories?.some((c: any) => c.slug === slug);
@@ -71,20 +80,23 @@ const GROUPS = [
   },
 ] as const;
 
-export default function ProdottiPage() {
+function ProdottiContent() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const lang = (params?.lang as string) || "it";
   const { t } = useTranslation();
+  const searchQ = searchParams?.get("search")?.trim() || "";
 
 /** 轻量封装你的 ProductCard */
 function Card({ p }: { p: any }) {
   return (
     <ProductCard
-        href={hrefOf(p, lang)}
+      href={hrefOf(p, lang)}
       title={getProductTitle(p, lang)}
       subtitle={getProductSubtitle(p, lang)}
       image={p.image}
-        schedaKey={p.schedaKey}
+      schedaKey={p.schedaKey}
+      productId={p.id}
     />
   );
 }
@@ -92,10 +104,10 @@ function Card({ p }: { p: any }) {
   return (
     <main className="page-content font-sans">
       {/* ===== Hero ===== */}
-      <section className="relative -mt-16 pt-16">
-        <HeroBackground src="/image/product_bg.jpg" alt="Prodotti" />
+      <section className="relative -mt-[88px] pt-[88px]">
+        <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="Prodotti" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
           <Breadcrumb
             theme="dark"
             items={[
@@ -103,12 +115,17 @@ function Card({ p }: { p: any }) {
               { label: t('prodotti.title') }, // 当前页
             ]}
           />
-          <h1 className="mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight break-words">
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t('prodotti.title')}
           </h1>
-          <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/85">
+          <p className="mt-2 max-w-2xl text-sm text-white/85">
             {t('prodotti.subtitle')}
           </p>
+          {searchQ && (
+            <p className="mt-3 text-sm text-white/90 font-medium">
+              {t("search.resultsFor")} &quot;{searchQ}&quot;
+            </p>
+          )}
         </div>
       </section>
 
@@ -127,7 +144,9 @@ function Card({ p }: { p: any }) {
 
               {/* 子线：标题 + 副标题 + 卡片网格 */}
               {g.lines.map((line, li) => {
-                const list = PRODUCTS.filter(line.filter);
+                const list = PRODUCTS.filter(line.filter).filter(
+                  (p) => !searchQ || productMatchesSearch(p, lang, searchQ)
+                );
                 if (list.length === 0) return null;
 
                 return (
@@ -152,5 +171,13 @@ function Card({ p }: { p: any }) {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function ProdottiPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">...</div>}>
+      <ProdottiContent />
+    </Suspense>
   );
 }

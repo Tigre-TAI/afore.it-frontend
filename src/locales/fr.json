@@ -1,9 +1,26 @@
 {
+  "search": {
+    "label": "Rechercher",
+    "placeholder": "Noms de produits, mots-clés, documents, etc...",
+    "resultsFor": "Résultats pour",
+    "close": "Fermer la recherche",
+    "ariaLabel": "Recherche",
+    "submit": "Rechercher"
+  },
+  "topbar": {
+    "comunicatiStampa": "Communiqués de presse",
+    "video": "Vidéo",
+    "contatti": "Contact",
+    "webinar": "Webinar",
+    "eventi": "Événements",
+    "search": "Rechercher"
+  },
   "nav": {
-    "home": "ACCUEIL",
-    "prodotti": "PRODUITS",
-    "documentazione": "DOCUMENTATION",
-    "garanzia": "GARANTIE"
+    "home": "Home",
+    "prodotti": "Produits",
+    "documentazione": "Documentation",
+    "eventi": "Événements",
+    "garanzia": "Assistance et support"
   },
   "home": {
     "title": "Afore Italia",
@@ -95,7 +112,10 @@
       "title": "Chargeur EV",
       "subtitle": "Systèmes de charge pour véhicules électriques"
     },
-    "schedaTecnica": "Fiche Technique"
+    "schedaTecnica": "Fiche Technique",
+    "video": "Vidéo",
+    "videoInCorso": "En cours",
+    "documentazione": "Documentation"
   },
   "documentazione": {
     "title": "Documentation",
@@ -184,8 +204,12 @@
     }
   },
   "garanzia": {
-    "title": "Garantie",
-    "subtitle": "Informations sur la garantie de nos produits",
+    "title": "Assistance et support",
+    "areaDownload": "Zone de téléchargement",
+    "downloadLabel": "Téléchargements",
+    "ricercaPlaceholder": "Rechercher des fichiers...",
+    "ricercaNoResults": "Aucun fichier trouvé. Essayez d'autres termes de recherche.",
+    "subtitle": "Assistance, garantie et support pour nos produits",
     "verificaGaranzia": "Vérifier la Garantie",
     "numeroSerie": "Numéro de Série",
     "inserisciNumeroSerie": "Entrez le numéro de série",
@@ -195,13 +219,165 @@
     "garanzia10Anni": {
       "title": "Garantie de 10 ans",
       "description": "Téléchargez le document officiel de la garantie de 10 ans."
-    }
+    },
+    "videoSection": "Vidéo",
+    "contatti": "Contacts",
+    "videoAssistenzaTecnica": "Assistance Technique — Vidéo",
+    "contattiAssistenzaTecnica": "Assistance Technique — Contacts",
+    "videoTitle1": "Vidéo de démarrage de l'onduleur Afore et Hailei",
+    "videoTitle2": "Optimiseur de module PV avec Energy Manager (Gateway) AFORE ITALIA",
+    "videoTitle3": "Solarman APP avec surveillance en ligne AFORE ITALIA",
+    "videoTitle4": "Onduleur hybride triphasé 3–30kW",
+    "videoTitle5": "Onduleur hybride monophasé 1–6kW"
   },
   "common": {
     "home": "Accueil",
     "download": "Télécharger",
     "breadcrumb": {
       "home": "Accueil"
+    },
+    "close": "Fermer"
+  },
+  "eventi": {
+    "title": "Événements",
+    "subtitle": "Découvrez les événements et salons où nous serons présents",
+    "keyEnergy": {
+      "title": "KEY ENERGY 2026",
+      "subtitle": "Le salon de référence des énergies renouvelables",
+      "booth": "Stand B5-D5",
+      "location": "Rimini Fiera, Rimini, Italie",
+      "date": "5–7 Mars 2026",
+      "description": "Venez nous voir à KEY ENERGY 2026 ! Retrouvez-nous au Stand B5-D5 avec nos dernières solutions photovoltaïques : onduleurs de chaîne, onduleurs hybrides, batteries et systèmes All-in-One.",
+      "ctaForm": "Réserver un rendez-vous",
+      "ctaFormNote": "1 minute · Confirmation par email/téléphone",
+      "share": "Partager",
+      "shareOn": "Partager sur",
+      "whatToExpect": "Ce que vous trouverez sur notre stand",
+      "expect1": "Démos produits live et Q&A technique",
+      "expect2": "Rencontres avec partenaires et installateurs",
+      "expect3": "Informations sur disponibilité et livraisons",
+      "expect4": "Présentation des nouveautés 2026",
+      "contactTitle": "Contact",
+      "contactEmail": "afore@aforeitaly.com",
+      "contactOffice": "+39 06 40419655",
+      "contactTel": "+39 351 3399999"
+    },
+    "video": {
+      "title": "Récapitulatif des événements passés",
+      "description": "Regardez les vidéos des éditions précédentes : démos produits, rencontres et temps forts du stand Afore.",
+      "video1": "KEY ENERGY 2025",
+      "video2": "Afore Italia - Événements"
+    }
+  },
+  "comunicatiStampa": {
+    "title": "Communiqués de presse",
+    "subtitle": "Actualités, communiqués de presse et mises à jour sur Afore Italia et les produits photovoltaïques",
+    "latestTitle": "Derniers communiqués de presse",
+    "continua": "Plus",
+    "items": {
+      "keyEnergy2026": {
+        "date": "02.02.2026",
+        "title": "Afore Italia à Key Energy 2026",
+        "excerpt": "Afore Italia confirme sa participation à la prochaine édition de Key Energy 2026, l'événement de référence du secteur des énergies renouvelables. Rendez-nous visite au stand B5-D5.",
+        "body": "Qu'est-ce que Key Energy ?\n\nKey Energy est le principal salon italien dédié aux énergies renouvelables, à l'efficacité énergétique et à la durabilité. Organisé par Italian Exhibition Group (IEG) à Rimini Fiera, l'événement se tient chaque année et constitue une référence pour les opérateurs, installateurs, fabricants et professionnels du secteur photovoltaïque et énergétique.\n\nLe salon couvre tous les aspects de la transition énergétique : solaire photovoltaïque, éolien, stockage, mobilité électrique, efficacité des bâtiments et technologies pour les smart city. Des milliers de visiteurs et des centaines d'exposants participent pour présenter les dernières innovations, nouer des partenariats et se former aux tendances du marché.\n\nAfore Italia à Key Energy 2026\n\nAfore Italia confirme sa participation à la prochaine édition de Key Energy 2026. Rendez-nous visite au stand B5-D5 avec nos solutions photovoltaïques : onduleurs string, hybrides, batteries et systèmes All-in-One. Venez découvrir les nouveautés 2026, assister à des démos live et rencontrer notre équipe technique.",
+        "photoUploadHeading": "Partagez vos photos",
+        "photoUploadCta": "Envoyez vos photos de l'événement",
+        "photoUploadNote": "Vous avez visité notre stand ? Envoyez-nous vos photos et partagez-les avec la communauté.",
+        "photosShowMore": "Afficher plus de photos",
+        "photos2025Title": "Photos de l'événement Key Energy 2025",
+        "href": "/comunicati-stampa/key-energy-2026",
+        "image": "/image/events/keyenergy2026_cta_desktop.jpg",
+        "heroImage": "/image/events/keyenergy2026_cta_hero.jpg"
+      },
+      "spazio900": {
+        "date": "29.07.2025",
+        "title": "Spazio 900 : présentation du nouveau produit Afore",
+        "excerpt": "Afore Italia présente Spazio 900, la nouvelle solution photovoltaïque pour applications résidentielles et commerciales. Découvrez les caractéristiques et les nouveautés du lancement.",
+        "body": "Afore Italia a présenté Spazio 900 lors d'un événement dédié aux partenaires et installateurs. La nouvelle solution allie design compact, hautes performances et facilité d'installation pour le marché photovoltaïque résidentiel et commercial.\n\nSpazio 900 représente une nouvelle étape dans l'innovation Afore, avec des technologies de pointe pour maximiser l'autoconsommation et l'efficacité des systèmes. La présentation a détaillé les spécifications techniques, les applications et les options de configuration.",
+        "href": "/comunicati-stampa/spazio-900",
+        "image": "/image/events/spazio900_cta_desktop.jpg",
+        "heroImage": "/image/events/spazio900_cta_hero.jpg",
+        "videoHeading": "Vidéo de l'événement"
+      }
+    }
+  },
+  "socialPress": {
+    "seguiciSocial": "Suivez-nous sur nos réseaux sociaux",
+    "comunicazioniStampa": "Communication presse",
+    "companyName": "AFORE Italia S.r.l.",
+    "pressPhone": "+39 06 40419655",
+    "pressEmail": "afore@aforeitaly.com"
+  },
+  "videoPage": {
+    "title": "Vidéo",
+    "showMore": "Afficher plus de vidéos",
+    "showLess": "Afficher moins",
+    "subtitle": "Tutoriels vidéo, démos produits et contenu multimédia sur les onduleurs et systèmes photovoltaïques Afore",
+    "videoPromozionali": "Vidéos promotionnelles",
+    "guidaInstallazione": "Guide d'installation",
+    "panoramicaProdotto": "Aperçu du produit",
+    "fiereEventi": "Salons & Événements",
+    "seguiciSocial": "Suivez-nous sur nos réseaux sociaux",
+    "comunicazioniStampa": "Communication presse",
+    "companyName": "AFORE Italia S.r.l.",
+    "pressPhone": "+39 06 40419655",
+    "pressEmail": "afore@aforeitaly.com"
+  },
+  "webinar": {
+    "title": "Webinar",
+    "subtitle": "Webinaires de formation sur les onduleurs solaires, systèmes de stockage et solutions Afore",
+    "latestTitle": "Derniers webinaires",
+    "continua": "Continuer",
+    "items": {
+      "aforeHailei": {
+        "date": "10.02.2026",
+        "title": "AFORE HAILEI",
+        "excerpt": "Formation sur la programmation logicielle Hailei (basse et haute tension), connecteurs 485-232, mise à jour batterie et suivi historique BMS.",
+        "image": "/image/events/webinar_cta_desktop.jpg",
+        "heroImage": "/image/events/webinar_cta_desktop.jpg",
+        "time": "10:00 - 11:00",
+        "timezone": "Fuseau horaire : Europe/Rome",
+        "meetUrl": "https://meet.google.com/rpq-nvqw-gbr",
+        "meetDial": "(IT) +39 02 8732 3834 PIN: 768 008 693#",
+        "topics": "Programmation logicielle Hailei basse et haute tension\nExplication de l'usage des connecteurs 485-232 et analyseur CAN\nComment mettre à jour la batterie Hailei avec ordinateur\nSuivi historique batterie et erreurs BMS",
+        "joinTitle": "Informations pour participer",
+        "meetLinkLabel": "Lien vers l'appel vidéo",
+        "meetDialLabel": "Ou composer",
+        "joinButton": "Rejoindre avec Google Meet",
+        "topicsTitle": "Sujets abordés au cours"
+      }
+    }
+  },
+  "contatti": {
+    "title": "Contact",
+    "subtitle": "Contactez-nous pour des informations sur les produits, le support technique ou les partenariats",
+    "installatori": "Installateurs",
+    "commerciali": "Commercial",
+    "installatoriCommerciali": "Installateurs et Commercial",
+    "clientiFinali": "Clients finaux",
+    "soloWhatsApp": "WhatsApp uniquement",
+    "email": "E-Mail",
+    "form": {
+      "title": "Écrivez-nous",
+      "name": "Nom",
+      "namePlaceholder": "Votre nom",
+      "phone": "Téléphone",
+      "phonePlaceholder": "Numéro de téléphone",
+      "email": "Email",
+      "emailPlaceholder": "Votre email",
+      "categoryLabel": "Catégorie",
+      "reason": "Raison du contact",
+      "reasonPlaceholder": "Écrivez la raison du contact...",
+      "uploadLabel": "Joindre des images",
+      "uploadHint": "JPG, PNG. Maximum 10 fichiers.",
+      "uploadRemove": "Supprimer",
+      "uploadErrorType": "JPG et PNG uniquement.",
+      "uploadErrorMax": "Maximum 10 fichiers.",
+      "submit": "Envoyer",
+      "submitting": "Envoi en cours...",
+      "submitError": "Erreur d'envoi. Réessayez.",
+      "success": "Message envoyé avec succès.",
+      "required": "Obligatoire"
     }
   },
   "footer": {
@@ -217,8 +393,11 @@
     "title": "Nous Utilisons des Cookies",
     "description": "Nous utilisons des cookies pour améliorer votre expérience de navigation, analyser le trafic du site et personnaliser le contenu. En acceptant les cookies, vous nous permettez d'utiliser ces informations.",
     "acceptAll": "Tout Accepter",
+    "accept": "Accepter",
+    "acceptOnlyNecessary": "Accepter Uniquement les Nécessaires",
     "rejectAll": "Tout Refuser",
     "customize": "Personnaliser",
+    "options": "Options",
     "savePreferences": "Enregistrer les Préférences",
     "settingsTitle": "Paramètres des Cookies",
     "settingsDescription": "Choisissez les cookies que vous souhaitez accepter. Les cookies nécessaires sont toujours actifs pour assurer le bon fonctionnement du site.",

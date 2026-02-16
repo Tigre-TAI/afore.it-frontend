@@ -30,11 +30,13 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_URL: https://www.afore.it
+          NEXT_PUBLIC_CONTACT_FORM_ACTION: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ACTION }}
 
       - name: Export static site
         run: npm run export
         env:
           NEXT_PUBLIC_BASE_URL: https://www.afore.it
+          NEXT_PUBLIC_CONTACT_FORM_ACTION: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ACTION }}
 
       - name: Fix language route structure for S3
         run: |

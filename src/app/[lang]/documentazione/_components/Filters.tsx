@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect, startTransition, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Button from "@/components/ui/Button";
 import { bySchedaKey } from "@/data/product-data";
 
 // 枚举值（按你的要求收敛）
@@ -144,9 +145,9 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "center" });
             // 添加高亮效果
-            element.classList.add("ring-4", "ring-brand-500", "ring-offset-2");
+            element.classList.add("border-2", "border-[#C01C20]");
             setTimeout(() => {
-              element.classList.remove("ring-4", "ring-brand-500", "ring-offset-2");
+              element.classList.remove("border-2", "border-[#C01C20]");
             }, 3000);
           }
         }, 500);
@@ -170,7 +171,7 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
               <select
                 value={product}
                 onChange={(e) => onProductChange(e.target.value)}
-                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:border-[#C01C20]"
               >
                 <option value="">SELEZIONA</option>
                 {PRODUCT_TYPES.map((t) => (
@@ -189,7 +190,7 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
                 value={series}
                 onChange={(e) => onSeriesChange(e.target.value)}
                 disabled={seriesDisabled}
-                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
+                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 focus:outline-none focus:border-[#C01C20]"
               >
                 <option value="">SELEZIONA</option>
                 {seriesOptions.map((s) => (
@@ -208,7 +209,7 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
                 value={power}
                 onChange={(e) => setPower(e.target.value)}
                 disabled={powerDisabled}
-                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
+                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 focus:outline-none focus:border-[#C01C20]"
               >
                 <option value="">SELEZIONA</option>
                 {powerOptions.map((p) => (
@@ -226,7 +227,7 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
               <select
                 value={docType}
                 onChange={(e) => setDocType(e.target.value)}
-                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:border-[#C01C20]"
               >
                 <option value="">SELEZIONA</option>
                 {DOC_TYPES.map((d) => (
@@ -244,7 +245,7 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
               <select
                 value={lang}
                 onChange={(e) => setLang(e.target.value)}
-                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:border-[#C01C20]"
               >
                 <option value="">SELEZIONA</option>
                 {LANGS.map((l) => (
@@ -262,7 +263,7 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value)}
-                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full appearance-none rounded-lg bg-white px-4 py-3 border border-slate-200 focus:outline-none focus:border-[#C01C20]"
               >
                 <option value="">SELEZIONA</option>
                 {REGIONS.map((r) => (
@@ -276,20 +277,12 @@ function FiltersContent({ highlightProduct }: FiltersProps = {} as FiltersProps)
 
         {/* 操作按钮 */}
         <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-end">
-          <button
-            type="button"
-            onClick={resetAll}
-            className="rounded-lg border border-slate-300 px-5 py-2 font-semibold hover:bg-slate-50"
-          >
+          <Button type="button" onClick={resetAll} variant="secondary" trailingChevron={false}>
             Ripristina
-          </button>
-          <button
-            type="button"
-            onClick={applyFilter}
-            className="rounded-lg bg-brand-600 text-white px-6 py-2 font-semibold hover:bg-brand-500"
-          >
+          </Button>
+          <Button type="button" onClick={applyFilter} variant="primary">
             Filtra
-          </button>
+          </Button>
         </div>
       </div>
     </section>

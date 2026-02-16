@@ -19,8 +19,8 @@ export default function SerieAforePage() {
   return (
     <main className="page-content font-sans">
       {/* Hero */}
-      <section className="relative -mt-16 pt-16">
-        <HeroBackground src="/image/product_bg.jpg" alt="Serie Afore" />
+      <section className="relative -mt-[88px] pt-[88px]">
+        <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="Serie Afore" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
           <Breadcrumb

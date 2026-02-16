@@ -17,10 +17,10 @@ export default function AllInOnePage() {
   return (
     <main className="page-content font-sans">
       {/* Hero */}
-      <section className="relative -mt-16 pt-16">
-        <HeroBackground src="/image/product_bg.jpg" alt="All in One" />
+      <section className="relative -mt-[88px] pt-[88px]">
+        <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="All in One" />
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
           <Breadcrumb
             theme="dark"
             items={[
@@ -29,10 +29,10 @@ export default function AllInOnePage() {
               { label: "All in One" },
             ]}
           />
-          <h1 className="mt-3 text-3xl lg:text-5xl font-extrabold tracking-tight">
+          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             All in One
           </h1>
-          <p className="mt-3 max-w-2xl text-white/85">
+          <p className="mt-2 max-w-2xl text-sm text-white/85">
             Sistemi integrati con inverter e accumulo in un'unica soluzione.
           </p>
         </div>

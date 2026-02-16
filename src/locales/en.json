@@ -1,9 +1,26 @@
 {
+  "search": {
+    "label": "Search for",
+    "placeholder": "Product names, keywords, documents, etc...",
+    "resultsFor": "Results for",
+    "close": "Close search",
+    "ariaLabel": "Search",
+    "submit": "Search"
+  },
+  "topbar": {
+    "comunicatiStampa": "Press releases",
+    "video": "Video",
+    "contatti": "Contact",
+    "webinar": "Webinar",
+    "eventi": "Events",
+    "search": "Search"
+  },
   "nav": {
-    "home": "HOME",
-    "prodotti": "PRODUCTS",
-    "documentazione": "DOCUMENTATION",
-    "garanzia": "WARRANTY"
+    "home": "Home",
+    "prodotti": "Products",
+    "documentazione": "Documentation",
+    "eventi": "Events",
+    "garanzia": "Assistance and support"
   },
   "home": {
     "title": "Afore Italia",
@@ -23,6 +40,23 @@
       "title": "Featured Products",
       "description": "Discover our complete range of photovoltaic solutions",
       "cta": "View All Products"
+    },
+    "eventBooking": {
+      "badge": "Press releases",
+      "title": "Book a meeting at the event",
+      "description": "Leave your contact details and tell us when you'd like to visit: we'll confirm the time and prepare the materials in advance.",
+      "cta": "Fill in the form",
+      "noteTime": "1 minute",
+      "noteConfirm": "Confirmation via email/phone",
+      "benefitsHeading": "What you can do",
+      "benefit1": "Product demos / Technical Q&A",
+      "benefit2": "Partners & installers",
+      "benefit3": "Availability and delivery info",
+      "locationLabel": "Location",
+      "locationValue": "Rimini Fiera, B5-D5",
+      "dateLabel": "Event",
+      "dateValue": "KEY ENERGY 2026",
+      "detailsCta": "Discover more"
     },
     "cases": {
       "title": "Our Case Studies",
@@ -95,7 +129,10 @@
       "title": "EV Charger",
       "subtitle": "Charging systems for electric vehicles"
     },
-    "schedaTecnica": "Technical Sheet"
+    "schedaTecnica": "Technical Sheet",
+    "video": "Video",
+    "videoInCorso": "In progress",
+    "documentazione": "Documentation"
   },
   "documentazione": {
     "title": "Documentation",
@@ -184,8 +221,12 @@
     }
   },
   "garanzia": {
-    "title": "Warranty",
-    "subtitle": "Information about the warranty of our products",
+    "title": "Assistance and support",
+    "areaDownload": "Download area",
+    "downloadLabel": "Download",
+    "ricercaPlaceholder": "Search files...",
+    "ricercaNoResults": "No files found. Try different search terms.",
+    "subtitle": "Assistance, warranty and support for our products",
     "verificaGaranzia": "Verify Warranty",
     "numeroSerie": "Serial Number",
     "inserisciNumeroSerie": "Enter the serial number",
@@ -195,19 +236,172 @@
     "garanzia10Anni": {
       "title": "10 Year Warranty",
       "description": "Download the official 10 year warranty document."
-    }
+    },
+    "videoSection": "Video",
+    "contatti": "Contacts",
+    "videoAssistenzaTecnica": "Technical Support — Video",
+    "contattiAssistenzaTecnica": "Technical Support — Contacts",
+    "videoTitle1": "Afore and Hailei inverter startup video",
+    "videoTitle2": "PV module optimizer with Energy Manager (Gateway) AFORE ITALIA",
+    "videoTitle3": "Solarman APP with online monitoring AFORE ITALIA",
+    "videoTitle4": "Inverter Ibrido Trifase 3–30kW",
+    "videoTitle5": "Inverter Ibrido Monofase 1–6kW"
   },
   "common": {
     "home": "Home",
     "download": "Download",
     "breadcrumb": {
       "home": "Home"
+    },
+    "close": "Close"
+  },
+  "eventi": {
+    "title": "Events",
+    "subtitle": "Discover the events and trade fairs where we'll be present",
+    "keyEnergy": {
+      "title": "KEY ENERGY 2026",
+      "subtitle": "The leading renewable energy trade fair",
+      "booth": "Booth B5-D5",
+      "location": "Rimini Fiera, Rimini, Italy",
+      "date": "5–7 March 2026",
+      "description": "Visit us at KEY ENERGY 2026! Find us at Booth B5-D5 with our latest photovoltaic solutions: string inverters, hybrid inverters, battery storage and All-in-One systems.",
+      "ctaForm": "Book a meeting",
+      "ctaFormNote": "1 minute · Confirmation via email/phone",
+      "share": "Share",
+      "shareOn": "Share on",
+      "whatToExpect": "What to expect at our booth",
+      "expect1": "Live product demos and technical Q&A",
+      "expect2": "Meet partners and installers",
+      "expect3": "Availability and delivery information",
+      "expect4": "Presentation of 2026 new products",
+      "contactTitle": "Contact",
+      "contactEmail": "afore@aforeitaly.com",
+      "contactOffice": "+39 06 40419655",
+      "contactTel": "+39 351 3399999"
+    },
+    "video": {
+      "title": "Past events recap",
+      "description": "Watch videos from previous editions: product demos, meetings and highlights from the Afore booth.",
+      "video1": "KEY ENERGY 2025",
+      "video2": "Afore Italia - Events"
+    }
+  },
+  "comunicatiStampa": {
+    "title": "Press releases",
+    "subtitle": "News, press releases and updates on Afore Italia and solar products",
+    "latestTitle": "Latest press releases",
+    "continua": "More",
+    "items": {
+      "keyEnergy2026": {
+        "date": "02.02.2026",
+        "title": "Afore Italia at Key Energy 2026",
+        "excerpt": "Afore Italia confirms its participation in the next edition of Key Energy 2026, the reference event for the renewable energy sector. Visit us at Booth B5-D5 with our photovoltaic solutions.",
+        "body": "What is Key Energy?\n\nKey Energy is Italy's leading trade fair dedicated to renewable energy, energy efficiency and sustainability. Organized by Italian Exhibition Group (IEG) at Rimini Fiera, the event takes place every year and is a key reference for operators, installers, manufacturers and professionals in the photovoltaic and energy sector.\n\nThe fair covers all aspects of the energy transition: solar photovoltaics, wind power, energy storage, e-mobility, building efficiency and smart city technologies. Thousands of visitors and hundreds of exhibitors participate to showcase the latest innovations, forge partnerships and stay up to date on market trends.\n\nAfore Italia at Key Energy 2026\n\nAfore Italia confirms its participation in the next edition of Key Energy 2026. Visit us at Booth B5-D5 with our photovoltaic solutions: string inverters, hybrids, storage batteries and All-in-One systems. Come discover the 2026 novelties, attend live demos and meet our technical team.",
+        "photoUploadHeading": "Share your photos",
+        "photoUploadCta": "Upload your photos from the event",
+        "photoUploadNote": "Did you visit our booth? Send us your photos and share them with the community.",
+        "photosShowMore": "Show more photos",
+        "photos2025Title": "Photos from Key Energy 2025",
+        "href": "/comunicati-stampa/key-energy-2026",
+        "image": "/image/events/keyenergy2026_cta_desktop.jpg",
+        "heroImage": "/image/events/keyenergy2026_cta_hero.jpg"
+      },
+      "spazio900": {
+        "date": "29.07.2025",
+        "title": "Spazio 900: presentation of the new Afore product",
+        "excerpt": "Afore Italia presents Spazio 900, the new photovoltaic solution for residential and commercial applications. Discover the features and highlights of the product launch.",
+        "body": "Afore Italia presented Spazio 900 during an event dedicated to partners and installers. The new solution combines compact design, high performance and ease of installation for the residential and commercial photovoltaic market.\n\nSpazio 900 represents a further step in Afore innovation, with state-of-the-art technologies to maximize self-consumption and system efficiency. The presentation covered technical details, applications and configuration options.",
+        "href": "/comunicati-stampa/spazio-900",
+        "image": "/image/events/spazio900_cta_desktop.jpg",
+        "heroImage": "/image/events/spazio900_cta_hero.jpg",
+        "videoHeading": "Event video"
+      }
+    }
+  },
+  "socialPress": {
+    "seguiciSocial": "Follow us on our social channels",
+    "comunicazioniStampa": "Press communications",
+    "companyName": "AFORE Italia S.r.l.",
+    "pressPhone": "+39 06 40419655",
+    "pressEmail": "afore@aforeitaly.com"
+  },
+  "videoPage": {
+    "title": "Video",
+    "showMore": "Show more videos",
+    "showLess": "Show less",
+    "subtitle": "Video tutorials, product demos and multimedia content on Afore inverters and solar systems",
+    "videoPromozionali": "Promotional videos",
+    "guidaInstallazione": "Installation guide",
+    "panoramicaProdotto": "Product overview",
+    "fiereEventi": "Trade fairs & Events",
+    "seguiciSocial": "Follow us on our social channels",
+    "comunicazioniStampa": "Press communications",
+    "companyName": "AFORE Italia S.r.l.",
+    "pressPhone": "+39 06 40419655",
+    "pressEmail": "afore@aforeitaly.com"
+  },
+  "webinar": {
+    "title": "Webinar",
+    "subtitle": "Training webinars on solar inverters, storage systems and Afore solutions",
+    "latestTitle": "Latest webinars",
+    "continua": "Continue",
+    "items": {
+      "aforeHailei": {
+        "date": "10.02.2026",
+        "title": "AFORE HAILEI",
+        "excerpt": "Training on Hailei software programming (low and high voltage), 485-232 connectors, battery update and BMS historical tracking.",
+        "image": "/image/events/webinar_cta_desktop.jpg",
+        "heroImage": "/image/events/webinar_cta_desktop.jpg",
+        "time": "10:00 - 11:00 AM",
+        "timezone": "Timezone: Europe/Rome",
+        "meetUrl": "https://meet.google.com/rpq-nvqw-gbr",
+        "meetDial": "(IT) +39 02 8732 3834 PIN: 768 008 693#",
+        "topics": "Hailei software programming (low and high voltage)\n485-232 Connectors and CAN analyst usage\nHow to update Hailei battery with computer\nBattery historical tracking and BMS errors",
+        "joinTitle": "How to join",
+        "meetLinkLabel": "Video call link",
+        "meetDialLabel": "Or dial",
+        "joinButton": "Join with Google Meet",
+        "topicsTitle": "Topics covered in the course"
+      }
+    }
+  },
+  "contatti": {
+    "title": "Contact",
+    "subtitle": "Contact us for product information, technical support or partnerships",
+    "installatori": "Installers",
+    "commerciali": "Commercial",
+    "installatoriCommerciali": "Installers and Commercial",
+    "clientiFinali": "End customers",
+    "soloWhatsApp": "WhatsApp only",
+    "email": "E-Mail",
+    "form": {
+      "title": "Get in touch",
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "phone": "Phone",
+      "phonePlaceholder": "Phone number",
+      "email": "Email",
+      "emailPlaceholder": "Your email",
+      "categoryLabel": "Category",
+      "reason": "Reason for contact",
+      "reasonPlaceholder": "Write your reason for contact...",
+      "uploadLabel": "Attach images",
+      "uploadHint": "JPG, PNG. Max 10 files.",
+      "uploadRemove": "Remove",
+      "uploadErrorType": "Only JPG and PNG.",
+      "uploadErrorMax": "Max 10 files.",
+      "submit": "Submit",
+      "submitting": "Sending...",
+      "submitError": "Error sending. Please try again.",
+      "success": "Message sent successfully.",
+      "required": "Required"
     }
   },
   "footer": {
     "afore": "Afore",
     "prodotti": "Products",
     "documentazione": "Documentation",
+    "eventi": "Events",
     "garanzia": "Warranty",
     "contatti": "Contacts",
     "copyright": "© {year} Afore Italia S.R.L. All rights reserved.",
@@ -217,8 +411,11 @@
     "title": "We Use Cookies",
     "description": "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By accepting cookies, you allow us to use this information.",
     "acceptAll": "Accept All",
+    "accept": "Accept",
+    "acceptOnlyNecessary": "Accept Only Necessary",
     "rejectAll": "Reject All",
     "customize": "Customize",
+    "options": "Options",
     "savePreferences": "Save Preferences",
     "settingsTitle": "Cookie Settings",
     "settingsDescription": "Choose which cookies you want to accept. Necessary cookies are always active to ensure the site functions properly.",

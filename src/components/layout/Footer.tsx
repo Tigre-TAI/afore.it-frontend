@@ -12,28 +12,24 @@ export default function Footer() {
   const lang = getLangFromPath(pathname);
   const { t } = useTranslation();
   return (
-    <footer className="bg-black text-gray-300">
-      {/* 上区：移动端 Logo 单独一行，桌面端左 logo + 右四列 */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
-          {/* Logo：移动端单独一行靠左，桌面端左侧固定宽度 */}
-          <div className="w-full md:shrink-0 md:w-40 flex justify-start">
+    <footer className="bg-slate-950 text-slate-300">
+      <div className="container py-16 md:py-20">
+        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12">
+          <div className="w-full md:shrink-0 md:w-36 flex justify-start">
             <Image
               src="/logos/logo_afore_light.png"
               alt="Afore Logo"
               width={120}
               height={36}
-              className="opacity-95"
+              className="opacity-90"
               unoptimized
               loading="lazy"
             />
           </div>
-
-          {/* 右侧：四列信息；移动端 2 列，桌面端 4 列 */}
-          <div className="w-full md:ml-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-sm">
+          <div className="w-full md:ml-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-sm">
             {/* Col 1 - Afore */}
             <div>
-              <h3 className="text-white font-semibold mb-4">{t('footer.afore')}</h3>
+              <h3 className="text-white font-semibold mb-4 text-[15px]">{t('footer.afore')}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href={withLang("/", lang)} className="hover:text-white transition-colors">
@@ -51,7 +47,12 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href={withLang("/garanzia", lang)} className="hover:text-white transition-colors">
+                  <Link href={withLang("/eventi", lang)} className="hover:text-white transition-colors">
+                    {t('footer.eventi')}
+                  </Link>
+                </li>
+                <li>
+                  <Link href={withLang("/assistenza", lang)} className="hover:text-white transition-colors">
                     {t('footer.garanzia')}
                   </Link>
                 </li>
@@ -119,7 +120,7 @@ export default function Footer() {
                 <li>Email: afore@aforeitaly.com</li>
                 <li>Office: +39 06 40419655</li>
                 <li>Tel: +39 351 3399999</li>
-                <li className="text-gray-400">
+                <li className="text-slate-400">
                   {t('footer.address')}
                 </li>
               </ul>
@@ -128,14 +129,13 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* 下区：版权 + 社交；同一容器以保证左右对齐 */}
-      <div className="border-t border-gray-700">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between text-sm gap-4">
+      <div className="border-t border-slate-800">
+        <div className="container py-6 flex flex-col md:flex-row items-center justify-between text-sm gap-4">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
             <p>{t('footer.copyright', { year: new Date().getFullYear().toString() })}</p>
             <button
               onClick={() => openCookieSettings()}
-              className="text-gray-400 hover:text-white transition-colors underline text-xs md:text-sm"
+              className="text-slate-400 hover:text-slate-200 transition-colors underline text-xs md:text-sm"
             >
               {t('cookie.manageCookies')}
             </button>

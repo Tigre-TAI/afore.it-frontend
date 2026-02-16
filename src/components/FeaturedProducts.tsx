@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
+import Button from "@/components/ui/Button";
 import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import ProductCard from "@/components/ProductCard";
 import { withLang } from "@/lib/lang-utils";
+import FlatSection from "@/components/ui/FlatSection";
 
 export default function FeaturedProducts() {
   const { t, lang } = useTranslation();
@@ -12,8 +13,8 @@ export default function FeaturedProducts() {
   const featuredProducts = PRODUCTS.slice(0, 6);
 
   return (
-    <section className="py-8 md:py-16 lg:py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FlatSection bg="slate-50">
+      <div className="container">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
             {t("home.featured_products.title")}
@@ -36,34 +37,19 @@ export default function FeaturedProducts() {
                 subtitle={getProductSubtitle(product, lang)}
                 image={product.image}
                 schedaKey={product.schedaKey}
+                productId={product.id}
               />
             </div>
           ))}
         </div>
 
         <div className="text-center mt-8 md:mt-12">
-          <Link
-            href={withLang("/prodotti", lang)}
-            className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 bg-brand-600 text-white text-sm md:text-base font-semibold rounded-lg hover:bg-brand-700 transition-all duration-300 transform hover:scale-105"
-          >
+          <Button href={withLang("/prodotti", lang)} variant="primary" trailingChevron>
             {t("home.featured_products.cta")}
-            <svg
-              className="ml-2 w-4 h-4 md:w-5 md:h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 12h14m-7-7l7 7-7 7"
-              />
-            </svg>
-          </Link>
+          </Button>
         </div>
       </div>
-    </section>
+    </FlatSection>
   );
 }
 

@@ -10,6 +10,8 @@ export type Product = {
   categories: Category[] // 支持多分类
   /** 用于链接到 scheda-tecnica 页面的键值，通常是产品 id 或特定的文档标识符 */
   schedaKey?: string
+  /** YouTube 视频 ID（用于产品展示视频） */
+  youtubeId?: string
 }
 
 /** 统一的分类常量，避免手写出错 */
@@ -63,6 +65,7 @@ export const PRODUCTS: Product[] = [
     image: "/products/inverters/stringa_3_25kw_1.png",
     categories: [CATS.commerciale, CATS.trifase, CATS.inverter, CATS.inverterStringa, CATS.afore],
     schedaKey: "stringa-trifase-3-25kw",
+    youtubeId: "GWvVtcNlF14",
   },
   {
     id: "stringa-trifase-30kw",
@@ -87,6 +90,7 @@ export const PRODUCTS: Product[] = [
     image: "/products/inverters/stringa_70_110kw_1.png",
     categories: [CATS.commerciale, CATS.trifase, CATS.inverter, CATS.inverterStringa, CATS.afore],
     schedaKey: "stringa-trifase-70-110kw",
+    youtubeId: "hSa9bP3kurw",
   },
 
   /* ===== Inverter Ibrido ===== */
@@ -98,6 +102,7 @@ export const PRODUCTS: Product[] = [
     image: "/products/inverters/ibrido_1_3.6kw_1.png",
     categories: [CATS.residenziale, CATS.monofase, CATS.inverter, CATS.ibrido, CATS.afore],
     schedaKey: "ibrido-monofase-1-3-6kw",
+    youtubeId: "CjWHKN19tos",
   },
   {
     id: "ibrido-monofase-plus-4-6kw",
@@ -106,6 +111,7 @@ export const PRODUCTS: Product[] = [
     image: "/products/inverters/ibrido_4_6kw_plus_1.png",
     categories: [CATS.residenziale, CATS.monofase, CATS.inverter, CATS.ibrido, CATS.afore],
     schedaKey: "ibrido-monofase-plus-4-6kw",
+    youtubeId: "0uMYCGiLE0k",
   },
   {
     id: "ibrido-trifase-plus-8-12kw",
@@ -140,6 +146,7 @@ export const PRODUCTS: Product[] = [
     image: "/products/inverters/ibrido_3_30kw_1.png",
     categories: [CATS.commerciale, CATS.trifase, CATS.inverter, CATS.ibrido, CATS.afore],
     schedaKey: "ibrido-trifase-3-30kw",
+    youtubeId: "FlUUu4nhiwg",
   },
   {
     id: "ibrido-trifase-36-60kw",
@@ -253,6 +260,7 @@ export const PRODUCTS: Product[] = [
     image: "/products/chargers/ev_charger_diamond_1.png",
     categories: [CATS.ev],
     schedaKey: "ev-diamond",
+    youtubeId: "F6VvdYKuG4A",
   },
   {
     id: "ev-oval",

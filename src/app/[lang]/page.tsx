@@ -6,17 +6,22 @@ import dynamic from "next/dynamic";
 
 // Lazy load below-fold components to improve LCP
 const ProductCategories = dynamic(() => import("@/components/ProductCategories"), {
-  loading: () => <div className="py-8 md:py-16 lg:py-24 bg-white" />,
+  loading: () => <div className="section bg-white" />,
   ssr: true, // Still SSR for SEO, but code-split
 });
 
 const FeaturedProducts = dynamic(() => import("@/components/FeaturedProducts"), {
-  loading: () => <div className="py-8 md:py-16 lg:py-24 bg-gray-50" />,
+  loading: () => <div className="section bg-slate-50" />,
+  ssr: true,
+});
+
+const EventBooking = dynamic(() => import("@/components/EventBooking"), {
+  loading: () => <div className="section bg-slate-50" />,
   ssr: true,
 });
 
 const Cases = dynamic(() => import("@/components/Cases"), {
-  loading: () => <div className="py-8 md:py-16 lg:py-24 bg-white" />,
+  loading: () => <div className="section bg-white" />,
   ssr: true,
 });
 
@@ -118,8 +123,9 @@ export default async function Home({
 
   return (
     <main className="min-h-screen flex-col">
-      {/* Hero Section with YouTube Video */}
+      {/* Hero Section with YouTube Video - stable key prevents remount on lang change */}
       <Hero
+        key="hero"
         youtubeId="dBY-e6mFwOM"
         title={t("home.hero.title")}
         badge={t("home.hero.badge")}
@@ -133,6 +139,9 @@ export default async function Home({
 
       {/* Scrolling Banner with Badges */}
       <ScrollingBanner />
+
+      {/* Event / Meeting Booking CTA */}
+      <EventBooking />
 
       {/* I Nostri Prodotti Section */}
       <ProductCategories />

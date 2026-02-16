@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import Button from "@/components/ui/Button";
 import {
   hasCookieConsent,
   setCookiePreferences,
@@ -90,6 +91,20 @@ export default function CookieConsent() {
     setShowSettings(false);
   };
 
+  // Accetta solo necessari = same as reject all (only necessary cookies)
+  const handleAcceptOnlyNecessary = () => {
+    rejectAllCookies();
+    setShowBanner(false);
+    setShowSettings(false);
+  };
+
+  // Close (X) = continue with only necessary cookies
+  const handleClose = () => {
+    rejectAllCookies();
+    setShowBanner(false);
+    setShowSettings(false);
+  };
+
   const handleSavePreferences = () => {
     setCookiePreferences(preferences);
     setShowBanner(false);
@@ -114,43 +129,65 @@ export default function CookieConsent() {
 
   return (
     <>
-      {/* Cookie Consent Banner */}
+      {/* Cookie Consent Modal (centered, like reference) */}
       {showBanner && !showSettings && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 bg-white border-t-2 border-brand-600 shadow-2xl transform transition-all duration-300 ease-out">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              {/* Content */}
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
-                  {t("cookie.title")}
-                </h3>
-                <p className="text-sm md:text-base text-gray-600 mb-2">
-                  {t("cookie.description")}
-                </p>
-                <button
-                  onClick={handleOpenSettings}
-                  className="text-sm text-brand-600 hover:text-brand-700 font-semibold underline"
-                >
-                  {t("cookie.customize")}
-                </button>
-              </div>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          onClick={handleClose}
+        >
+          <div
+            className="relative bg-white max-w-lg w-full p-6 md:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button (X) = continue with only necessary */}
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 z-10 p-2 hover:bg-gray-100 transition-colors"
+              aria-label={t("common.close")}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 md:ml-6">
-                <button
-                  onClick={handleRejectAll}
-                  className="px-6 py-2.5 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors whitespace-nowrap"
-                >
-                  {t("cookie.rejectAll")}
-                </button>
-                <button
-                  onClick={handleAcceptAll}
-                  className="px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg transition-colors whitespace-nowrap"
-                >
-                  {t("cookie.acceptAll")}
-                </button>
-              </div>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 pr-10">
+              {t("cookie.title")}
+            </h2>
+            <p className="text-sm text-gray-600 mb-6">
+              {t("cookie.description")}
+            </p>
+
+            {/* Buttons: Accetta tutto + Accetta solo necessari */}
+            <div className="flex flex-col gap-3">
+              <Button
+                onClick={handleAcceptAll}
+                variant="primary"
+                className="w-full justify-center"
+              >
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                {t("cookie.acceptAll")}
+              </Button>
+              <Button
+                onClick={handleAcceptOnlyNecessary}
+                variant="secondary"
+                trailingChevron={false}
+                className="w-full justify-center"
+              >
+                {t("cookie.acceptOnlyNecessary")}
+              </Button>
             </div>
+
+            {/* Opzioni link */}
+            <Button
+              onClick={handleOpenSettings}
+              variant="secondary"
+              trailingChevron={false}
+              className="mt-4 text-sm"
+            >
+              {t("cookie.options")}...
+            </Button>
           </div>
         </div>
       )}
@@ -162,14 +199,14 @@ export default function CookieConsent() {
           onClick={() => setShowSettings(false)}
         >
           <div 
-            className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="relative bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
             <button
               onClick={() => setShowSettings(false)}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors"
-              aria-label="Close"
+              className="absolute top-4 right-4 z-10 p-2 hover:bg-gray-100 transition-colors"
+              aria-label={t("common.close")}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -233,7 +270,7 @@ export default function CookieConsent() {
                           onChange={() => handleTogglePreference('analytics')}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-600"></div>
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#C01C20]/40 peer-focus:ring-offset-1 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-600"></div>
                       </label>
                     </div>
                   </div>
@@ -258,7 +295,7 @@ export default function CookieConsent() {
                           onChange={() => handleTogglePreference('marketing')}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-600"></div>
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#C01C20]/40 peer-focus:ring-offset-1 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-600"></div>
                       </label>
                     </div>
                   </div>
@@ -283,33 +320,41 @@ export default function CookieConsent() {
                           onChange={() => handleTogglePreference('functional')}
                           className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-brand-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-600"></div>
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#C01C20]/40 peer-focus:ring-offset-1 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-600"></div>
                       </label>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons - Accept first with icon */}
               <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
-                <button
+                <Button
+                  onClick={handleAcceptAll}
+                  variant="primary"
+                  className="flex-1 justify-center"
+                >
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {t("cookie.acceptAll")}
+                </Button>
+                <Button
                   onClick={handleRejectAll}
-                  className="flex-1 px-6 py-3 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                  variant="secondary"
+                  trailingChevron={false}
+                  className="flex-1 justify-center"
                 >
                   {t("cookie.rejectAll")}
-                </button>
-                <button
-                  onClick={handleAcceptAll}
-                  className="flex-1 px-6 py-3 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg transition-colors"
-                >
-                  {t("cookie.acceptAll")}
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={handleSavePreferences}
-                  className="flex-1 px-6 py-3 text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-lg transition-colors"
+                  variant="primary"
+                  trailingChevron={false}
+                  className="flex-1 justify-center"
                 >
                   {t("cookie.savePreferences")}
-                </button>
+                </Button>
               </div>
             </div>
           </div>

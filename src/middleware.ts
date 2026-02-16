@@ -24,7 +24,12 @@ const REDIRECT_MAP: Record<string, string> = {
   // Language-less main pages -> /it versions
   '/prodotti': '/it/prodotti',
   '/documentazione': '/it/documentazione',
-  '/garanzia': '/it/garanzia',
+  '/garanzia': '/it/assistenza',
+  '/it/garanzia': '/it/assistenza',
+  '/en/garanzia': '/en/assistenza',
+  '/es/garanzia': '/es/assistenza',
+  '/fr/garanzia': '/fr/assistenza',
+  '/de/garanzia': '/de/assistenza',
   
   // Language-less product categories -> /it versions
   '/prodotti/allin1': '/it/prodotti/allin1',

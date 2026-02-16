@@ -1,9 +1,26 @@
 {
+  "search": {
+    "label": "Ricerca di",
+    "placeholder": "Nomi di prodotti, parole chiave, documenti, ecc...",
+    "resultsFor": "Risultati per",
+    "close": "Chiudere la ricerca",
+    "ariaLabel": "Ricerca",
+    "submit": "Cerca"
+  },
+  "topbar": {
+    "comunicatiStampa": "Comunicati stampa",
+    "video": "Video",
+    "contatti": "Contatti",
+    "webinar": "Webinar",
+    "eventi": "Eventi",
+    "search": "Cerca"
+  },
   "nav": {
-    "home": "HOME",
-    "prodotti": "PRODOTTI",
-    "documentazione": "DOCUMENTAZIONE",
-    "garanzia": "GARANZIA"
+    "home": "Home",
+    "prodotti": "Prodotti",
+    "documentazione": "Documentazione",
+    "eventi": "Eventi",
+    "garanzia": "Assistenza e supporto"
   },
   "home": {
     "title": "Afore Italia",
@@ -23,6 +40,23 @@
       "title": "Prodotti in Evidenza",
       "description": "Scopri la nostra gamma completa di soluzioni fotovoltaiche",
       "cta": "Vedi tutti i prodotti"
+    },
+    "eventBooking": {
+      "badge": "Comunicati stampa",
+      "title": "Prenota un incontro durante l'evento",
+      "description": "Lasciaci i tuoi contatti e dicci quando vuoi passare: ti confermiamo l'orario e prepariamo i materiali in anticipo.",
+      "cta": "Compila il modulo",
+      "noteTime": "1 minuto",
+      "noteConfirm": "Conferma via email/telefono",
+      "benefitsHeading": "Cosa puoi fare",
+      "benefit1": "Demo prodotti / Q&A tecnico",
+      "benefit2": "Partner & installatori",
+      "benefit3": "Info su disponibilità e consegne",
+      "locationLabel": "Luogo",
+      "locationValue": "Rimini Fiera, B5-D5",
+      "dateLabel": "Evento",
+      "dateValue": "KEY ENERGY 2026",
+      "detailsCta": "Scopri di più"
     },
     "cases": {
       "title": "I Nostri Casi Studio",
@@ -95,7 +129,10 @@
       "title": "EV Charger",
       "subtitle": "Sistemi di ricarica per veicoli elettrici"
     },
-    "schedaTecnica": "Scheda Tecnica"
+    "schedaTecnica": "Scheda Tecnica",
+    "video": "Video",
+    "videoInCorso": "In corso",
+    "documentazione": "Documentazione"
   },
   "documentazione": {
     "title": "Documentazione",
@@ -184,8 +221,12 @@
     }
   },
   "garanzia": {
-    "title": "Garanzia",
-    "subtitle": "Informazioni sulla garanzia dei nostri prodotti",
+    "title": "Assistenza e supporto",
+    "areaDownload": "Area download",
+    "downloadLabel": "Download",
+    "ricercaPlaceholder": "Ricerca file...",
+    "ricercaNoResults": "Nessun file trovato. Prova con altri termini di ricerca.",
+    "subtitle": "Assistenza, garanzia e supporto per i nostri prodotti",
     "verificaGaranzia": "Verifica Garanzia",
     "numeroSerie": "Numero di Serie",
     "inserisciNumeroSerie": "Inserisci il numero di serie",
@@ -195,19 +236,172 @@
     "garanzia10Anni": {
       "title": "Garanzia di 10 anni",
       "description": "Scarica il documento ufficiale della garanzia di 10 anni."
-    }
+    },
+    "videoSection": "Video",
+    "contatti": "Contatti",
+    "videoAssistenzaTecnica": "Assistenza Tecnica — Video",
+    "contattiAssistenzaTecnica": "Assistenza Tecnica — Contatti",
+    "videoTitle1": "Video di avvio della Inverter Afore e Hailei",
+    "videoTitle2": "Ottimizzatore di modulo FV con Energy Manager (Gateway) AFORE ITALIA",
+    "videoTitle3": "Solarman APP con il monitoraggio online AFORE ITALIA",
+    "videoTitle4": "Inverter Ibrido Trifase 3–30kW",
+    "videoTitle5": "Inverter Ibrido Monofase 1–6kW"
   },
   "common": {
     "home": "Home",
     "download": "Download",
     "breadcrumb": {
       "home": "Home"
+    },
+    "close": "Chiudi"
+  },
+  "eventi": {
+    "title": "Eventi",
+    "subtitle": "Scopri gli eventi e le fiere dove saremo presenti",
+    "keyEnergy": {
+      "title": "KEY ENERGY 2026",
+      "subtitle": "La fiera di riferimento per l'energia rinnovabile",
+      "booth": "Booth B5-D5",
+      "location": "Rimini Fiera, Rimini, Italia",
+      "date": "5–7 Marzo 2026",
+      "description": "Vieni a trovarci a KEY ENERGY 2026! Siamo al Booth B5-D5 con le nostre ultime soluzioni fotovoltaiche: inverter di stringa, inverter ibridi, batterie di accumulo e sistemi All-in-One.",
+      "ctaForm": "Prenota un incontro",
+      "ctaFormNote": "1 minuto · Conferma via email/telefono",
+      "share": "Share",
+      "shareOn": "Condividi su",
+      "whatToExpect": "Cosa troverai al nostro stand",
+      "expect1": "Demo live dei prodotti e Q&A tecnico",
+      "expect2": "Incontri con partner e installatori",
+      "expect3": "Informazioni su disponibilità e consegne",
+      "expect4": "Presentazione delle novità 2026",
+      "contactTitle": "Contatti",
+      "contactEmail": "afore@aforeitaly.com",
+      "contactOffice": "+39 06 40419655",
+      "contactTel": "+39 351 3399999"
+    },
+    "video": {
+      "title": "Rassegna eventi passati",
+      "description": "Guarda i video delle edizioni precedenti: demo prodotti, incontri e highlights dallo stand Afore.",
+      "video1": "KEY ENERGY 2025",
+      "video2": "Afore Italia - Eventi"
+    }
+  },
+  "comunicatiStampa": {
+    "title": "Comunicati stampa",
+    "subtitle": "Novità, comunicati stampa e aggiornamenti su Afore Italia e i prodotti fotovoltaici",
+    "latestTitle": "Ultimi comunicati stampa",
+    "continua": "Scopri di più",
+    "items": {
+      "keyEnergy2026": {
+        "date": "02.02.2026",
+        "title": "Afore Italia a Key Energy 2026",
+        "excerpt": "Afore Italia conferma la propria partecipazione alla prossima edizione di Key Energy 2026, l'appuntamento di riferimento per il settore delle energie rinnovabili. Venite a trovarci al Booth B5-D5 con le nostre soluzioni fotovoltaiche.",
+        "body": "Cos'è Key Energy?\n\nKey Energy è il principale salone italiano dedicato alle energie rinnovabili, all'efficienza energetica e alla sostenibilità. Organizzato da Italian Exhibition Group (IEG) a Rimini Fiera, l'evento si tiene ogni anno e rappresenta un punto di riferimento per operatori, installatori, produttori e professionisti del settore fotovoltaico ed energetico.\n\nLa fiera copre tutti gli aspetti della transizione energetica: solare fotovoltaico, eolico, accumulo, mobilità elettrica, efficienza negli edifici e tecnologie per le smart city. Migliaia di visitatori e centinaia di espositori partecipano per presentare le ultime innovazioni, stringere partnership e formarsi sulle tendenze di mercato.\n\nAfore Italia a Key Energy 2026\n\nAfore Italia conferma la propria partecipazione alla prossima edizione di Key Energy 2026. Vi aspettiamo al Booth B5-D5 con le nostre soluzioni fotovoltaiche: inverter di stringa, ibridi, batterie di accumulo e sistemi All-in-One. Venite a scoprire le novità 2026, assistere a demo live e incontrare il nostro team tecnico.",
+        "photoUploadHeading": "Condividi le tue foto",
+        "photoUploadCta": "Carica le tue foto dall'evento",
+        "photoUploadNote": "Hai visitato il nostro stand? Inviaci le tue foto e condividile con la comunità.",
+        "photosShowMore": "Mostra altre foto",
+        "photos2025Title": "Foto dall'evento Key Energy 2025",
+        "href": "/comunicati-stampa/key-energy-2026",
+        "image": "/image/events/keyenergy2026_cta_desktop.jpg",
+        "heroImage": "/image/events/keyenergy2026_cta_hero.jpg"
+      },
+      "spazio900": {
+        "date": "29.07.2025",
+        "title": "Spazio 900: presentazione del nuovo prodotto Afore",
+        "excerpt": "Afore Italia presenta Spazio 900, la nuova soluzione fotovoltaica per applicazioni residenziali e commerciali. Scopri le caratteristiche e le novità del lancio prodotto.",
+        "body": "Afore Italia ha presentato Spazio 900 nel corso di un evento dedicato a partner e installatori. La nuova soluzione unisce design compatto, elevate prestazioni e facilità di installazione per il mercato fotovoltaico residenziale e commerciale.\n\nSpazio 900 rappresenta un ulteriore passo nell'innovazione Afore, con tecnologie all'avanguardia per massimizzare l'autoconsumo e l'efficienza degli impianti. Durante la presentazione sono stati illustrati i dettagli tecnici, le applicazioni e le modalità di configurazione.",
+        "href": "/comunicati-stampa/spazio-900",
+        "image": "/image/events/spazio900_cta_desktop.jpg",
+        "heroImage": "/image/events/spazio900_cta_hero.jpg",
+        "videoHeading": "Video dell'evento"
+      }
+    }
+  },
+  "socialPress": {
+    "seguiciSocial": "Seguici sui nostri canali social",
+    "comunicazioniStampa": "Comunicazioni con la stampa",
+    "companyName": "AFORE Italia S.r.l.",
+    "pressPhone": "+39 06 40419655",
+    "pressEmail": "afore@aforeitaly.com"
+  },
+  "videoPage": {
+    "title": "Video",
+    "subtitle": "Video tutorial, demo prodotti e contenuti multimediali su inverter e sistemi fotovoltaici Afore",
+    "showMore": "Mostra altri video",
+    "showLess": "Mostra meno",
+    "videoPromozionali": "Video promozionali",
+    "guidaInstallazione": "Guida all'installazione",
+    "panoramicaProdotto": "Panoramica del prodotto",
+    "fiereEventi": "Fiere & Eventi",
+    "seguiciSocial": "Seguici sui nostri canali social",
+    "comunicazioniStampa": "Comunicazioni con la stampa",
+    "companyName": "AFORE Italia S.r.l.",
+    "pressPhone": "+39 06 40419655",
+    "pressEmail": "afore@aforeitaly.com"
+  },
+  "webinar": {
+    "title": "Webinar",
+    "subtitle": "Webinar formativi su inverter fotovoltaici, sistemi di accumulo e soluzioni Afore",
+    "latestTitle": "Ultimi webinar",
+    "continua": "Continua",
+    "items": {
+      "aforeHailei": {
+        "date": "10.02.2026",
+        "title": "AFORE HAILEI",
+        "excerpt": "Formazione su programmazione software Hailei (bassa e alta tensione), connettori 485-232, aggiornamento batteria e rintracciamento storico BMS.",
+        "image": "/image/events/webinar_cta_desktop.jpg",
+        "heroImage": "/image/events/webinar_cta_desktop.jpg",
+        "time": "10:00 - 11:00",
+        "timezone": "Fuso orario: Europe/Rome",
+        "meetUrl": "https://meet.google.com/rpq-nvqw-gbr",
+        "meetDial": "(IT) +39 02 8732 3834 PIN: 768 008 693#",
+        "topics": "Programmazione software Hailei bassa tensione e alta tensione\nSpiegazione uso dei Connettori 485-232 Can analyst\nCome aggiornare batteria Hailei con computer\nRintracciamento storico batteria ed errori BMS",
+        "joinTitle": "Informazioni per partecipare",
+        "meetLinkLabel": "Link alla videochiamata",
+        "meetDialLabel": "Oppure digita",
+        "joinButton": "Partecipa con Google Meet",
+        "topicsTitle": "Argomenti da trattare al corso"
+      }
+    }
+  },
+  "contatti": {
+    "title": "Contatti",
+    "subtitle": "Contattaci per informazioni su prodotti, supporto tecnico o partnership",
+    "installatori": "Installatori",
+    "commerciali": "Commerciali",
+    "installatoriCommerciali": "Installatori e Commerciali",
+    "clientiFinali": "Clienti finali",
+    "soloWhatsApp": "Solo WhatsApp",
+    "email": "E-Mail",
+    "form": {
+      "title": "Scrivici",
+      "name": "Nome",
+      "namePlaceholder": "Il tuo nome",
+      "phone": "Telefono",
+      "phonePlaceholder": "Numero di telefono",
+      "email": "Email",
+      "emailPlaceholder": "La tua email",
+      "categoryLabel": "Tipologia",
+      "reason": "Motivo del contatto",
+      "reasonPlaceholder": "Scrivi il motivo del contatto...",
+      "uploadLabel": "Allegare immagini",
+      "uploadHint": "JPG, PNG. Massimo 10 file.",
+      "uploadRemove": "Rimuovi",
+      "uploadErrorType": "Solo JPG e PNG.",
+      "uploadErrorMax": "Massimo 10 file.",
+      "submit": "Invia",
+      "submitting": "Invio in corso...",
+      "submitError": "Errore invio. Riprova.",
+      "success": "Messaggio inviato con successo.",
+      "required": "Obbligatorio"
     }
   },
   "footer": {
     "afore": "Afore",
     "prodotti": "Prodotti",
     "documentazione": "Documentazione",
+    "eventi": "Eventi",
     "garanzia": "Garanzia",
     "contatti": "Contatti",
     "copyright": "© {year} Afore Italia S.R.L. Tutti i diritti riservati.",
@@ -217,8 +411,11 @@
     "title": "Utilizziamo i Cookie",
     "description": "Utilizziamo cookie per migliorare la tua esperienza di navigazione, analizzare il traffico del sito e personalizzare i contenuti. Accettando i cookie, ci permetti di utilizzare queste informazioni.",
     "acceptAll": "Accetta tutto",
+    "accept": "Accetta",
+    "acceptOnlyNecessary": "Accetta solo necessari",
     "rejectAll": "Rifiuta tutto",
     "customize": "Personalizza",
+    "options": "Opzioni",
     "savePreferences": "Salva preferenze",
     "settingsTitle": "Impostazioni Cookie",
     "settingsDescription": "Scegli quali cookie vuoi accettare. I cookie necessari sono sempre attivi per garantire il funzionamento del sito.",
