@@ -1,9 +1,8 @@
 "use client";
 
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import ProductCard from "@/components/ProductCard";
 import { useParams } from "next/navigation";
-import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
+import { VISIBLE_PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import { useTranslation } from "@/hooks/useTranslation";
 import HeroBackground from "@/components/ui/HeroBackground";
 
@@ -14,7 +13,7 @@ export default function IbridoPage() {
   const params = useParams();
   const lang = (params?.lang as string) || "it";
   const { t } = useTranslation();
-  const products = PRODUCTS.filter(
+  const products = VISIBLE_PRODUCTS.filter(
     (p) => has(p, "inverter") && has(p, "ibrido")
   );
 
@@ -25,15 +24,7 @@ export default function IbridoPage() {
         <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="Inverter Ibrido" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t('common.breadcrumb.home'), href: "/" },
-              { label: t('prodotti.title'), href: "/prodotti" },
-              { label: t('prodotti.pvInverter.inverterIbrido.title') },
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             {t('prodotti.pvInverter.inverterIbrido.title')}
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-white/85">

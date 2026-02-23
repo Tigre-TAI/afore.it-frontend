@@ -5,6 +5,8 @@ import "../globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Topbar from "@/components/layout/Topbar";
 import Footer from "@/components/layout/Footer";
+import BreadcrumbBar from "@/components/BreadcrumbBar";
+import { BreadcrumbProvider } from "@/components/BreadcrumbContext";
 import { StructuredData } from "@/components/SEO/StructuredData";
 import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -158,10 +160,13 @@ export default async function LangLayout({
           <Navbar />
           <Topbar />
         </div>
-        <main className="relative z-0 min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <BreadcrumbProvider>
+          <main className="relative z-0 min-h-screen">
+            {children}
+          </main>
+          <BreadcrumbBar />
+          <Footer />
+        </BreadcrumbProvider>
         {/* Defer CookieConsent to reduce INP - load after page is interactive */}
         <CookieConsent />
         {/* Google Analytics - wrapped in Suspense for SSG compatibility (useSearchParams) */}

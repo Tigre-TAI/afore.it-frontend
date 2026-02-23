@@ -44,6 +44,11 @@ export const breadcrumbNameMap: Record<string, string> = {
   "/eventi/news": "AFORE news",
   "/contatti": "Contatti",
   "/contatti/assistenza": "Contatti",
+  "/ricerca": "Ricerca",
+  "/video": "Video",
+  "/webinar": "Webinar",
+  "/comunicati-stampa": "Comunicati Stampa",
+  "/assistenza": "Assistenza",
   "/contatti/ufficio": "Contatti",
   "/contatti/garanzie": "Garanzie",
 };

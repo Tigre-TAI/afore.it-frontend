@@ -1,9 +1,8 @@
 "use client";
 
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import ProductCard from "@/components/ProductCard";
 import { useParams } from "next/navigation";
-import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
+import { VISIBLE_PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import HeroBackground from "@/components/ui/HeroBackground";
 
 /** 分类判断 */
@@ -12,7 +11,7 @@ const has = (p: any, slug: string) => p?.categories?.some((c: any) => c.slug ===
 export default function SerieAccumuloHaileiPage() {
   const params = useParams();
   const lang = (params?.lang as string) || "it";
-  const products = PRODUCTS.filter(
+  const products = VISIBLE_PRODUCTS.filter(
     (p) => has(p, "batteria") && has(p, "hailei")
   );
 
@@ -23,16 +22,7 @@ export default function SerieAccumuloHaileiPage() {
         <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="Serie Accumulo Hailei" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Prodotti", href: "/prodotti" },
-              { label: "Batteria di Accumulo", href: "/prodotti/batteria-di-accumulo" },
-              { label: "Serie Accumulo Hailei" },
-            ]}
-          />
-          <h1 className="mt-3 text-3xl lg:text-5xl font-extrabold tracking-tight">
+          <h1 className="text-3xl lg:text-5xl font-extrabold tracking-tight">
             Serie Accumulo Hailei
           </h1>
           <p className="mt-3 max-w-2xl text-white/85">

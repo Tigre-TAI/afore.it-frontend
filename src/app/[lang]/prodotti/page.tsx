@@ -1,12 +1,11 @@
 // src/app/prodotti/page.tsx
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import HeroBackground from "@/components/ui/HeroBackground";
 import ProductCard from "@/components/ProductCard";
-import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle, type Product } from "@/data/product-data";
+import { VISIBLE_PRODUCTS, hrefOf, getProductTitle, getProductSubtitle, type Product } from "@/data/product-data";
 import { useTranslation } from "@/hooks/useTranslation";
 
 /** Match product by search query (title, subtitle, id) */
@@ -24,7 +23,18 @@ const has = (p: any, slug: string) => p?.categories?.some((c: any) => c.slug ===
 const GROUPS = [
   {
     bigTitle: "PV Inverter",
+    /** 左侧下拉子项，第一个默认展开 */
+    subItems: [
+      { label: "Ottimizzatori", lineIndex: 0 },
+      { label: "Inverter di Stringa", lineIndex: 1 },
+      { label: "Inverter Ibrido", lineIndex: 2 },
+    ],
     lines: [
+      {
+        title: "Ottimizzatori",
+        subtitle: "",
+        filter: (_p: any) => false, // 暂无产品
+      },
       {
         title: "Inverter di Stringa",
         subtitle: "Monofase · Trifase",
@@ -86,6 +96,8 @@ function ProdottiContent() {
   const lang = (params?.lang as string) || "it";
   const { t } = useTranslation();
   const searchQ = searchParams?.get("search")?.trim() || "";
+  // 左侧小标题展开状态，默认第一个 PV Inverter 展开
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({ 0: true });
 
 /** 轻量封装你的 ProductCard */
 function Card({ p }: { p: any }) {
@@ -108,14 +120,7 @@ function Card({ p }: { p: any }) {
         <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="Prodotti" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t('common.breadcrumb.home'), href: "/" },
-              { label: t('prodotti.title') }, // 当前页
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t('prodotti.title')}
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-white/85">
@@ -129,45 +134,103 @@ function Card({ p }: { p: any }) {
         </div>
       </section>
 
-      {/* ===== 列表分组（按照导航结构与标题） ===== */}
+      {/* ===== 列表分组：左侧小标题 + 右侧内容 ===== */}
       <section className="py-8 sm:py-10 lg:py-14">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
-          {GROUPS.map((g, gi) => (
-            <div key={gi}>
-              {/* 大标题 + 横线 */}
-              <div className="mb-4 sm:mb-6">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide break-words">
-                  {g.bigTitle}
-                </h2>
-                <div className="mt-2 h-[2px] w-32 sm:w-40 bg-black/10" />
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:gap-10 xl:gap-14">
+            {/* 左侧小标题 */}
+            <aside className="lg:w-44 xl:w-52 shrink-0 mb-8 lg:mb-0">
+              <nav className="sticky top-24 space-y-0.5">
+                {GROUPS.map((g, gi) => {
+                  const isExpanded = expanded[gi] ?? false;
+                  const hasSub = "subItems" in g && g.subItems && g.subItems.length > 0;
 
-              {/* 子线：标题 + 副标题 + 卡片网格 */}
-              {g.lines.map((line, li) => {
-                const list = PRODUCTS.filter(line.filter).filter(
-                  (p) => !searchQ || productMatchesSearch(p, lang, searchQ)
-                );
-                if (list.length === 0) return null;
-
-                return (
-                  <div key={li} className="mb-8 sm:mb-10 last:mb-0">
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide break-words">
-                      {line.title}
-                    </h3>
-                    {line.subtitle && (
-                      <p className="text-sm sm:text-base text-slate-500 mt-1">{line.subtitle}</p>
-                    )}
-
-                    <div className="mt-6 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                      {list.map((p) => (
-                        <Card key={p.id} p={p} />
-                      ))}
+                  return (
+                    <div key={gi}>
+                      <div className="flex items-center gap-0.5">
+                        {hasSub && (
+                          <button
+                            type="button"
+                            onClick={() => setExpanded((s) => ({ ...s, [gi]: !s[gi] }))}
+                            className="p-0.5 -ml-0.5 text-slate-500 hover:text-slate-700 transition-colors"
+                            aria-expanded={isExpanded}
+                          >
+                            <svg
+                              className={`w-3.5 h-3.5 transition-transform ${isExpanded ? "rotate-90" : ""}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        )}
+                        <a
+                          href={`#group-${gi}`}
+                          className="block text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 py-1.5 border-l-2 border-transparent hover:border-slate-300 pl-2 -ml-px transition-colors flex-1"
+                        >
+                          {g.bigTitle}
+                        </a>
+                      </div>
+                      {hasSub && isExpanded && (
+                        <div className="ml-4 mt-0.5 space-y-0.5 border-l border-slate-200 pl-3">
+                          {g.subItems!.map((sub, si) => (
+                            <a
+                              key={si}
+                              href={`#group-${gi}-line-${sub.lineIndex}`}
+                              className="block text-[11px] sm:text-xs font-medium text-slate-500 hover:text-slate-800 py-1 transition-colors"
+                            >
+                              {sub.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </nav>
+            </aside>
+
+            {/* 右侧内容 */}
+            <div className="flex-1 min-w-0 space-y-12 sm:space-y-16">
+              {GROUPS.map((g, gi) => (
+                <div key={gi} id={`group-${gi}`}>
+                  {/* 小标题（左侧已有，此处仅作锚点区隔） */}
+                  <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4 sm:mb-6">
+                    {g.bigTitle}
+                  </h2>
+
+                  {/* 子线：标题 + 副标题 + 卡片网格 */}
+                  {g.lines.map((line, li) => {
+                    const list = VISIBLE_PRODUCTS.filter(line.filter).filter(
+                      (p) => !searchQ || productMatchesSearch(p, lang, searchQ)
+                    );
+
+                    return (
+                      <div key={li} id={`group-${gi}-line-${li}`} className="mb-8 sm:mb-10 last:mb-0 scroll-mt-24">
+                        <h3 className="text-base sm:text-lg font-semibold tracking-wide break-words text-slate-800">
+                          {line.title}
+                        </h3>
+                        {line.subtitle && (
+                          <p className="text-xs sm:text-sm text-slate-500 mt-0.5">{line.subtitle}</p>
+                        )}
+
+                        {list.length > 0 ? (
+                          <div className="mt-4 sm:mt-6 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                            {list.map((p) => (
+                              <Card key={p.id} p={p} />
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="mt-4 text-xs sm:text-sm text-slate-400 italic">Prodotto in arrivo</p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
     </main>

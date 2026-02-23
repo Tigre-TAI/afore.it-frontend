@@ -2,7 +2,6 @@
 
 import { use } from "react";
 import Link from "next/link";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import Button from "@/components/ui/Button";
 import SocialPressSidebar from "@/components/SocialPressSidebar";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -40,15 +39,7 @@ export default function WebinarArticlePage({
         <HeroBackground src={image} alt={title} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t("common.breadcrumb.home"), href: "/" },
-              { label: t("webinar.title"), href: listHref },
-              { label: title },
-            ]}
-          />
-          <p className="mt-2 text-sm text-white/85">{date}</p>
+          <p className="text-sm text-white/85">{date}</p>
           <h1 className="mt-1 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {title}
           </h1>

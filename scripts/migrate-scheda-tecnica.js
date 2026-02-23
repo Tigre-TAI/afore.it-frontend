@@ -37,8 +37,8 @@ const PRODUCTS = [
   { id: 'bat-afore-stack-lv-2-5-5kwh', models: ['AF2500W-HB', 'AF5000W-HC'] },
   
   // Batteria Hailei
-  { id: 'bat-hailei-atom-wb-5kwh-1', models: ['ATOM WB-512100-1'] },
-  { id: 'bat-hailei-atom-wb-5-10kwh', models: ['ATOM WB-512100', 'ATOM WB MAX-512200'] },
+  { id: 'atomwb512100-1', models: ['ATOM-WB512100-1'] },
+  { id: 'atomwb512100', models: ['ATOM-WB512100'] },
   { id: 'bat-hailei-atom-ls-10-15kwh', models: ['ATOM LS-10.24', 'ATOM LS-15.36'] },
   { id: 'bat-hailei-atom-hs-15-41kwh', models: ['ATOM HS-15.36', 'ATOM HS-20.48', 'ATOM HS-25.6', 'ATOM HS-30.72', 'ATOM HS-35.84', 'ATOM HS-40.96'] },
   
@@ -125,8 +125,8 @@ function findProductId(filename) {
   // Batteria
   if (filenameLower.includes('batteria')) {
     if (filenameLower.includes('atom_wb') || filenameLower.includes('atom wb')) {
-      if (filenameLower.includes('5kwh') && !filenameLower.includes('10')) return 'bat-hailei-atom-wb-5kwh-1';
-      return 'bat-hailei-atom-wb-5-10kwh';
+      if (filenameLower.includes('5kwh') && !filenameLower.includes('10')) return 'atomwb512100-1';
+      return 'atomwb512100';
     }
     if (filenameLower.includes('atom_ls') || filenameLower.includes('atom ls')) return 'bat-hailei-atom-ls-10-15kwh';
     if (filenameLower.includes('atom_hs') || filenameLower.includes('atom hs')) return 'bat-hailei-atom-hs-15-41kwh';

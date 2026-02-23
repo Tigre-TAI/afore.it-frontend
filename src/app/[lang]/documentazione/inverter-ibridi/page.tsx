@@ -1,6 +1,5 @@
 // src/app/documentazione/inverter-ibridi/page.tsx
 import Link from "next/link";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import Button from "@/components/ui/Button";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
@@ -252,15 +251,7 @@ export default async function InverterIbridiPage({ params }: Props) {
       <section className="relative -mt-[88px] pt-[88px]">
         <HeroBackground src="/image/documentazione_hero.jpg" alt="Certificati Inverter Ibridi" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t("common.breadcrumb.home"), href: withLang("/", validLang) },
-              { label: t("documentazione.title"), href: withLang("/documentazione", validLang) },
-              { label: t("documentazione.certificatiInverterIbridi.title") || "Certificati PV Inverter Ibridi" },
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t("documentazione.certificatiInverterIbridi.title") || "Certificati PV Inverter Ibridi"}
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-white/85">

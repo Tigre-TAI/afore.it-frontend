@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { PRODUCTS } from '@/data/product-data';
+import { VISIBLE_PRODUCTS } from '@/data/product-data';
 import { resolvePath } from '@/data/product-data';
 
 // Force static generation for sitemap
@@ -83,7 +83,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
 
   // 4. Product detail pages - /it versions only
-  PRODUCTS.forEach(product => {
+  VISIBLE_PRODUCTS.forEach(product => {
     const { family } = resolvePath(product);
     sitemapEntries.push({
       url: `${baseUrl}/${canonicalLang}/prodotti/${family}/${product.id}`,

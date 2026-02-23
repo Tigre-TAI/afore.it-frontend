@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import SocialPressSidebar from "@/components/SocialPressSidebar";
 import { useTranslation } from "@/hooks/useTranslation";
 import { withLang } from "@/lib/lang-utils";
@@ -22,14 +21,7 @@ export default function ComunicatiStampaPage() {
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t("common.breadcrumb.home"), href: "/" },
-              { label: t("comunicatiStampa.title") },
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t("comunicatiStampa.title")}
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-white/85">

@@ -1,7 +1,6 @@
 import DocumentList from "../_components/DocumentList";
 import PageIntro from "../_components/PageIntro";
 import { scanDocumentazioneDirectory } from "@/lib/document-utils";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
 import HeroBackground from "@/components/ui/HeroBackground";
@@ -57,15 +56,7 @@ export default async function GuidaPage({ params }: Props) {
         <HeroBackground src="/image/documentazione_hero.jpg" alt="Guida" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t("common.breadcrumb.home"), href: withLang("/", validLang) },
-              { label: t("documentazione.title"), href: withLang("/documentazione", validLang) },
-              { label: t("documentazione.cei.title") || "Guida Regolamento di Esercizio" },
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t("documentazione.cei.title") || "Guida Regolamento di Esercizio"}
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-white/85">

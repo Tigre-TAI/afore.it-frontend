@@ -2,7 +2,7 @@
 
 import { useTranslation } from "@/hooks/useTranslation";
 import Button from "@/components/ui/Button";
-import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
+import { VISIBLE_PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import ProductCard from "@/components/ProductCard";
 import { withLang } from "@/lib/lang-utils";
 import FlatSection from "@/components/ui/FlatSection";
@@ -10,7 +10,7 @@ import FlatSection from "@/components/ui/FlatSection";
 export default function FeaturedProducts() {
   const { t, lang } = useTranslation();
   // Show first 6 products as featured
-  const featuredProducts = PRODUCTS.slice(0, 6);
+  const featuredProducts = VISIBLE_PRODUCTS.slice(0, 6);
 
   return (
     <FlatSection bg="slate-50">

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
 import { withLang } from "@/lib/lang-utils";
 import {
-  PRODUCTS,
+  VISIBLE_PRODUCTS,
   hrefOf,
   getProductTitle,
   getProductSubtitle,
@@ -51,16 +51,16 @@ export default function Cases() {
     
     // 根据案例编号映射产品ID（可以根据实际需求调整）
     const productMapping: Record<number, { productIds: string[]; productId: string }> = {
-      1: { productIds: ["ibrido-trifase-3-15kw", "bat-hailei-atom-wb-5kwh-1"], productId: "ibrido-trifase-3-15kw" },
+      1: { productIds: ["ibrido-trifase-3-15kw", "atomwb512100-1"], productId: "ibrido-trifase-3-15kw" },
       2: { productIds: ["ibrido-trifase-3-30kw"], productId: "ibrido-trifase-3-30kw" },
       3: { productIds: ["ibrido-trifase-36-60kw", "bat-hailei-atom-hs-15-41kwh"], productId: "ibrido-trifase-36-60kw" },
       4: { productIds: ["ibrido-trifase-3-30kw", "bat-afore-wall-5-10kwh"], productId: "ibrido-trifase-3-30kw" },
       5: { productIds: ["ibrido-trifase-36-60kw", "bat-hailei-atom-hs-15-41kwh"], productId: "ibrido-trifase-36-60kw" },
       6: { productIds: ["stringa-trifase-70-110kw"], productId: "stringa-trifase-70-110kw" },
-      7: { productIds: ["ibrido-monofase-plus-4-6kw", "bat-hailei-atom-wb-5-10kwh"], productId: "ibrido-monofase-plus-4-6kw" },
+      7: { productIds: ["ibrido-monofase-plus-4-6kw", "atomwb512100"], productId: "ibrido-monofase-plus-4-6kw" },
       8: { productIds: ["ibrido-monofase-plus-4-6kw", "bat-hailei-atom-ls-10-15kwh"], productId: "ibrido-monofase-plus-4-6kw" },
       9: { productIds: ["stringa-3-6kw"], productId: "stringa-3-6kw" },
-      10: { productIds: ["bat-hailei-atom-wb-5-10kwh"], productId: "bat-hailei-atom-wb-5-10kwh" },
+      10: { productIds: ["atomwb512100"], productId: "atomwb512100" },
       11: { productIds: ["stringa-trifase-3-25kw"], productId: "stringa-trifase-3-25kw" },
       12: { productIds: ["ibrido-monofase-1-3-6kw"], productId: "ibrido-monofase-1-3-6kw" },
       13: { productIds: ["ibrido-trifase-3-15kw"], productId: "ibrido-trifase-3-15kw" },
@@ -148,7 +148,7 @@ export default function Cases() {
   const relatedProducts =
     selectedCase
       ? (selectedCase.productIds ?? (selectedCase.productId ? [selectedCase.productId] : []))
-          .map(id => PRODUCTS.find(p => p.id === id))
+          .map(id => VISIBLE_PRODUCTS.find(p => p.id === id))
           .filter((p): p is NonNullable<typeof p> => Boolean(p))
       : [];
 

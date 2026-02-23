@@ -3,7 +3,7 @@
  * All page content is indexed for search across the whole website.
  */
 
-import { PRODUCTS, getProductTitle, getProductSubtitle, resolvePath } from "./product-data";
+import { VISIBLE_PRODUCTS, getProductTitle, getProductSubtitle, resolvePath } from "./product-data";
 import itLocale from "@/locales/it.json";
 import enLocale from "@/locales/en.json";
 import esLocale from "@/locales/es.json";
@@ -60,7 +60,7 @@ export function buildSearchIndex(): SearchEntry[] {
   const entries: SearchEntry[] = [];
 
   // --- Products ---
-  for (const p of PRODUCTS) {
+  for (const p of VISIBLE_PRODUCTS) {
     const { family } = resolvePath(p);
     const path = `/prodotti/${family}/${p.id}`;
     const title: Record<Lang, string> = {} as any;

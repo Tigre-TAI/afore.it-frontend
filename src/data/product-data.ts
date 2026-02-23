@@ -12,6 +12,8 @@ export type Product = {
   schedaKey?: string
   /** YouTube 视频 ID（用于产品展示视频） */
   youtubeId?: string
+  /** Se true, il prodotto non viene mostrato in elenchi né raggiungibile (es. fuori produzione) */
+  hidden?: boolean
 }
 
 /** 统一的分类常量，避免手写出错 */
@@ -165,6 +167,7 @@ export const PRODUCTS: Product[] = [
     image: "/products/batteries/batteria_afore_muro_5_10kw_1.png",
     categories: [CATS.residenziale, CATS.batteria, CATS.afore],
     schedaKey: "bat-afore-wall-5-10kwh",
+    hidden: true, // Prodotto fuori produzione, nascosto dal sito
   },
   {
     id: "bat-afore-stack-hv-5kwh",
@@ -185,20 +188,20 @@ export const PRODUCTS: Product[] = [
 
   /* ===== Batteria di Accumulo · Hailei ===== */
   {
-    id: "bat-hailei-atom-wb-5kwh-1",
+    id: "atomwb512100-1",
     title: "ATOM WB 5kWh-1",
-    subtitle: "ATOM WB-512100-1",
+    subtitle: "ATOM-WB512100-1",
     image: "/products/batteries/batteria_hailei_atom_wb_5kw_1.png",
     categories: [CATS.residenziale, CATS.batteria, CATS.hailei],
-    schedaKey: "bat-hailei-atom-wb-5kwh-1",
+    schedaKey: "atomwb512100-1",
   },
   {
-    id: "bat-hailei-atom-wb-5-10kwh",
-    title: "ATOM WB 5kWh / 10kWh · Wall-mounted LiFePO4",
-    subtitle: "ATOM WB-512100, ATOM WB MAX-512200",
+    id: "atomwb512100",
+    title: "ATOM WB 5kWh · Wall-mounted LiFePO4",
+    subtitle: "ATOM-WB512100",
     image: "/products/batteries/batteria_hailei_atom_wb_5_10kw_1.png",
     categories: [CATS.residenziale, CATS.batteria, CATS.hailei],
-    schedaKey: "bat-hailei-atom-wb-5-10kwh",
+    schedaKey: "atomwb512100",
   },
   {
     id: "bat-hailei-atom-ls-10-15kwh",
@@ -424,7 +427,7 @@ const PRODUCT_COPY: Record<string, ProductCopy> = {
       de: "Stapelbare Niederspannungs-Speicherbatterie",
     },
   },
-  "bat-hailei-atom-wb-5kwh-1": {
+  "atomwb512100-1": {
     title: {
       en: "ATOM WB 5kWh-1",
       es: "ATOM WB 5kWh-1",
@@ -432,24 +435,24 @@ const PRODUCT_COPY: Record<string, ProductCopy> = {
       de: "ATOM WB 5kWh-1",
     },
     subtitle: {
-      en: "ATOM WB-512100-1",
-      es: "ATOM WB-512100-1",
-      fr: "ATOM WB-512100-1",
-      de: "ATOM WB-512100-1",
+      en: "ATOM-WB512100-1",
+      es: "ATOM-WB512100-1",
+      fr: "ATOM-WB512100-1",
+      de: "ATOM-WB512100-1",
     },
   },
-  "bat-hailei-atom-wb-5-10kwh": {
+  "atomwb512100": {
     title: {
-      en: "ATOM WB 5kWh / 10kWh · Wall-mounted LiFePO4",
-      es: "ATOM WB 5kWh / 10kWh · LiFePO4 de pared",
-      fr: "ATOM WB 5kWh / 10kWh · LiFePO4 mural",
-      de: "ATOM WB 5kWh / 10kWh · Wandmontiertes LiFePO4",
+      en: "ATOM WB 5kWh · Wall-mounted LiFePO4",
+      es: "ATOM WB 5kWh · LiFePO4 de pared",
+      fr: "ATOM WB 5kWh · LiFePO4 mural",
+      de: "ATOM WB 5kWh · Wandmontiertes LiFePO4",
     },
     subtitle: {
-      en: "ATOM WB-512100, ATOM WB MAX-512200",
-      es: "ATOM WB-512100, ATOM WB MAX-512200",
-      fr: "ATOM WB-512100, ATOM WB MAX-512200",
-      de: "ATOM WB-512100, ATOM WB MAX-512200",
+      en: "ATOM-WB512100",
+      es: "ATOM-WB512100",
+      fr: "ATOM-WB512100",
+      de: "ATOM-WB512100",
     },
   },
   "bat-hailei-atom-ls-10-15kwh": {
@@ -605,20 +608,23 @@ export function getProductSubtitle(product: Product, lang: string) {
   return translateField(product, "subtitle", lang);
 }
 
-/** 方便按 id 查找 */
-export const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+/** Solo prodotti visibili (esclusi hidden/fuori produzione) */
+export const VISIBLE_PRODUCTS = PRODUCTS.filter((p) => !p.hidden);
 
-/** 通过 category 和 id 查找产品 */
+/** 方便按 id 查找 (solo visibili) */
+export const byId = Object.fromEntries(VISIBLE_PRODUCTS.map((p) => [p.id, p]));
+
+/** 通过 category 和 id 查找产品 (solo visibili, altrimenti 404) */
 export function findProductBySlugs(category: string, id: string): Product | undefined {
-  return PRODUCTS.find(p => {
+  return VISIBLE_PRODUCTS.find((p) => {
     const { family } = resolvePath(p);
     return family === category && p.id === id;
   });
 }
 
-/** 通过 schedaKey 查找产品 */
+/** 通过 schedaKey 查找产品 (solo visibili) */
 export const bySchedaKey = Object.fromEntries(
-  PRODUCTS.filter(p => p.schedaKey).map(p => [p.schedaKey!, p])
+  VISIBLE_PRODUCTS.filter((p) => p.schedaKey).map((p) => [p.schedaKey!, p])
 );
 
 /** 根据 slug 取显示名（用于面包屑/UI） */

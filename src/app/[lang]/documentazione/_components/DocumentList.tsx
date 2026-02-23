@@ -2,7 +2,7 @@
 
 import { useMemo, Suspense } from "react";
 import Button from "@/components/ui/Button";
-import { PRODUCTS } from "@/data/product-data";
+import { VISIBLE_PRODUCTS } from "@/data/product-data";
 import { useParams, useSearchParams } from "next/navigation";
 import type { DocumentFile } from "@/lib/document-utils";
 
@@ -86,7 +86,7 @@ function DocumentListContent({
 
   // 根据筛选条件过滤产品
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((p) => {
+    return VISIBLE_PRODUCTS.filter((p) => {
       // 产品类型筛选
       if (effectiveProductFilter) {
         const hasInverter = p.categories.some((c) => c.slug === "inverter");

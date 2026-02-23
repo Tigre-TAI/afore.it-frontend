@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { useTranslation } from "@/hooks/useTranslation";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import HeroBackground from "@/components/ui/HeroBackground";
 import { search, TYPE_ORDER, type SearchResult } from "@/lib/search";
 
@@ -29,14 +28,7 @@ function RicercaContent() {
         <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt={t("search.ariaLabel")} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t("common.breadcrumb.home"), href: `/${lang}` },
-              { label: t("search.ariaLabel") },
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight break-words">
             {t("search.ariaLabel")}
           </h1>
           {q && (

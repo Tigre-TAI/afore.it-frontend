@@ -1,10 +1,9 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import HeroBackground from "@/components/ui/HeroBackground";
 import ProductCard from "@/components/ProductCard";
-import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
+import { VISIBLE_PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 
 /** 分类判断 */
 const has = (p: any, slug: string) => p?.categories?.some((c: any) => c.slug === slug);
@@ -13,7 +12,7 @@ export default function PVInverterPage() {
   const params = useParams();
   const lang = (params?.lang as string) || "it";
   // Filter products that are inverters
-  const inverterProducts = PRODUCTS.filter((p) => has(p, "inverter"));
+  const inverterProducts = VISIBLE_PRODUCTS.filter((p) => has(p, "inverter"));
 
   return (
     <main className="page-content font-sans">
@@ -22,15 +21,7 @@ export default function PVInverterPage() {
         <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="PV Inverter" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Prodotti", href: "/prodotti" },
-              { label: "PV Inverter" },
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             PV Inverter
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-white/85">

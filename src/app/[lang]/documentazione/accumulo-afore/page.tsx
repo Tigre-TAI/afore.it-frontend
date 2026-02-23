@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import Button from "@/components/ui/Button";
 import { withLang } from "@/lib/lang-utils";
 import { getTranslations } from "@/lib/i18n";
@@ -282,16 +281,7 @@ export default async function AccumuloAforePage({ params }: Props) {
         <HeroBackground src="/image/documentazione_hero.jpg" alt="Documentazione" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: t("common.breadcrumb.home"), href: withLang("/", lang) },
-              { label: t("documentazione.title") },
-              { label: pageTitle },
-            ]}
-          />
-          
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
             DOCUMENTAZIONE
           </p>
           

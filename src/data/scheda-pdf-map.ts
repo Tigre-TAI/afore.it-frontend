@@ -175,10 +175,9 @@ const SCHEDA_PDF_MAP: Record<
       de: "IT_batteria_afore_trifase_5kWh.pdf",
     },
   },
-  "bat-hailei-atom-wb-5kwh-1": {
+  "atomwb512100-1": {
     base: "prodotti",
-    /** PDF 存放在 bat-hailei-atom-wb-5-10kwh 目录 */
-    productIdForPath: "bat-hailei-atom-wb-5-10kwh",
+    productIdForPath: "atomwb512100-1",
     file: {
       it: "IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf",
       en: "IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf",
@@ -187,7 +186,7 @@ const SCHEDA_PDF_MAP: Record<
       de: "IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf",
     },
   },
-  "bat-hailei-atom-wb-5-10kwh": {
+  "atomwb512100": {
     base: "prodotti",
     file: {
       it: "IT_Batteria_ATOM_WB_Scheda_Tecnica.pdf",

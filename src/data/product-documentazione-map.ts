@@ -81,11 +81,11 @@ export const PRODUCT_DOC_PATTERNS: Record<
     folder: "BATTERIA_DI_ACCUMULO",
     include: ["AltaTensione", "AF2500W-HB", "AF5000W-HC"],
   },
-  "bat-hailei-atom-wb-5kwh-1": {
+  "atomwb512100-1": {
     folder: "BATTERIA_DI_ACCUMULO",
-    include: [], // 仅 Afore 文档，Hailei 不展示
+    include: [],
   },
-  "bat-hailei-atom-wb-5-10kwh": {
+  "atomwb512100": {
     folder: "BATTERIA_DI_ACCUMULO",
     include: [],
   },

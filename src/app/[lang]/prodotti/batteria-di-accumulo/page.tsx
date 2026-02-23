@@ -1,9 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import Breadcrumb from "@/components/ui/Breadcrumbs";
 import ProductCard from "@/components/ProductCard";
-import { PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
+import { VISIBLE_PRODUCTS, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import HeroBackground from "@/components/ui/HeroBackground";
 
 /** 分类判断 */
@@ -12,7 +11,7 @@ const has = (p: any, slug: string) => p?.categories?.some((c: any) => c.slug ===
 export default function BatteriaDiAccumuloPage() {
   const params = useParams();
   const lang = (params?.lang as string) || "it";
-  const products = PRODUCTS.filter((p) => has(p, "batteria"));
+  const products = VISIBLE_PRODUCTS.filter((p) => has(p, "batteria"));
 
   return (
     <main className="page-content font-sans">
@@ -21,15 +20,7 @@ export default function BatteriaDiAccumuloPage() {
         <HeroBackground src="/image/heroes/prodotti_hero.jpg" alt="Batteria di Accumulo" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 text-white">
-          <Breadcrumb
-            theme="dark"
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Prodotti", href: "/prodotti" },
-              { label: "Batteria di Accumulo" },
-            ]}
-          />
-          <h1 className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             Batteria di Accumulo
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-white/85">
