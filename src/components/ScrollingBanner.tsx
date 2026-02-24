@@ -1,11 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const GAP_CLASS = "gap-3 sm:gap-4 md:gap-5 lg:gap-6";
-const BANNER_TEXT = "AFORE Italia – Il nostro impegno nell'energia solare, con 10 anni di garanzia";
 
 export default function ScrollingBanner() {
+  const { t } = useTranslation();
+  const bannerText = t("home.bannerText");
+
   // One segment: 2 badges + text. Loop: [2 badges] [text] [2 badges] [text] … with same gap; padding on both sides.
   const badge1 = (
     <div className="flex items-center justify-center h-8 sm:h-9 md:h-10 lg:h-10 flex-shrink-0">
@@ -37,7 +40,7 @@ export default function ScrollingBanner() {
   );
   const textSpan = (
     <span className="text-white font-black text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl flex-shrink-0 whitespace-nowrap">
-      {BANNER_TEXT}
+      {bannerText}
     </span>
   );
 
