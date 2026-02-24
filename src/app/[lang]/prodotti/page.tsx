@@ -1,7 +1,7 @@
 // src/app/prodotti/page.tsx
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import HeroBackground from "@/components/ui/HeroBackground";
 import ProductCard from "@/components/ProductCard";
@@ -16,79 +16,8 @@ function productMatchesSearch(p: Product, lang: string, q: string): boolean {
   return searchable.includes(q.toLowerCase());
 }
 
-/** 分类判断 */
-const has = (p: any, slug: string) => p?.categories?.some((c: any) => c.slug === slug);
-
-/** 页面分组（严格沿用你导航里的标题） */
-const GROUPS = [
-  {
-    bigTitle: "PV Inverter",
-    /** 左侧下拉子项，第一个默认展开 */
-    subItems: [
-      { label: "Ottimizzatori", lineIndex: 0 },
-      { label: "Inverter di Stringa", lineIndex: 1 },
-      { label: "Inverter Ibrido", lineIndex: 2 },
-    ],
-    lines: [
-      {
-        title: "Ottimizzatori",
-        subtitle: "",
-        filter: (_p: any) => false, // 暂无产品
-      },
-      {
-        title: "Inverter di Stringa",
-        subtitle: "Monofase · Trifase",
-        filter: (p: any) => has(p, "inverter") && has(p, "inverter-di-stringa"),
-      },
-      {
-        title: "Inverter Ibrido",
-        subtitle: "Monofase · Trifase",
-        filter: (p: any) => has(p, "inverter") && has(p, "ibrido"),
-      },
-    ],
-  },
-  {
-    bigTitle: "Batteria di Accumulo",
-    lines: [
-      {
-        title: "Sistema di accumulo Afore",
-        subtitle: "AFORE Serie",
-        filter: (p: any) => has(p, "batteria") && has(p, "afore"),
-      },
-      {
-        title: "Sistema di accumulo Hailei",
-        subtitle: "AFORE Serie",
-        filter: (p: any) => has(p, "batteria") && has(p, "hailei"),
-      },
-    ],
-  },
-  {
-    bigTitle: "All in One",
-    lines: [
-      {
-        title: "Sistema di accumulo Afore",
-        subtitle: "Monofase · Trifase",
-        filter: (p: any) => has(p, "all-in-one") && has(p, "afore"),
-      },
-      {
-        title: "Sistema di accumulo Hailei",
-        subtitle: "Monofase",
-        filter: (p: any) => has(p, "all-in-one") && has(p, "hailei"),
-      },
-    ],
-  },
-  {
-    bigTitle: "EV CHARGER",
-    lines: [
-      {
-        // 你的数据里形状（diamante/ovale/quadrata）没有独立分类，先合并展示
-        title: "Forma a diamante · Forma ovale · Forma quadrata",
-        subtitle: "Serie personalizzata",
-        filter: (p: any) => has(p, "ev-charger"),
-      },
-    ],
-  },
-] as const;
+import ProdottiSidebar from "@/components/ProdottiSidebar";
+import { GROUPS, has } from "@/data/prodotti-nav-data";
 
 function ProdottiContent() {
   const params = useParams();
@@ -96,8 +25,6 @@ function ProdottiContent() {
   const lang = (params?.lang as string) || "it";
   const { t } = useTranslation();
   const searchQ = searchParams?.get("search")?.trim() || "";
-  // 左侧小标题展开状态，默认第一个 PV Inverter 展开
-  const [expanded, setExpanded] = useState<Record<number, boolean>>({ 0: true });
 
 /** 轻量封装你的 ProductCard */
 function Card({ p }: { p: any }) {
@@ -138,58 +65,7 @@ function Card({ p }: { p: any }) {
       <section className="py-8 sm:py-10 lg:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:gap-10 xl:gap-14">
-            {/* 左侧小标题 */}
-            <aside className="lg:w-44 xl:w-52 shrink-0 mb-8 lg:mb-0">
-              <nav className="sticky top-24 space-y-0.5">
-                {GROUPS.map((g, gi) => {
-                  const isExpanded = expanded[gi] ?? false;
-                  const hasSub = "subItems" in g && g.subItems && g.subItems.length > 0;
-
-                  return (
-                    <div key={gi}>
-                      <div className="flex items-center gap-0.5">
-                        {hasSub && (
-                          <button
-                            type="button"
-                            onClick={() => setExpanded((s) => ({ ...s, [gi]: !s[gi] }))}
-                            className="p-0.5 -ml-0.5 text-slate-500 hover:text-slate-700 transition-colors"
-                            aria-expanded={isExpanded}
-                          >
-                            <svg
-                              className={`w-3.5 h-3.5 transition-transform ${isExpanded ? "rotate-90" : ""}`}
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </button>
-                        )}
-                        <a
-                          href={`#group-${gi}`}
-                          className="block text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 py-1.5 border-l-2 border-transparent hover:border-slate-300 pl-2 -ml-px transition-colors flex-1"
-                        >
-                          {g.bigTitle}
-                        </a>
-                      </div>
-                      {hasSub && isExpanded && (
-                        <div className="ml-4 mt-0.5 space-y-0.5 border-l border-slate-200 pl-3">
-                          {g.subItems!.map((sub, si) => (
-                            <a
-                              key={si}
-                              href={`#group-${gi}-line-${sub.lineIndex}`}
-                              className="block text-[11px] sm:text-xs font-medium text-slate-500 hover:text-slate-800 py-1 transition-colors"
-                            >
-                              {sub.label}
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </nav>
-            </aside>
+            <ProdottiSidebar />
 
             {/* 右侧内容 */}
             <div className="flex-1 min-w-0 space-y-12 sm:space-y-16">

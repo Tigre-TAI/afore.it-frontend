@@ -30,28 +30,28 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   const metadataByLang = {
     it: {
-      title: "Eventi e Fiere - KEY ENERGY 2026 Booth B5-D5 | Afore Italia",
-      description: "Incontra Afore Italia a KEY ENERGY 2026, Rimini Fiera, Booth B5-D5. Prenota un incontro per demo prodotti, Q&A tecnico e informazioni su inverter fotovoltaici, batterie e sistemi All-in-One.",
+      title: "Eventi e Fiere - KEY ENERGY 2026 Booth D5-130 | Afore Italia",
+      description: "Incontra Afore Italia a KEY ENERGY 2026, Rimini Fiera, Booth D5-130. Prenota un incontro per demo prodotti, Q&A tecnico e informazioni su inverter fotovoltaici, batterie e sistemi All-in-One.",
       keywords: "Afore eventi, KEY ENERGY 2026, fiera Rimini, Afore booth, inverter fotovoltaico fiera, Afore Italia eventi, Rimini Fiera",
     },
     en: {
-      title: "Events & Trade Fairs - KEY ENERGY 2026 Booth B5-D5 | Afore Italia",
-      description: "Meet Afore Italia at KEY ENERGY 2026, Rimini Fiera, Booth B5-D5. Book a meeting for product demos, technical Q&A and information about solar inverters, batteries and All-in-One systems.",
+      title: "Events & Trade Fairs - KEY ENERGY 2026 Booth D5-130 | Afore Italia",
+      description: "Meet Afore Italia at KEY ENERGY 2026, Rimini Fiera, Booth D5-130. Book a meeting for product demos, technical Q&A and information about solar inverters, batteries and All-in-One systems.",
       keywords: "Afore events, KEY ENERGY 2026, Rimini trade fair, Afore booth, solar inverter fair, Afore Italia events",
     },
     es: {
-      title: "Eventos y Ferias - KEY ENERGY 2026 Booth B5-D5 | Afore Italia",
-      description: "Conoce a Afore Italia en KEY ENERGY 2026, Rimini Fiera, Booth B5-D5. Reserva una reunión para demos de productos e información sobre inversores solares, baterías y sistemas All-in-One.",
+      title: "Eventos y Ferias - KEY ENERGY 2026 Booth D5-130 | Afore Italia",
+      description: "Conoce a Afore Italia en KEY ENERGY 2026, Rimini Fiera, Booth D5-130. Reserva una reunión para demos de productos e información sobre inversores solares, baterías y sistemas All-in-One.",
       keywords: "Afore eventos, KEY ENERGY 2026, feria Rimini, Afore stand, inversor solar feria",
     },
     fr: {
-      title: "Événements et Salons - KEY ENERGY 2026 Booth B5-D5 | Afore Italia",
-      description: "Rencontrez Afore Italia à KEY ENERGY 2026, Rimini Fiera, Booth B5-D5. Réservez un rendez-vous pour des démos de produits et informations sur les onduleurs solaires, batteries et systèmes All-in-One.",
+      title: "Événements et Salons - KEY ENERGY 2026 Booth D5-130 | Afore Italia",
+      description: "Rencontrez Afore Italia à KEY ENERGY 2026, Rimini Fiera, Booth D5-130. Réservez un rendez-vous pour des démos de produits et informations sur les onduleurs solaires, batteries et systèmes All-in-One.",
       keywords: "Afore événements, KEY ENERGY 2026, salon Rimini, Afore stand, onduleur solaire salon",
     },
     de: {
-      title: "Events & Messen - KEY ENERGY 2026 Booth B5-D5 | Afore Italia",
-      description: "Treffen Sie Afore Italia auf der KEY ENERGY 2026, Rimini Fiera, Booth B5-D5. Buchen Sie ein Meeting für Produkt-Demos und Informationen zu Solar-Wechselrichtern, Batterien und All-in-One-Systemen.",
+      title: "Events & Messen - KEY ENERGY 2026 Booth D5-130 | Afore Italia",
+      description: "Treffen Sie Afore Italia auf der KEY ENERGY 2026, Rimini Fiera, Booth D5-130. Buchen Sie ein Meeting für Produkt-Demos und Informationen zu Solar-Wechselrichtern, Batterien und All-in-One-Systemen.",
       keywords: "Afore Events, KEY ENERGY 2026, Messe Rimini, Afore Stand, Solar-Wechselrichter Messe",
     },
   };

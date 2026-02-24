@@ -134,7 +134,7 @@ export default function EventBooking() {
           <div className="relative w-full min-h-[280px] sm:min-h-[320px] lg:min-h-0 lg:h-full">
             <Image
               src="/image/events/keyenergy2026_cta.jpg"
-              alt="KEY ENERGY 2026 - Afore Italia Booth B5-D5"
+              alt="KEY ENERGY 2026 - Afore Italia Booth D5-130"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

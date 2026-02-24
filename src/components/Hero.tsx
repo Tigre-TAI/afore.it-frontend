@@ -240,6 +240,44 @@ export default function Hero({
               loading="lazy"
             />
           </a>
+
+          {/* Instagram */}
+          <a 
+            href="https://www.instagram.com/afore.italia/" 
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="p-2 sm:p-2.5 rounded-full text-white/90 hover:text-white hover:bg-white/15 transition-all duration-200 border border-white/15"
+          >
+            <Image
+              src="/image/social/social_instagram.svg"
+              alt="Instagram"
+              width={18}
+              height={18}
+              className="transition-opacity"
+              unoptimized
+              loading="lazy"
+            />
+          </a>
+
+          {/* YouTube */}
+          <a 
+            href="https://www.youtube.com/@aforeitalia" 
+            aria-label="YouTube"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="p-2 sm:p-2.5 rounded-full text-white/90 hover:text-white hover:bg-white/15 transition-all duration-200 border border-white/15"
+          >
+            <Image
+              src="/image/social/social_youtube.svg"
+              alt="YouTube"
+              width={18}
+              height={18}
+              className="transition-opacity"
+              unoptimized
+              loading="lazy"
+            />
+          </a>
           
           {/* Sound Toggle Button */}
           <button

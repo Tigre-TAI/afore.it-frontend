@@ -94,7 +94,7 @@ export function buildSearchIndex(): SearchEntry[] {
     { path: "/documentazione/guida", type: "documentazione", titleKey: "documentazione.cei.title", keywordKeys: ["documentazione.cei.subtitle", "CEI", "CEI-16", "CEI-021", "CEI 0-21", "regolamento di esercizio"] },
     { path: "/documentazione/manuale", type: "documentazione", titleKey: "documentazione.manuale.title", keywordKeys: ["documentazione.manuale.subtitle", "manuali", "installazione"] },
     { path: "/documentazione/archivio", type: "documentazione", titleKey: "documentazione.archivio.title", keywordKeys: ["documentazione.archivio.subtitle"] },
-    { path: "/eventi", type: "eventi", titleKey: "eventi.title", keywordKeys: ["eventi.subtitle", "eventi.keyEnergy.title", "eventi.keyEnergy.subtitle", "eventi.keyEnergy.description", "KEY ENERGY", "Rimini", "B5-D5"] },
+    { path: "/eventi", type: "eventi", titleKey: "eventi.title", keywordKeys: ["eventi.subtitle", "eventi.keyEnergy.title", "eventi.keyEnergy.subtitle", "eventi.keyEnergy.description", "KEY ENERGY", "Rimini", "D5-130"] },
     { path: "/webinar", type: "webinar", titleKey: "webinar.title", keywordKeys: ["webinar.subtitle"] },
     { path: "/webinar/afore-hailei", type: "webinar", titleKey: "webinar.items.aforeHailei.title", keywordKeys: ["webinar.items.aforeHailei.excerpt", "webinar.items.aforeHailei.topics", "Hailei", "batteria", "BMS"] },
     { path: "/comunicati-stampa", type: "comunicati-stampa", titleKey: "comunicatiStampa.title", keywordKeys: ["comunicatiStampa.subtitle"] },
