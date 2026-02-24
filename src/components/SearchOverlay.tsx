@@ -15,8 +15,9 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
   const pathname = usePathname();
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const safePathname = pathname ?? "";
   const currentLang = (() => {
-    const segments = pathname.split("/").filter(Boolean);
+    const segments = safePathname.split("/").filter(Boolean);
     const first = segments[0];
     return ["it", "en", "es", "fr", "de"].includes(first) ? first : "it";
   })();

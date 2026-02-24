@@ -58,8 +58,9 @@ export default function Topbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [langDropdownOpen, handleClickOutside]);
 
+  const safePathname = pathname ?? "";
   const { lang: currentLang, restPath } = useMemo(() => {
-    const segments = pathname.split("/").filter(Boolean);
+    const segments = safePathname.split("/").filter(Boolean);
     const firstSegment = segments[0];
     if (["it", "en", "es", "fr", "de"].includes(firstSegment)) {
       return {
@@ -67,8 +68,8 @@ export default function Topbar() {
         restPath: segments.length > 1 ? "/" + segments.slice(1).join("/") : "",
       };
     }
-    return { lang: "it", restPath: pathname === "/" ? "" : pathname };
-  }, [pathname]);
+    return { lang: "it", restPath: safePathname === "/" ? "" : safePathname };
+  }, [safePathname]);
 
   const navLink = useCallback(
     (path: string) => {

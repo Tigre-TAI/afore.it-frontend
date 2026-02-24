@@ -15,6 +15,7 @@ export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const safePathname = pathname ?? "";
 
   // 初始化 Google Analytics
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function GoogleAnalytics() {
     // 配置 GA
     window.gtag("js", new Date());
     window.gtag("config", gaId, {
-      page_path: pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ""),
+      page_path: safePathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ""),
       send_page_view: true,
     });
 
@@ -61,12 +62,12 @@ export default function GoogleAnalytics() {
       return;
     }
 
-    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+    const url = safePathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
     window.gtag?.("config", gaId, {
       page_path: url,
       send_page_view: true,
     });
-  }, [pathname, searchParams, gaId]);
+  }, [safePathname, searchParams, gaId]);
 
   // 监听 Cookie 偏好变化
   useEffect(() => {

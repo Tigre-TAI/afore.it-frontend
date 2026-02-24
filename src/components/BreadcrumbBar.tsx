@@ -31,8 +31,9 @@ function dedupe(items: Crumb[]): Crumb[] {
 /** 显示在 footer 上方的全局 breadcrumbs 条 */
 export default function BreadcrumbBar() {
   const pathname = usePathname();
+  const safePathname = pathname ?? "";
   const { items: overrideItems } = useBreadcrumb();
-  const lang = getLangFromPath(pathname);
+  const lang = getLangFromPath(safePathname);
 
   const baseColor = "text-slate-600";
   const activeColor = "text-slate-900";
@@ -47,7 +48,7 @@ export default function BreadcrumbBar() {
       }))
     );
   } else {
-    let parts = pathname === "/" ? [] : pathname.split("/").filter(Boolean);
+    let parts = safePathname === "/" ? [] : safePathname.split("/").filter(Boolean);
     if (parts.length > 0 && ["it", "en", "es", "fr", "de"].includes(parts[0])) {
       parts = parts.slice(1);
     }

@@ -1,8 +1,10 @@
 /**
  * 从路径中提取语言
+ * @param pathname 可能为 null（Next.js usePathname 在 SSG/边缘情况下会返回 null）
  */
-export function getLangFromPath(pathname: string): string {
-  const segments = pathname.split("/").filter(Boolean);
+export function getLangFromPath(pathname: string | null | undefined): string {
+  const path = pathname ?? "";
+  const segments = path.split("/").filter(Boolean);
   const firstSegment = segments[0];
   if (["it", "en", "es", "fr", "de"].includes(firstSegment)) {
     return firstSegment;

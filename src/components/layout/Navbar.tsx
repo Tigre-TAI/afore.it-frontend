@@ -57,9 +57,10 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [langDropdownOpen, handleClickOutside]);
 
-  // Memoize language and path extraction
+  // Memoize language and path extraction (pathname can be null during SSG/hydration)
+  const safePathname = pathname ?? "";
   const { lang: currentLang, restPath } = useMemo(() => {
-    const segments = pathname.split("/").filter(Boolean);
+    const segments = safePathname.split("/").filter(Boolean);
     const firstSegment = segments[0];
     if (["it", "en", "es", "fr", "de"].includes(firstSegment)) {
       const remainingSegments = segments.slice(1);
@@ -68,8 +69,8 @@ export default function Navbar() {
         restPath: remainingSegments.length > 0 ? "/" + remainingSegments.join("/") : "",
       };
     }
-    return { lang: "it", restPath: pathname === "/" ? "" : pathname };
-  }, [pathname]);
+    return { lang: "it", restPath: safePathname === "/" ? "" : safePathname };
+  }, [safePathname]);
 
   // Memoize nav link generation
   const navLink = useCallback((path: string) => {
@@ -82,14 +83,14 @@ export default function Navbar() {
 
   // Memoize nav link class calculation
   const navLinkClass = useCallback((matcher: (p: string) => boolean) => {
-    const isActive = matcher(pathname);
+    const isActive = matcher(safePathname);
     const defaultText = solid ? "text-slate-800" : "text-white";
     const baseClasses = "px-2.5 py-1.5 rounded transition-colors hover:text-[#C01C20]";
     if (isActive) {
       return `${defaultText} font-extrabold ${baseClasses}`;
     }
     return `${defaultText} ${baseClasses}`;
-  }, [pathname, solid]);
+  }, [safePathname, solid]);
 
   // Language switcher component - memoized
   const languages = useMemo(
