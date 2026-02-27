@@ -120,6 +120,7 @@ export default function Footer() {
                 <li>Email: afore@aforeitaly.com</li>
                 <li>Office: +39 06 40419655</li>
                 <li>Tel: +39 351 3399999</li>
+                <li>{t('footer.afterSales')}</li>
                 <li className="text-slate-400">
                   {t('footer.address')}
                 </li>
