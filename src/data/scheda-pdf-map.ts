@@ -238,28 +238,30 @@ const SCHEDA_PDF_MAP: Record<
   },
   "ev-oval": {
     base: "prodotti",
+    productIdForPath: "ev-charger",
     file: {
-      it: "EN_EV_Charger_Oval_Scheda_Tecnica.pdf",
-      en: "EN_EV_Charger_Oval_Scheda_Tecnica.pdf",
-      es: "EN_EV_Charger_Oval_Scheda_Tecnica.pdf",
-      fr: "EN_EV_Charger_Oval_Scheda_Tecnica.pdf",
-      de: "EN_EV_Charger_Oval_Scheda_Tecnica.pdf",
+      it: "EV_Charge_Tecnica.pdf",
+      en: "EV_Charge_Tecnica.pdf",
+      es: "EV_Charge_Tecnica.pdf",
+      fr: "EV_Charge_Tecnica.pdf",
+      de: "EV_Charge_Tecnica.pdf",
     },
   },
   "ev-square": {
     base: "prodotti",
+    productIdForPath: "ev-charger",
     file: {
-      it: "EN_EV_Charger_Square_Scheda_Tecnica.pdf",
-      en: "EN_EV_Charger_Square_Scheda_Tecnica.pdf",
-      es: "EN_EV_Charger_Square_Scheda_Tecnica.pdf",
-      fr: "EN_EV_Charger_Square_Scheda_Tecnica.pdf",
-      de: "EN_EV_Charger_Square_Scheda_Tecnica.pdf",
+      it: "EV_Charge_Tecnica.pdf",
+      en: "EV_Charge_Tecnica.pdf",
+      es: "EV_Charge_Tecnica.pdf",
+      fr: "EV_Charge_Tecnica.pdf",
+      de: "EV_Charge_Tecnica.pdf",
     },
   },
 };
 
 /** ev-diamond 使用 EV_CHARGER 目录下的 SGW CE-Wallbox（diamond 形态） */
-const EV_DIAMOND_PDF = "/documentazione/EV_CHARGER/EN_EV_Charger_SGW_CE-Wallbox.pdf";
+const EV_DIAMOND_PDF = "/prodotti/ev-charger/downloads/EV_Charge_Tecnica.pdf";
 
 /**
  * 获取 Scheda Tecnica PDF 的直接下载链接
