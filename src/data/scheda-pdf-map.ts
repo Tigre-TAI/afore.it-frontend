@@ -258,8 +258,8 @@ const SCHEDA_PDF_MAP: Record<
   },
 };
 
-/** ev-diamond 使用 EV_CHARGER 目录下的 SGW CE-Wallbox（diamond 形态） */
-const EV_DIAMOND_PDF = "/documentazione/EV_CHARGER/EN_EV_Charger_SGW_CE-Wallbox.pdf";
+/** ev-diamond 使用 Scheda Tecnica EV Charger SWG5（diamond 形态） */
+const EV_DIAMOND_PDF = "/documentazione/SCHEDA_TECNICA/IT_EV_Charger_SWG5_Scheda_Tecnica.pdf";
 
 /**
  * 获取 Scheda Tecnica PDF 的直接下载链接
