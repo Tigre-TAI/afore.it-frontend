@@ -13,6 +13,7 @@ import {
 } from "@/data/product-data";
 import { getSchedaPdfUrl } from "@/data/scheda-pdf-map";
 import FlatSection from "@/components/ui/FlatSection";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import Button from "@/components/ui/Button";
 
 type CaseStudy = {
@@ -153,19 +154,22 @@ export default function Cases() {
       : [];
 
   return (
-    <FlatSection bg="white">
-      <div className="container">
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
-            {t("home.cases.title")}
-          </h2>
-          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-            {t("home.cases.description")}
-          </p>
-        </div>
+    <FlatSection bg="white" className="-mt-8">
+      <div id="cases" className="container scroll-mt-24">
+        <RevealOnScroll>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
+              {t("home.cases.title")}
+            </h2>
+            <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+              {t("home.cases.description")}
+            </p>
+          </div>
+        </RevealOnScroll>
 
         {/* Image grid - flexible columns, tight spacing, no gaps, images maintain original aspect ratio */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-0">
+        <RevealOnScroll>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-0">
           {displayedCases.map((caseStudy, index) => {
             // Only animate new items when expanding (items beyond initial 8)
             const isNewItem = isExpanding && index >= initialDisplayCount;
@@ -175,7 +179,7 @@ export default function Cases() {
             <div
               key={caseStudy.id}
               onClick={() => handleCaseClick(caseStudy)}
-              className="group relative overflow-hidden bg-slate-100 cursor-pointer w-full aspect-square"
+              className="group relative overflow-hidden bg-slate-100 cursor-pointer w-full aspect-square transition-shadow duration-300 hover:shadow-lg"
               style={{
                 opacity: isNewItem ? 0 : 1,
                 transform: isNewItem ? 'translateY(20px)' : 'translateY(0)',
@@ -206,7 +210,8 @@ export default function Cases() {
             </div>
             );
           })}
-        </div>
+          </div>
+        </RevealOnScroll>
 
         {/* Show All button */}
         {hasMoreCases && (

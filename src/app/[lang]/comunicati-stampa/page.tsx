@@ -7,7 +7,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import { withLang } from "@/lib/lang-utils";
 import HeroBackground from "@/components/ui/HeroBackground";
 
-const PRESS_ITEM_KEYS = ["keyEnergy2026", "spazio900"] as const;
+const PRESS_ITEM_KEYS = ["webinarHailei24Marzo2026", "keyEnergy2026", "spazio900"] as const;
 
 export default function ComunicatiStampaPage() {
   const { t, lang } = useTranslation();

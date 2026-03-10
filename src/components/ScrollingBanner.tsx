@@ -58,7 +58,7 @@ export default function ScrollingBanner() {
 
   return (
     <div
-      className="w-full overflow-x-hidden relative"
+      className="w-full overflow-x-hidden relative flex-shrink-0"
       style={{ backgroundColor: "#c53030" }}
     >
       <div className="h-12 sm:h-14 md:h-16 flex items-center">

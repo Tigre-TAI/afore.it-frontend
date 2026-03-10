@@ -48,9 +48,15 @@
     },
     "bannerText": "AFORE Italia – Il nostro impegno nell'energia solare, con 10 anni di garanzia",
     "productsSection": {
-      "title": "I Nostri Prodotti",
+      "title": "Prodotti e Sistema",
       "description": "Soluzioni complete per il fotovoltaico residenziale e commerciale.",
-      "cta": "Vedi tutti i prodotti"
+      "cta": "Vedi tutti i prodotti",
+      "videoTabs": {
+        "inverter": "Inverter Fotovoltaici",
+        "accumulo": "Sistemi di Accumulo",
+        "ev": "Ricarica per Veicoli Elettrici",
+        "pompe": "Pompe di Calore"
+      }
     },
     "featured_products": {
       "title": "Prodotti in Evidenza",
@@ -73,6 +79,11 @@
       "dateLabel": "Evento",
       "dateValue": "KEY ENERGY 2026",
       "detailsCta": "Scopri di più"
+    },
+    "brandShortVideo": {
+      "badge": "Video",
+      "title": "Brand Short Video",
+      "description": "Scopri Afore Italia in pochi minuti: i nostri prodotti, la nostra storia e il nostro impegno per l'energia solare."
     },
     "cases": {
       "title": "I Nostri Casi Studio",
@@ -139,7 +150,7 @@
     },
     "allInOne": {
       "title": "All in One",
-      "subtitle": "Sistemi integrati con inverter e accumulo in un'unica soluzione"
+      "subtitle": "Pompe di calore e soluzioni integrate per l'efficienza energetica"
     },
     "evCharger": {
       "title": "EV Charger",
@@ -333,6 +344,17 @@
         "image": "/image/events/spazio900_cta_desktop.jpg",
         "heroImage": "/image/events/spazio900_cta_hero.jpg",
         "videoHeading": "Video dell'evento"
+      },
+      "webinarHailei24Marzo2026": {
+        "date": "Marzo 2026",
+        "title": "Key Energy 2026 – Afore Italia",
+        "excerpt": "Afore Italia a Key Energy 2026: le foto dall'evento e le soluzioni fotovoltaiche presentate al Booth D5-130.",
+        "body": "Afore Italia ha partecipato a Key Energy 2026, il principale salone italiano dedicato alle energie rinnovabili e all'efficienza energetica. Presso il Booth D5-130 abbiamo presentato le nostre soluzioni fotovoltaiche: inverter di stringa, ibridi, batterie di accumulo e sistemi All-in-One.\n\nIn questa pagina trovate una selezione di foto dall'evento.",
+        "href": "/comunicati-stampa/key-energy-2026-afore-italia",
+        "image": "/image/landing/landing_card_third.jpg",
+        "heroImage": "/image/landing/landing_card_third.jpg",
+        "photosTitle": "Foto dall'evento Key Energy 2026",
+        "photosShowMore": "Mostra altre foto"
       }
     }
   },
@@ -376,6 +398,25 @@
         "meetDial": "(IT) +39 02 8732 3834 PIN: 768 008 693#",
         "topics": "Programmazione software Hailei bassa tensione e alta tensione\nSpiegazione uso dei Connettori 485-232 Can analyst\nCome aggiornare batteria Hailei con computer\nRintracciamento storico batteria ed errori BMS",
         "joinTitle": "Informazioni per partecipare",
+        "meetLinkLabel": "Link alla videochiamata",
+        "meetDialLabel": "Oppure digita",
+        "joinButton": "Partecipa con Google Meet",
+        "topicsTitle": "Argomenti da trattare al corso"
+      },
+      "aforeHailei24Mar": {
+        "date": "Martedì, 24 marzo 2026",
+        "title": "AFORE HAILEI",
+        "excerpt": "Formazione su programmazione software Hailei (bassa e alta tensione), connettori 485-232, aggiornamento batteria e rintracciamento storico BMS.",
+        "image": "/image/landing/landing_card_fourth.jpg",
+        "heroImage": "/image/landing/landing_card_fourth.jpg",
+        "time": "4:30 - 5:30 PM",
+        "timezone": "Fuso orario: Europe/Rome",
+        "meetUrl": "https://meet.google.com/vtp-svkp-enb",
+        "meetDial": "(IT) +39 02 8732 3781 PIN: 227 293 251#",
+        "meetOtherNumbersLabel": "Altri numeri di telefono",
+        "meetOtherNumbersUrl": "https://tel.meet/vtp-svkp-enb?pin=8075551946935",
+        "topics": "Programmazione software Hailei bassa tensione e alta tensione\nSpiegazione uso dei Connettori 485-232 Can analyst\nCome aggiornare batteria Hailei con computer\nRintracciamento storico batteria ed errori BMS",
+        "joinTitle": "Informazioni per partecipare di Google Meet",
         "meetLinkLabel": "Link alla videochiamata",
         "meetDialLabel": "Oppure digita",
         "joinButton": "Partecipa con Google Meet",

@@ -12,7 +12,7 @@ export default function Footer() {
   const lang = getLangFromPath(pathname);
   const { t } = useTranslation();
   return (
-    <footer className="bg-slate-950 text-slate-300">
+    <footer className="bg-black text-slate-300">
       <div className="container py-16 md:py-20">
         <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-12">
           <div className="w-full md:shrink-0 md:w-36 flex justify-start">

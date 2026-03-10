@@ -50,12 +50,23 @@
     "productsSection": {
       "title": "Nuestros Productos",
       "description": "Soluciones completas para fotovoltaica residencial y comercial.",
-      "cta": "Ver Todos los Productos"
+      "cta": "Ver Todos los Productos",
+      "videoTabs": {
+        "inverter": "Inversores Fotovoltaicos",
+        "accumulo": "Sistemas de Accumulación",
+        "ev": "Recarga para Vehículos Eléctricos",
+        "pompe": "Bombas de Calor"
+      }
     },
     "featured_products": {
       "title": "Productos Destacados",
       "description": "Descubra nuestra gama completa de soluciones fotovoltaicas",
       "cta": "Ver Todos los Productos"
+    },
+    "brandShortVideo": {
+      "badge": "Video",
+      "title": "Brand Short Video",
+      "description": "Descubra Afore Italia en pocos minutos: nuestros productos, nuestra historia y nuestro compromiso con la energía solar."
     },
     "cases": {
       "title": "Nuestros Casos de Estudio",
@@ -117,15 +128,15 @@
       }
     },
     "batteriaDiAccumulo": {
-      "title": "Batería de Almacenamiento",
-      "subtitle": "Sistemas de almacenamiento de energía para energía solar"
+      "title": "Batteria di Accumulo",
+      "subtitle": "Sistemas de almacenamiento de energía para solar y hogar inteligente"
     },
     "allInOne": {
-      "title": "Todo en Uno",
-      "subtitle": "Sistemas integrados con inversor y almacenamiento en una sola solución"
+      "title": "All in One",
+      "subtitle": "Bombas de calor y soluciones integradas de eficiencia energética"
     },
     "evCharger": {
-      "title": "Cargador EV",
+      "title": "EV Charger",
       "subtitle": "Sistemas de carga para vehículos eléctricos"
     },
     "schedaTecnica": "Ficha Técnica",
@@ -314,6 +325,17 @@
         "image": "/image/events/spazio900_cta_desktop.jpg",
         "heroImage": "/image/events/spazio900_cta_hero.jpg",
         "videoHeading": "Vídeo del evento"
+      },
+      "webinarHailei24Marzo2026": {
+        "date": "Marzo 2026",
+        "title": "Key Energy 2026 – Afore Italia",
+        "excerpt": "Afore Italia en Key Energy 2026: fotos del evento y soluciones fotovoltaicas presentadas en el stand D5-130.",
+        "body": "Afore Italia participó en Key Energy 2026, la principal feria italiana dedicada a las energías renovables y la eficiencia energética. En el stand D5-130 presentamos nuestras soluciones fotovoltaicas: inversores de cadena, híbridos, almacenamiento en baterías y sistemas All-in-One.\n\nEn esta página encontrará una selección de fotos del evento.",
+        "href": "/comunicati-stampa/key-energy-2026-afore-italia",
+        "image": "/image/landing/landing_card_third.jpg",
+        "heroImage": "/image/landing/landing_card_third.jpg",
+        "photosTitle": "Fotos de Key Energy 2026",
+        "photosShowMore": "Mostrar más fotos"
       }
     }
   },
@@ -357,6 +379,25 @@
         "meetDial": "(IT) +39 02 8732 3834 PIN: 768 008 693#",
         "topics": "Programación de software Hailei baja y alta tensión\nUso de conectores 485-232 y analizador CAN\nCómo actualizar batería Hailei con ordenador\nRastreo histórico de batería y errores BMS",
         "joinTitle": "Información para participar",
+        "meetLinkLabel": "Enlace a la videollamada",
+        "meetDialLabel": "O marcar",
+        "joinButton": "Unirse con Google Meet",
+        "topicsTitle": "Temas tratados en el curso"
+      },
+      "aforeHailei24Mar": {
+        "date": "Martes, 24 de marzo de 2026",
+        "title": "AFORE HAILEI",
+        "excerpt": "Formación sobre programación de software Hailei (baja y alta tensión), conectores 485-232, actualización de batería y rastreo histórico BMS.",
+        "image": "/image/landing/landing_card_fourth.jpg",
+        "heroImage": "/image/landing/landing_card_fourth.jpg",
+        "time": "4:30 - 5:30 PM",
+        "timezone": "Zona horaria: Europe/Rome",
+        "meetUrl": "https://meet.google.com/vtp-svkp-enb",
+        "meetDial": "(IT) +39 02 8732 3781 PIN: 227 293 251#",
+        "meetOtherNumbersLabel": "Otros números de teléfono",
+        "meetOtherNumbersUrl": "https://tel.meet/vtp-svkp-enb?pin=8075551946935",
+        "topics": "Programación de software Hailei baja y alta tensión\nUso de conectores 485-232 y analizador CAN\nCómo actualizar batería Hailei con ordenador\nRastreo histórico de batería y errores BMS",
+        "joinTitle": "Información para participar en Google Meet",
         "meetLinkLabel": "Enlace a la videollamada",
         "meetDialLabel": "O marcar",
         "joinButton": "Unirse con Google Meet",

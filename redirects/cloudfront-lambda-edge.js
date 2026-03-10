@@ -52,6 +52,13 @@ const REDIRECT_MAP = {
   '/documentazione/certificati-all-in-one': '/it/documentazione/certificati-all-in-one',
   '/documentazione/accumulo-afore': '/it/documentazione/accumulo-afore',
   '/documentazione/scheda-tecnica': '/it/documentazione/scheda-tecnica',
+
+  // Comunicati stampa: old slug -> new slug (Key Energy 2026 Afore Italia)
+  '/it/comunicati-stampa/webinar-afore-hailei-24-marzo-2026': '/it/comunicati-stampa/key-energy-2026-afore-italia',
+  '/en/comunicati-stampa/webinar-afore-hailei-24-marzo-2026': '/en/comunicati-stampa/key-energy-2026-afore-italia',
+  '/es/comunicati-stampa/webinar-afore-hailei-24-marzo-2026': '/es/comunicati-stampa/key-energy-2026-afore-italia',
+  '/fr/comunicati-stampa/webinar-afore-hailei-24-marzo-2026': '/fr/comunicati-stampa/key-energy-2026-afore-italia',
+  '/de/comunicati-stampa/webinar-afore-hailei-24-marzo-2026': '/de/comunicati-stampa/key-energy-2026-afore-italia',
 };
 
 // Valid languages

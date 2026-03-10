@@ -40,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: 'comunicati-stampa', priority: 0.75, changeFrequency: 'monthly' as const },
     { path: 'comunicati-stampa/key-energy-2026', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: 'comunicati-stampa/key-energy-2026/carica-foto', priority: 0.6, changeFrequency: 'monthly' as const },
+    { path: 'comunicati-stampa/key-energy-2026-afore-italia', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: 'comunicati-stampa/spazio-900', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: 'video', priority: 0.75, changeFrequency: 'monthly' as const },
     { path: 'webinar', priority: 0.75, changeFrequency: 'monthly' as const },

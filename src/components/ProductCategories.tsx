@@ -1,14 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import ProductCard from "@/components/ProductCard";
 import { useTranslation } from "@/hooks/useTranslation";
 import { withLang } from "@/lib/lang-utils";
+import { byId, hrefOf, getProductTitle, getProductSubtitle } from "@/data/product-data";
 import FlatSection from "@/components/ui/FlatSection";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import ProdottiVideoTabs from "@/components/ProdottiVideoTabs";
+
+/** 每个 tab 下方展示的 4 个产品 id：Inverter / Accumulo / EV / Pompe */
+const FEATURED_PRODUCT_IDS: readonly (readonly string[])[] = [
+  ["ibrido-monofase-plus-4-6kw", "ibrido-trifase-3-30kw", "stringa-trifase-36-60kw", "stringa-trifase-70-110kw"],
+  ["atomwb512100-1", "atomwb512100", "bat-hailei-atom-ls-10-15kwh", "bat-hailei-atom-hs-15-41kwh"],
+  ["ev-diamond", "ev-oval", "ev-square"], // Ricarica per Veicoli Elettrici
+  [], // Pompe di Calore，待配置
+];
 
 export default function ProductCategories() {
   const { t, lang } = useTranslation();
+  const [videoTabIndex, setVideoTabIndex] = useState(0);
 
   const categories = [
     {
@@ -69,49 +83,84 @@ export default function ProductCategories() {
   ];
 
   return (
-    <FlatSection bg="white">
-      <div className="container">
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
-            {t("home.productsSection.title")}
-          </h2>
-          <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-            {t("home.productsSection.description")}
-          </p>
-        </div>
+    <FlatSection bg="white" className="-mt-8">
+      <div id="products" className="container scroll-mt-24">
+        <RevealOnScroll>
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
+              {t("home.productsSection.title")}
+            </h2>
+            <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+              {t("home.productsSection.description")}
+            </p>
+          </div>
+        </RevealOnScroll>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+        {/* 卡片布局更接近参考截图：四列产品卡片，图标 + 标题 + 简短描述 */}
+        <RevealOnScroll className="reveal-stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           {categories.map((category, index) => (
-            <div key={index} className="group transition-all duration-300">
-              <Link href={withLang(category.href, lang)} className="block">
-                <div className="aspect-[4/3] relative overflow-hidden mb-3 sm:mb-4 transition-all duration-200 bg-transparent rounded-lg">
+            <Link
+              key={index}
+              href={withLang(category.href, lang)}
+              className="flex flex-col items-center bg-transparent pt-5 pb-4 px-4 text-center"
+            >
+              <span className="group/product flex flex-col items-center w-full">
+                <div className="relative w-full max-w-[180px] aspect-[3/4] mb-0 overflow-hidden rounded-xl">
                   <Image
                     src={category.image}
                     alt={category.title}
                     fill
-                    className="object-contain group-hover:opacity-90 transition-opacity duration-200"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
+                    className="object-contain transition-transform duration-300 group-hover/product:scale-105"
+                    sizes="(max-width: 640px) 70vw, (max-width: 1024px) 40vw, 20vw"
                     loading="lazy"
-                    onError={(e) => {
-                      console.error('Image failed to load:', category.image);
+                    onError={() => {
+                      console.error("Image failed to load:", category.image);
                     }}
                   />
                 </div>
-                <div className="text-center">
-                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 group-hover:text-[#C01C20] transition-colors duration-200 break-words">
-                    {category.title}
-                  </h3>
-                </div>
-              </Link>
-            </div>
+                <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 transition-colors duration-300 group-hover/product:text-[#C01C20]">
+                  {category.title}
+                </h3>
+              </span>
+              {category.description && (
+                <p className="mt-1 text-xs sm:text-sm text-gray-500">
+                  {category.description}
+                </p>
+              )}
+            </Link>
           ))}
-        </div>
+        </RevealOnScroll>
 
-        <div className="text-center mt-8 md:mt-16">
-          <Button href={withLang("/prodotti", lang)} variant="primary" trailingChevron>
-            {t("home.productsSection.cta")}
-          </Button>
-        </div>
+        {/* 四分类标签 + 视频切换（与下方产品卡片联动） */}
+        <ProdottiVideoTabs activeIndex={videoTabIndex} onTabChange={setVideoTabIndex} />
+
+        {/* 视频下方四个产品卡片，随 tab 切换（Inverter / Sistemi di Accumulo / …） */}
+        <RevealOnScroll className="mt-6 sm:mt-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+            {FEATURED_PRODUCT_IDS[videoTabIndex]
+              .map((id) => byId[id])
+              .filter(Boolean)
+              .map((p) => (
+                <ProductCard
+                  key={p.id}
+                  href={hrefOf(p, lang)}
+                  image={p.image}
+                  title={getProductTitle(p, lang) ?? p.title}
+                  subtitle={getProductSubtitle(p, lang) ?? p.subtitle}
+                  schedaKey={p.schedaKey}
+                  productId={p.id}
+                />
+              ))}
+          </div>
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <div className="text-center mt-8 md:mt-16">
+            <Button href={withLang("/prodotti", lang)} variant="primary" trailingChevron>
+              {t("home.productsSection.cta")}
+            </Button>
+          </div>
+        </RevealOnScroll>
       </div>
     </FlatSection>
   );

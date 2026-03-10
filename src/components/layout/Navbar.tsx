@@ -184,8 +184,8 @@ export default function Navbar() {
       />
 
       <div className="container relative z-10 h-full flex items-center justify-between">
-        <div className="flex items-end gap-3 sm:gap-4 flex-shrink-0">
-          <Link href={navLink("/")} className="flex items-end gap-2">
+        <div className="flex items-end flex-shrink-0">
+          <Link href={navLink("/")} className="flex items-end">
             <Image
               src={solid ? "/logos/logo_afore_dark.png" : "/logos/logo_afore_light.png"}
               alt="Afore Logo"
@@ -193,19 +193,6 @@ export default function Navbar() {
               height={40}
               priority
               className="h-7 sm:h-8 w-auto"
-            />
-          </Link>
-          <Link
-            href={navLink("/comunicati-stampa/key-energy-2026")}
-            className="flex items-end pt-2.5 p-1.5 pb-0 rounded transition-opacity hover:opacity-80"
-            aria-label="Key Energy"
-          >
-            <Image
-              src={solid ? "/logos/key_energy_dark.png" : "/logos/key_energy_light.png"}
-              alt="Key Energy"
-              width={80}
-              height={40}
-              className="h-[19.6px] sm:h-[22.4px] w-auto"
             />
           </Link>
         </div>

@@ -50,7 +50,13 @@
     "productsSection": {
       "title": "Our Products",
       "description": "Complete solutions for residential and commercial photovoltaics.",
-      "cta": "View All Products"
+      "cta": "View All Products",
+      "videoTabs": {
+        "inverter": "Solar Inverters",
+        "accumulo": "Storage Systems",
+        "ev": "EV Charging",
+        "pompe": "Heat Pumps"
+      }
     },
     "featured_products": {
       "title": "Featured Products",
@@ -73,6 +79,11 @@
       "dateLabel": "Event",
       "dateValue": "KEY ENERGY 2026",
       "detailsCta": "Discover more"
+    },
+    "brandShortVideo": {
+      "badge": "Video",
+      "title": "Brand Short Video",
+      "description": "Discover Afore Italia in a few minutes: our products, our story and our commitment to solar energy."
     },
     "cases": {
       "title": "Our Case Studies",
@@ -134,12 +145,12 @@
       }
     },
     "batteriaDiAccumulo": {
-      "title": "Battery Storage",
-      "subtitle": "Energy storage systems for solar energy"
+      "title": "Batteria di Accumulo",
+      "subtitle": "Energy storage systems for solar and smart home"
     },
     "allInOne": {
       "title": "All in One",
-      "subtitle": "Integrated systems with inverter and storage in a single solution"
+      "subtitle": "Heat pump systems and integrated energy efficiency solutions"
     },
     "evCharger": {
       "title": "EV Charger",
@@ -331,6 +342,17 @@
         "image": "/image/events/spazio900_cta_desktop.jpg",
         "heroImage": "/image/events/spazio900_cta_hero.jpg",
         "videoHeading": "Event video"
+      },
+      "webinarHailei24Marzo2026": {
+        "date": "March 2026",
+        "title": "Key Energy 2026 – Afore Italia",
+        "excerpt": "Afore Italia at Key Energy 2026: photos from the event and the PV solutions presented at Booth D5-130.",
+        "body": "Afore Italia took part in Key Energy 2026, Italy's leading trade fair for renewable energy and energy efficiency. At Booth D5-130 we presented our PV solutions: string inverters, hybrids, battery storage and All-in-One systems.\n\nThis page features a selection of photos from the event.",
+        "href": "/comunicati-stampa/key-energy-2026-afore-italia",
+        "image": "/image/landing/landing_card_third.jpg",
+        "heroImage": "/image/landing/landing_card_third.jpg",
+        "photosTitle": "Photos from Key Energy 2026",
+        "photosShowMore": "Show more photos"
       }
     }
   },
@@ -374,6 +396,25 @@
         "meetDial": "(IT) +39 02 8732 3834 PIN: 768 008 693#",
         "topics": "Hailei software programming (low and high voltage)\n485-232 Connectors and CAN analyst usage\nHow to update Hailei battery with computer\nBattery historical tracking and BMS errors",
         "joinTitle": "How to join",
+        "meetLinkLabel": "Video call link",
+        "meetDialLabel": "Or dial",
+        "joinButton": "Join with Google Meet",
+        "topicsTitle": "Topics covered in the course"
+      },
+      "aforeHailei24Mar": {
+        "date": "Tuesday, 24 March 2026",
+        "title": "AFORE HAILEI",
+        "excerpt": "Training on Hailei software programming (low and high voltage), 485-232 connectors, battery update and BMS historical tracking.",
+        "image": "/image/landing/landing_card_fourth.jpg",
+        "heroImage": "/image/landing/landing_card_fourth.jpg",
+        "time": "4:30 - 5:30 PM",
+        "timezone": "Timezone: Europe/Rome",
+        "meetUrl": "https://meet.google.com/vtp-svkp-enb",
+        "meetDial": "(IT) +39 02 8732 3781 PIN: 227 293 251#",
+        "meetOtherNumbersLabel": "Other phone numbers",
+        "meetOtherNumbersUrl": "https://tel.meet/vtp-svkp-enb?pin=8075551946935",
+        "topics": "Hailei software programming (low and high voltage)\n485-232 Connectors and CAN analyst usage\nHow to update Hailei battery with computer\nBattery historical tracking and BMS errors",
+        "joinTitle": "Google Meet joining information",
         "meetLinkLabel": "Video call link",
         "meetDialLabel": "Or dial",
         "joinButton": "Join with Google Meet",

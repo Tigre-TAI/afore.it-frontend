@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import ScrollingBanner from "@/components/ScrollingBanner";
+import HomeSectionNav from "@/components/HomeSectionNav";
 import { getTranslations } from "@/lib/i18n";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
@@ -10,18 +11,16 @@ const ProductCategories = dynamic(() => import("@/components/ProductCategories")
   ssr: true, // Still SSR for SEO, but code-split
 });
 
-const FeaturedProducts = dynamic(() => import("@/components/FeaturedProducts"), {
+const BrandShortVideo = dynamic(() => import("@/components/BrandShortVideo"), {
   loading: () => <div className="section bg-slate-50" />,
   ssr: true,
 });
 
-const EventBooking = dynamic(() => import("@/components/EventBooking"), {
-  loading: () => <div className="section bg-slate-50" />,
+const LandingCards = dynamic(() => import("@/components/LandingCards"), {
   ssr: true,
 });
 
-const Cases = dynamic(() => import("@/components/Cases"), {
-  loading: () => <div className="section bg-white" />,
+const DataVizSection = dynamic(() => import("@/components/DataVizSection"), {
   ssr: true,
 });
 
@@ -122,35 +121,44 @@ export default async function Home({
   const t = getTranslations(validLang);
 
   return (
-    <main className="min-h-screen flex-col">
-      {/* Hero Section with YouTube Video - stable key prevents remount on lang change */}
-      <Hero
-        key="hero"
-        youtubeId="dBY-e6mFwOM"
-        title={t("home.hero.title")}
-        badge={t("home.hero.badge")}
-        cta={t("home.hero.cta")}
-        ctaHref={`/${validLang}/prodotti`}
-        backgroundAlt={t("home.hero.title")}
-        height="full"
-        textAlign="center"
-        centerContent={true}
-      />
+    <main className="min-h-screen flex-col relative">
+      <HomeSectionNav />
+      {/* 首屏：-mt-[88px] 使 Hero 轮播顶到视口顶部，导航叠在上方 */}
+      <div
+        id="hero"
+        className="-mt-[88px] h-screen min-h-[480px] flex flex-col overflow-hidden"
+      >
+        <Hero
+            key="hero"
+            backgroundImages={[
+              "/image/heroes/hero_carousel_1.jpg",
+              "/image/heroes/hero_carousel_2.jpg",
+              "/image/heroes/hero_carousel_3.jpg",
+              "/image/heroes/hero_carousel_4.jpg",
+            ]}
+            title={t("home.hero.title")}
+            badge={t("home.hero.badge")}
+            cta={t("home.hero.cta")}
+            ctaHref={`/${validLang}/prodotti`}
+            backgroundAlt={t("home.hero.title")}
+            fillHeight
+            textAlign="center"
+            centerContent={true}
+          />
+        <ScrollingBanner />
+      </div>
 
-      {/* Scrolling Banner with Badges */}
-      <ScrollingBanner />
+      {/* Brand Short Video */}
+      <BrandShortVideo />
 
-      {/* Event / Meeting Booking CTA */}
-      <EventBooking />
+      {/* 下方左右卡片 */}
+      <LandingCards />
 
       {/* I Nostri Prodotti Section */}
       <ProductCategories />
 
-      {/* Featured Products Section */}
-      <FeaturedProducts />
-
-      {/* Cases Section */}
-      <Cases />
+      {/* 数据可视化：地球自转视频背景，紧接 footer */}
+      <DataVizSection />
     </main>
   );
 }

@@ -20,6 +20,8 @@ export type ProductCardProps = {
   persistentBar?: boolean;
   /** 可切换样式：'tricolor' | 'orange' | 'none'（默认 'tricolor'） */
   barVariant?: "tricolor" | "orange" | "none";
+  /** 为 true 时不显示 Scheda Tecnica 区域（用于分类入口卡片） */
+  hideScheda?: boolean;
 };
 
 export default function ProductCard({
@@ -31,6 +33,7 @@ export default function ProductCard({
   productId,
   persistentBar = false,
   barVariant = "tricolor",
+  hideScheda = false,
 }: ProductCardProps) {
   const params = useParams();
   const lang = (params?.lang as string) || "it";
@@ -47,7 +50,7 @@ export default function ProductCard({
       : "italy-flag-bar"; // ★ 使用我们在 globals.css 里新增的三色条
 
   return (
-    <div className="group relative flex flex-col h-full overflow-hidden">
+    <div className="group relative flex flex-col h-full overflow-hidden rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5">
       {/* 可点击区域：图片 + 标题 — 进入产品详情 */}
       <Link
         href={href}
@@ -76,25 +79,27 @@ export default function ProductCard({
         </div>
       </Link>
 
-      {/* Scheda Tecnica — 在 Link 外部，避免嵌套链接导致点击无效 */}
-      <div className="flex-shrink-0 p-5 pt-0">
-        {schedaPdfUrl ? (
-          <Button
-            href={schedaPdfUrl}
-            variant="secondary"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            trailingChevron={false}
-          >
-            {t('prodotti.schedaTecnica')}
-          </Button>
-        ) : schedaKey ? (
-          <span className="inline-block px-4 py-2 text-sm font-semibold text-slate-400">
-            {t('prodotti.schedaTecnica')}
-          </span>
-        ) : null}
-      </div>
+      {/* Scheda Tecnica — 在 Link 外部，避免嵌套链接导致点击无效；hideScheda 时整块不渲染 */}
+      {!hideScheda && (
+        <div className="flex-shrink-0 p-5 pt-0">
+          {schedaPdfUrl ? (
+            <Button
+              href={schedaPdfUrl}
+              variant="secondary"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              trailingChevron={false}
+            >
+              {t('prodotti.schedaTecnica')}
+            </Button>
+          ) : schedaKey ? (
+            <span className="inline-block px-4 py-2 text-sm font-semibold text-slate-400">
+              {t('prodotti.schedaTecnica')}
+            </span>
+          ) : null}
+        </div>
+      )}
 
       {/* 底部彩条：默认宽 0，hover/聚焦时铺满；persistentBar=true 时常亮 */}
       <div

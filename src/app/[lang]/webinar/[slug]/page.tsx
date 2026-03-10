@@ -27,6 +27,8 @@ export default function WebinarArticlePage({
   const time = t(`webinar.items.${key}.time`);
   const meetUrl = t(`webinar.items.${key}.meetUrl`);
   const meetDial = t(`webinar.items.${key}.meetDial`);
+  const meetOtherNumbersLabel = t(`webinar.items.${key}.meetOtherNumbersLabel`);
+  const meetOtherNumbersUrl = t(`webinar.items.${key}.meetOtherNumbersUrl`);
   const topics = t(`webinar.items.${key}.topics`);
   const cardImage = t(`webinar.items.${key}.image`);
   const heroImage = t(`webinar.items.${key}.heroImage`);
@@ -77,6 +79,19 @@ export default function WebinarArticlePage({
                       <span className="font-medium text-[#111827]">{t(`webinar.items.${key}.meetDialLabel`)}:</span>{" "}
                       <span className="font-mono text-sm">{meetDial}</span>
                     </p>
+                    {meetOtherNumbersUrl ? (
+                      <p>
+                        <span className="font-medium text-[#111827]">{meetOtherNumbersLabel}:</span>{" "}
+                        <a
+                          href={meetOtherNumbersUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#C01C20] hover:underline font-medium"
+                        >
+                          {meetOtherNumbersUrl}
+                        </a>
+                      </p>
+                    ) : null}
                   </div>
                   <div className="mt-6">
                     <Button
