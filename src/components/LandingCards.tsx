@@ -7,7 +7,7 @@ import { withLang, getLangFromPath } from "@/lib/lang-utils";
 
 const LEFT_SRC = "/image/landing/landing_card_left.jpg";
 const RIGHT_SRC = "/image/landing/landing_card_right.jpg";
-const THIRD_SRC = "/image/landing/landing_card_third.jpg";
+const THIRD_SRC = "/image/landing/landing_card_fifth.jpg";
 const FOURTH_SRC = "/image/landing/landing_card_fourth.jpg";
 
 const CARDS = [
@@ -27,7 +27,7 @@ const CARDS = [
     src: THIRD_SRC,
     title: "",
     cta: "Scopri di più",
-    href: "/comunicati-stampa/key-energy-2026-afore-italia",
+    href: "/webinar/corso-commerciale-shenling",
   },
   {
     src: FOURTH_SRC,

@@ -8,7 +8,7 @@ import { withLang } from "@/lib/lang-utils";
 import HeroBackground from "@/components/ui/HeroBackground";
 import { KEY_TO_SLUG } from "@/data/webinar-data";
 
-const WEBINAR_ITEM_KEYS = ["aforeHailei", "aforeHailei24Mar"] as const;
+const WEBINAR_ITEM_KEYS = ["aforeHailei", "aforeHailei24Mar", "shenlingCorsoCommerciale"] as const;
 
 export default function WebinarPage() {
   const { t, lang } = useTranslation();

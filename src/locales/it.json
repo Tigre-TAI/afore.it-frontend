@@ -421,7 +421,26 @@
         "meetDialLabel": "Oppure digita",
         "joinButton": "Partecipa con Google Meet",
         "topicsTitle": "Argomenti da trattare al corso"
-      }
+        },
+        "shenlingCorsoCommerciale": {
+          "date": "Giovedì, 19 marzo 2026",
+          "title": "Corso commerciale – Soluzioni Shenling",
+          "excerpt": "Corso commerciale dedicato alle soluzioni Shenling per il riscaldamento e il comfort domestico, rivolto a partner e installatori.",
+          "image": "/image/landing/landing_card_fifth.jpg",
+          "heroImage": "/image/landing/landing_card_fifth.jpg",
+          "time": "15:00 – 17:00",
+          "timezone": "Fuso orario: Europe/Rome",
+          "meetUrl": "https://meet.google.com/rup-hgbf-dpn",
+          "meetDial": "(IT) +39 02 3046 1411 PIN: 958 171 297#",
+          "meetOtherNumbersLabel": "Altri numeri di telefono",
+          "meetOtherNumbersUrl": "https://tel.meet/rup-hgbf-dpn?pin=2892562446960",
+          "topics": "Presentazione delle soluzioni Shenling per applicazioni residenziali\nVantaggi commerciali e argomentazioni di vendita\nRequisiti di installazione e configurazione di base",
+          "joinTitle": "Informazioni per partecipare di Google Meet",
+          "meetLinkLabel": "Link alla videochiamata",
+          "meetDialLabel": "Oppure componi",
+          "joinButton": "Partecipa con Google Meet",
+          "topicsTitle": "Argomenti da trattare al corso"
+        }
     }
   },
   "contatti": {
