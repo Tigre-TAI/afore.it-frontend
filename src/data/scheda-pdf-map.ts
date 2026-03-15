@@ -226,6 +226,16 @@ const SCHEDA_PDF_MAP: Record<
       de: "IT_allin1_afore_Monofase.pdf",
     },
   },
+  "aio-mono-lv-afore-3-6kw-atom-aes-5-12": {
+    base: "prodotti",
+    file: {
+      it: "IT_allin1_afore_hailei_Monofase.pdf",
+      en: "IT_allin1_afore_hailei_Monofase.pdf",
+      es: "IT_allin1_afore_hailei_Monofase.pdf",
+      fr: "IT_allin1_afore_hailei_Monofase.pdf",
+      de: "IT_allin1_afore_hailei_Monofase.pdf",
+    },
+  },
   "aio-trifase-hv-plus-4-6kw": {
     base: "prodotti",
     file: {

@@ -32,6 +32,12 @@ export const GROUPS = [
     ],
   },
   {
+    bigTitle: "Pompa di calore",
+    lines: [
+      { title: "Shenling R290 · R32 · All in One", subtitle: "Refrigerante R290 / R32", filter: (p: any) => has(p, "pompa-di-calore") },
+    ],
+  },
+  {
     bigTitle: "EV CHARGER",
     lines: [
       { title: "Forma a diamante · Forma ovale · Forma quadrata", subtitle: "Serie personalizzata", filter: (p: any) => has(p, "ev-charger") },

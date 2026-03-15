@@ -156,6 +156,10 @@
       "title": "EV Charger",
       "subtitle": "Sistemi di ricarica per veicoli elettrici"
     },
+    "pompaDiCalore": {
+      "title": "Pompe di Calore",
+      "subtitle": "Pompe di calore Shenling R290 e R32 per riscaldamento ed efficienza energetica"
+    },
     "schedaTecnica": "Scheda Tecnica",
     "specifiche": "Specifiche",
     "specificheInArrivo": "Specifiche tecniche in arrivo.",

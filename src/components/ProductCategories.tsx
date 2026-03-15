@@ -12,12 +12,12 @@ import FlatSection from "@/components/ui/FlatSection";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import ProdottiVideoTabs from "@/components/ProdottiVideoTabs";
 
-/** 每个 tab 下方展示的 4 个产品 id：Inverter / Accumulo / EV / Pompe */
+/** 每个 tab 下方展示的产品 id：Inverter / Accumulo / EV / Pompe */
 const FEATURED_PRODUCT_IDS: readonly (readonly string[])[] = [
   ["ibrido-monofase-plus-4-6kw", "ibrido-trifase-3-30kw", "stringa-trifase-36-60kw", "stringa-trifase-70-110kw"],
   ["atomwb512100-1", "atomwb512100", "bat-hailei-atom-ls-10-15kwh", "bat-hailei-atom-hs-15-41kwh"],
   ["ev-diamond", "ev-oval", "ev-square"], // Ricarica per Veicoli Elettrici
-  [], // Pompe di Calore，待配置
+  ["shenling-r290", "shenling-r290-2", "shenling-r290-all-in-one", "shenling-r32"], // Pompe di Calore
 ];
 
 export default function ProductCategories() {
@@ -80,6 +80,18 @@ export default function ProductCategories() {
       href: "/prodotti/ev-charger",
       subcategories: [],
     },
+    {
+      title: t("prodotti.pompaDiCalore.title"),
+      description: t("prodotti.pompaDiCalore.subtitle"),
+      image: "/products/Heat pump/Shenling R290.png",
+      href: "/prodotti#group-3",
+      subcategories: [
+        {
+          title: "Shenling R290 · R32 · All in One",
+          href: "/prodotti#group-3",
+        },
+      ],
+    },
   ];
 
   return (
@@ -97,7 +109,7 @@ export default function ProductCategories() {
         </RevealOnScroll>
 
         {/* 卡片布局更接近参考截图：四列产品卡片，图标 + 标题 + 简短描述 */}
-        <RevealOnScroll className="reveal-stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+        <RevealOnScroll className="reveal-stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8">
           {categories.map((category, index) => (
             <Link
               key={index}

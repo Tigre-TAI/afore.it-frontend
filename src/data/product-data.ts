@@ -30,6 +30,7 @@ export const CATS = {
   ev: { slug: "ev-charger", label: "EV Charger" },
   afore: { slug: "afore", label: "Afore" },
   hailei: { slug: "hailei", label: "Hailei" },
+  pompaCalore: { slug: "pompa-di-calore", label: "Pompa di calore" },
 } as const
 
 export const PRODUCTS: Product[] = [
@@ -253,6 +254,36 @@ export const PRODUCTS: Product[] = [
     image: "/products/all-in-one/allin1_afore_trifase_hv_4_6kw_1.png",
     categories: [CATS.commerciale, CATS.allinone, CATS.trifase, CATS.afore],
     schedaKey: "aio-trifase-hv-plus-4-6kw",
+  },
+
+  /* ===== Pompa di calore · Shenling ===== */
+  {
+    id: "shenling-r290",
+    title: "Pompa di calore Shenling R290",
+    subtitle: "Refrigerante R290",
+    image: "/products/Heat pump/Shenling R290.png",
+    categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
+  },
+  {
+    id: "shenling-r290-2",
+    title: "Pompa di calore Shenling R290",
+    subtitle: "Refrigerante R290 · Variante",
+    image: "/products/Heat pump/Shenling R290 2.png",
+    categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
+  },
+  {
+    id: "shenling-r290-all-in-one",
+    title: "Pompa di calore Shenling R290 All in One",
+    subtitle: "Refrigerante R290 · Soluzione integrata",
+    image: "/products/Heat pump/Shenling R290 All in One.png",
+    categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
+  },
+  {
+    id: "shenling-r32",
+    title: "Pompa di calore Shenling R32",
+    subtitle: "Refrigerante R32",
+    image: "/products/Heat pump/Shenling R32.png",
+    categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
   },
 
   /* ===== EV Charger ===== */
@@ -581,6 +612,42 @@ const PRODUCT_COPY: Record<string, ProductCopy> = {
       de: "Individuelle Serie",
     },
   },
+  "shenling-r290": {
+    title: {
+      en: "Shenling R290 Heat Pump",
+      es: "Bomba de calor Shenling R290",
+      fr: "Pompe à chaleur Shenling R290",
+      de: "Wärmepumpe Shenling R290",
+    },
+    subtitle: { en: "R290 refrigerant", es: "Refrigerante R290", fr: "Réfrigérant R290", de: "Kältemittel R290" },
+  },
+  "shenling-r290-2": {
+    title: {
+      en: "Shenling R290 Heat Pump",
+      es: "Bomba de calor Shenling R290",
+      fr: "Pompe à chaleur Shenling R290",
+      de: "Wärmepumpe Shenling R290",
+    },
+    subtitle: { en: "R290 refrigerant · Variant", es: "Refrigerante R290 · Variante", fr: "Réfrigérant R290 · Variante", de: "Kältemittel R290 · Variante" },
+  },
+  "shenling-r290-all-in-one": {
+    title: {
+      en: "Shenling R290 All in One Heat Pump",
+      es: "Bomba de calor Shenling R290 All in One",
+      fr: "Pompe à chaleur Shenling R290 All in One",
+      de: "Wärmepumpe Shenling R290 All in One",
+    },
+    subtitle: { en: "R290 refrigerant · Integrated solution", es: "Refrigerante R290 · Solución integrada", fr: "Réfrigérant R290 · Solution intégrée", de: "Kältemittel R290 · Integrierte Lösung" },
+  },
+  "shenling-r32": {
+    title: {
+      en: "Shenling R32 Heat Pump",
+      es: "Bomba de calor Shenling R32",
+      fr: "Pompe à chaleur Shenling R32",
+      de: "Wärmepumpe Shenling R32",
+    },
+    subtitle: { en: "R32 refrigerant", es: "Refrigerante R32", fr: "Réfrigérant R32", de: "Kältemittel R32" },
+  },
 };
 
 function normalizeLang(lang: string): LangCode {
@@ -643,6 +710,7 @@ export function resolvePath(p: Product): { macro: string; family: string } {
   else if (has("batteria"))   macro = "batteria";
   else if (has("all-in-one")) macro = "all-in-one";
   else if (has("ev-charger")) macro = "ev-charger";
+  else if (has("pompa-di-calore")) macro = "pompa-di-calore";
 
   // 子类
   let family = macro;
@@ -658,6 +726,8 @@ export function resolvePath(p: Product): { macro: string; family: string } {
     family = "all-in-one";
   } else if (macro === "ev-charger") {
     family = "ev-charger";
+  } else if (macro === "pompa-di-calore") {
+    family = "pompa-di-calore";
   }
 
   return { macro, family };

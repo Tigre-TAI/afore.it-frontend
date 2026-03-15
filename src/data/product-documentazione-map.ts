@@ -129,6 +129,12 @@ export const PRODUCT_DOC_PATTERNS: Record<
     folder: "EV_CHARGER",
     include: [""],
   },
+
+  /* ===== Pompa di calore · Shenling ===== */
+  "shenling-r290": { folder: "POMPA_CALORE", include: [] },
+  "shenling-r290-2": { folder: "POMPA_CALORE", include: [] },
+  "shenling-r290-all-in-one": { folder: "POMPA_CALORE", include: [] },
+  "shenling-r32": { folder: "POMPA_CALORE", include: [] },
 };
 
 /**
@@ -152,6 +158,7 @@ export function getProductDocConfig(
     batteria: "BATTERIA_DI_ACCUMULO",
     "all-in-one": "ALL_IN_ONE",
     "ev-charger": "EV_CHARGER",
+    "pompa-di-calore": "POMPA_CALORE",
   };
   const folder = FAMILY_FOLDER[family];
   if (!folder) return null;
