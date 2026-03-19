@@ -238,7 +238,6 @@ const SCHEDA_PDF_MAP: Record<
   },
   "ev-oval": {
     base: "prodotti",
-    productIdForPath: "ev-charger",
     file: {
       it: "EV_Charge_Tecnica.pdf",
       en: "EV_Charge_Tecnica.pdf",
@@ -249,7 +248,6 @@ const SCHEDA_PDF_MAP: Record<
   },
   "ev-square": {
     base: "prodotti",
-    productIdForPath: "ev-charger",
     file: {
       it: "EV_Charge_Tecnica.pdf",
       en: "EV_Charge_Tecnica.pdf",

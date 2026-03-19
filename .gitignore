@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+DEMO_PRESENTATION.md
+MOCK_VS_REAL_EXPLAINED.md
+TESTING_GUIDE.md
+WHATSAPP_CHATBOT_COMPLETION_REPORT.md
+src/demo/mock_pipeline_demo.py

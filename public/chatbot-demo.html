@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afore 智能客服测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .demo-area {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .demo-area p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* 浮窗样式 */
+        .chatbot-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: #C01C20;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(192, 28, 32, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 999;
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(192, 28, 32, 0.4);
+        }
+
+        .chatbot-button.open {
+            transform: rotate(180deg);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 96px;
+            right: 24px;
+            width: 380px;
+            height: 480px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 40px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 998;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        .chatbot-window.open {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-header {
+            background: #C01C20;
+            color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .chatbot-header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            display: flex;
+            gap: 8px;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .message.user .message-content {
+            background: #C01C20;
+            color: white;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .typing {
+            display: flex;
+            gap: 4px;
+            padding: 10px 12px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                opacity: 0.5;
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+
+        .chatbot-input {
+            border-top: 1px solid #ddd;
+            padding: 12px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .chatbot-input textarea {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+        }
+
+        .chatbot-input textarea:focus {
+            outline: none;
+            border-color: #C01C20;
+            box-shadow: 0 0 0 2px rgba(192, 28, 32, 0.1);
+        }
+
+        .chatbot-send {
+            background: #C01C20;
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .chatbot-send:hover {
+            background: #a01818;
+        }
+
+        .chatbot-send:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+        }
+
+        .welcome-message h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .info-section {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .info-section h3 {
+            color: #C01C20;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .info-section ul {
+            list-style: none;
+            color: #666;
+        }
+
+        .info-section li {
+            padding: 8px 0;
+            line-height: 1.6;
+        }
+
+        .info-section li:before {
+            content: "✓ ";
+            color: #C01C20;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Afore 智能客服演示</h1>
+        
+        <div class="demo-area">
+            <p><strong>这是一个本地测试页面，演示了智能客服浮窗的功能。</strong></p>
+            <p>点击右下角的红色按钮来打开聊天窗口，试试提问以下问题：</p>
+            
+            <div class="info-section">
+                <h3>📝 试试这些问题：</h3>
+                <ul>
+                    <li>"产品保修期是多长？"</li>
+                    <li>"安装需要多久？"</li>
+                    <li>"光伏系统在阴天能发电吗？"</li>
+                    <li>"EV 充电器兼容哪些车型？"</li>
+                    <li>"如何联系技术支持？"</li>
+                    <li>"产品价格包括安装费吗？"</li>
+                </ul>
+            </div>
+
+            <div class="info-section">
+                <h3>⚙️ 工作原理：</h3>
+                <ul>
+                    <li>系统识别用户问题中的关键词</li>
+                    <li>使用编辑距离算法计算相似度</li>
+                    <li>返回最匹配的 FAQ 答案</li>
+                    <li>如果无法匹配，建议联系人工支持</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 浮窗按钮 -->
+    <button class="chatbot-button" id="chatbotBtn" aria-label="打开客服">💬</button>
+
+    <!-- 聊天窗口 -->
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div>
+                <h3>Afore 智能客服</h3>
+                <p>在线帮助您解答问题</p>
+            </div>
+            <button class="chatbot-close" id="closeBtn">✕</button>
+        </div>
+
+        <div class="chatbot-messages" id="messages">
+            <div class="welcome-message">
+                <h4>👋 欢迎使用 Afore 客服</h4>
+                <p>请提出您的问题，我会尽力帮助您！</p>
+            </div>
+        </div>
+
+        <div class="chatbot-input">
+            <textarea id="inputBox" placeholder="输入您的问题..." rows="2"></textarea>
+            <button class="chatbot-send" id="sendBtn">📤</button>
+        </div>
+    </div>
+
+    <script>
+        // FAQ 数据
+        const faqData = [
+            {
+                id: "warranty-01",
+                category: "保修",
+                question: "产品保修期是多长？",
+                keywords: ["保修", "保修期", "几年", "多久", "warranty"],
+                answer: "我们的光伏逆变器和电池系统提供 10 年的标准保修。部分高端产品可享受 15 年保修。"
+            },
+            {
+                id: "installation-01",
+                category: "安装",
+                question: "产品安装需要多长时间？",
+                keywords: ["安装", "install", "多久", "时间"],
+                answer: "光伏系统通常需要 2-5 天，电池系统需要 1-3 天。建议联系授权安装商获得准确估算。"
+            },
+            {
+                id: "performance-01",
+                category: "性能",
+                question: "光伏系统在阴天能发电吗？",
+                keywords: ["阴天", "阴雨", "cloudy", "发电"],
+                answer: "是的，光伏系统在阴天仍然可以发电，但效率会降低 70-80%。多云天气不会损害系统。"
+            },
+            {
+                id: "ev-charger-01",
+                category: "EV 充电",
+                question: "EV 充电器兼容哪些车型？",
+                keywords: ["EV", "充电", "车", "兼容"],
+                answer: "我们的 EV 充电器兼容所有支持 AC 充电的电动车。具体兼容性列表请查看产品规格。"
+            },
+            {
+                id: "support-01",
+                category: "技术支持",
+                question: "遇到问题如何联系技术支持？",
+                keywords: ["联系", "support", "问题", "技术"],
+                answer: "邮件：support@afore.it | 电话：+39-xxx-xxxx | 工作时间：周一至周五 9:00-17:00"
+            },
+            {
+                id: "pricing-01",
+                category: "价格",
+                question: "产品价格包括安装费吗？",
+                keywords: ["价格", "费用", "安装费", "多少钱"],
+                answer: "产品价格不包括安装费。安装费由授权安装商单独报价，取决于系统复杂度。"
+            }
+        ];
+
+        // UI 元素
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeBtn = document.getElementById('closeBtn');
+        const messagesDiv = document.getElementById('messages');
+        const inputBox = document.getElementById('inputBox');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // 打开/关闭窗口
+        chatbotBtn.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('open');
+            chatbotBtn.classList.toggle('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            chatbotWindow.classList.remove('open');
+            chatbotBtn.classList.remove('open');
+        });
+
+        // 发送消息
+        sendBtn.addEventListener('click', sendMessage);
+        inputBox.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const question = inputBox.value.trim();
+            if (!question) return;
+
+            // 清空输入框
+            inputBox.value = '';
+
+            // 添加用户消息
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.innerHTML = `
+                <div>
+                    <div class="message-content">${escapeHtml(question)}</div>
+                    <div class="message-time">${new Date().toLocaleTimeString('it-IT', {hour: '2-digit', minute: '2-digit'})}</div>
+                </div>
+            `;
+            messagesDiv.appendChild(userMsg);
+            scrollToBottom();
+
+            // 模拟等待
+            const typingMsg = document.createElement('div');
+            typingMsg.className = 'message bot typing';
+            typingMsg.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            messagesDiv.appendChild(typingMsg);
+            scrollToBottom();
+
+            // 300ms 后显示回复
+            setTimeout(() => {
+                typingMsg.remove();
+                const answer = findBestFAQ(question);
+                
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.innerHTML = `
+                    <div>
+                        <div class="message-content">${escapeHtml(answer)}</div>
+                        <div class="message-time">${new Date().toLocaleTimeString('it-IT', {hour: '2-digit', minute: '2-digit'})}</div>
+                    </div>
+                `;
+                messagesDiv.appendChild(botMsg);
+                scrollToBottom();
+            }, 300);
+        }
+
+        function findBestFAQ(userQuestion) {
+            const question = userQuestion.toLowerCase();
+            let bestMatch = null;
+            let bestScore = 0;
+
+            for (const faq of faqData) {
+                let score = 0;
+                const matchedKeywords = faq.keywords.filter(kw => 
+                    question.includes(kw.toLowerCase())
+                ).length;
+
+                if (matchedKeywords > 0) {
+                    score = matchedKeywords / faq.keywords.length;
+                } else {
+                    score = calculateSimilarity(question, faq.question.toLowerCase());
+                }
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMatch = faq;
+                }
+            }
+
+            if (bestScore >= 0.4) {
+                return bestMatch.answer;
+            }
+            return '抱歉，我没有找到相关答案。请邮件联系 support@afore.it 或拨打 +39-xxx-xxxx。';
+        }
+
+        function calculateSimilarity(str1, str2) {
+            const longer = str1.length > str2.length ? str1 : str2;
+            const shorter = str1.length > str2.length ? str2 : str1;
+            
+            if (longer.length === 0) return 1.0;
+            
+            const editDistance = getEditDistance(longer, shorter);
+            return (longer.length - editDistance) / longer.length;
+        }
+
+        function getEditDistance(str1, str2) {
+            const matrix = [];
+            for (let i = 0; i <= str2.length; i++) matrix[i] = [i];
+            for (let j = 0; j <= str1.length; j++) matrix[0][j] = j;
+            
+            for (let i = 1; i <= str2.length; i++) {
+                for (let j = 1; j <= str1.length; j++) {
+                    if (str2[i - 1] === str1[j - 1]) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            return matrix[str2.length][str1.length];
+        }
+
+        function scrollToBottom() {
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
