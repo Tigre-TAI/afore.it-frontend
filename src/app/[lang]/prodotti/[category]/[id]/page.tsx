@@ -14,6 +14,7 @@ import YouTubeVideoWithTitle from "@/components/YouTubeVideoWithTitle";
 import { EV_CHARGER_ITEMS, type DownloadSectionItem } from "@/data/download-items";
 import { getSchedaPdfUrl } from "@/data/scheda-pdf-map";
 import { getProductDocConfig } from "@/data/product-documentazione-map";
+import SplitCompareSection from "@/components/SplitCompareSection";
 
 /** 读取 documentazione 文件夹并按产品过滤，生成 DownloadSectionItem */
 async function getDocumentazioneItems(
@@ -1874,6 +1875,24 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {p.id === "shenling-r290" && (
+        <>
+          <SplitCompareSection
+            title="Installazione tradizionale"
+            description="Sistema con più tubazioni e cablaggi visibili."
+            leftImageSrc="/images/products/shenling-r290/compare/installazione-left.jpg"
+            rightImageSrc="/images/products/shenling-r290/compare/installazione-right.jpg"
+          />
+          <SplitCompareSection
+            title="Soluzione All-in-One"
+            description="Impianto più pulito, ordinato e integrato."
+            leftImageSrc="/images/products/shenling-r290/compare/temperatura-left.jpg"
+            rightImageSrc="/images/products/shenling-r290/compare/temperatura-right.jpg"
+            className="bg-slate-50/60"
+          />
+        </>
+      )}
       </div>
     </main>
   );
