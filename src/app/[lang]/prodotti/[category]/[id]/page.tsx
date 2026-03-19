@@ -1875,7 +1875,9 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
       </section>
+      </div>
 
+      {/* Full viewport width: fuori da max-w-7xl così le immagini arrivano ai bordi finestra */}
       {p.id === "shenling-r290" && (
         <>
           <SplitCompareSection
@@ -1893,7 +1895,6 @@ export default async function ProductPage({ params }: Props) {
           />
         </>
       )}
-      </div>
     </main>
   );
 }

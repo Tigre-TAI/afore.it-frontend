@@ -200,7 +200,7 @@ export default function SplitCompareSection({
 
   return (
     <section
-      className={`scroll-mt-24 border-t border-slate-200/90 py-12 sm:py-16 lg:py-20 ${className} overflow-x-clip`.trim()}
+      className={`w-full scroll-mt-24 border-t border-slate-200/90 py-12 sm:py-16 lg:py-20 ${className}`.trim()}
       aria-labelledby={headingId}
     >
       {/* Titolo allineato al layout pagina */}
@@ -218,9 +218,9 @@ export default function SplitCompareSection({
         </header>
       </div>
 
-      {/* Full-bleed: larghezza viewport, angoli retti */}
+      {/* Larghezza = main / viewport (blocco reso fuori da max-w-7xl nella pagina prodotto) */}
       <div
-        className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 border-y border-slate-200/80 bg-slate-100"
+        className="relative w-full max-w-none border-y border-slate-200/80 bg-slate-100"
         data-compare-bleed
       >
         {/* Mobile: impilate */}
