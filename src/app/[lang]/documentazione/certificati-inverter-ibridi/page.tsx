@@ -89,6 +89,9 @@ function generateTitle(fileName: string): string {
 
 function categorizeDocument(fileName: string): string | null {
   const name = fileName.toLowerCase();
+  if (name.includes('cei-016') || name.includes('cei-0-16') || name.includes('cei 0-16') || name.includes('cei_016')) {
+    return 'CEI 0-16';
+  }
   if (name.includes('cei-021') || name.includes('cei-0-21') || name.includes('cei 0-21')) {
     return 'CEI 0-21';
   }
@@ -205,7 +208,8 @@ export default async function CertificatiInverterIbridiPage({ params }: Props) {
       const category = categorizeDocument(doc.fileName);
       const fileName = doc.fileName.toLowerCase();
       // Filter for hybrid inverters (AF-SL, AF-TH, etc.)
-      return (category === 'CEI 0-21' || 
+      return (category === 'CEI 0-16' ||
+             category === 'CEI 0-21' || 
              category === 'TEST REPORT' ||
              category === 'Guida alla compilazione del regolamento di esercizio' ||
              category === 'Guida alla compilazione dell\'addendum tecnico' ||
@@ -266,6 +270,7 @@ export default async function CertificatiInverterIbridiPage({ params }: Props) {
 
     // Sort sections by category order
     const categoryOrder = [
+      'CEI 0-16',
       'CEI 0-21',
       'TEST REPORT',
       'Guida alla compilazione del regolamento di esercizio',

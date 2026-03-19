@@ -15,6 +15,14 @@ export type DocumentFile = {
 function categorizeDocument(fileName: string): string | null {
   const name = fileName.toLowerCase();
   
+  if (
+    name.includes('cei-016') ||
+    name.includes('cei-0-16') ||
+    name.includes('cei 0-16') ||
+    name.includes('cei_016')
+  ) {
+    return 'CEI 0-16';
+  }
   if (name.includes('cei-021') || name.includes('cei-0-21') || name.includes('cei_021')) {
     return 'CEI 0-21';
   }
