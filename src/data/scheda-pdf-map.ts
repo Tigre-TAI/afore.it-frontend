@@ -266,6 +266,46 @@ const SCHEDA_PDF_MAP: Record<
       de: "EN_EV_Charger_Square_Scheda_Tecnica.pdf",
     },
   },
+  "shenling-r290": {
+    base: "documentazione",
+    file: {
+      it: "IT_Pompa_di_Calore_Shenling_R290_Scheda_Tecnica.pdf",
+      en: "IT_Pompa_di_Calore_Shenling_R290_Scheda_Tecnica.pdf",
+      es: "IT_Pompa_di_Calore_Shenling_R290_Scheda_Tecnica.pdf",
+      fr: "IT_Pompa_di_Calore_Shenling_R290_Scheda_Tecnica.pdf",
+      de: "IT_Pompa_di_Calore_Shenling_R290_Scheda_Tecnica.pdf",
+    },
+  },
+  "shenling-r290-2": {
+    base: "documentazione",
+    file: {
+      it: "IT_Pompa_di_Calore_Shenling_R290_con_Hydro_Box_Scheda_Tecnica.pdf",
+      en: "IT_Pompa_di_Calore_Shenling_R290_con_Hydro_Box_Scheda_Tecnica.pdf",
+      es: "IT_Pompa_di_Calore_Shenling_R290_con_Hydro_Box_Scheda_Tecnica.pdf",
+      fr: "IT_Pompa_di_Calore_Shenling_R290_con_Hydro_Box_Scheda_Tecnica.pdf",
+      de: "IT_Pompa_di_Calore_Shenling_R290_con_Hydro_Box_Scheda_Tecnica.pdf",
+    },
+  },
+  "shenling-r290-all-in-one": {
+    base: "documentazione",
+    file: {
+      it: "IT_Pompa_di_Calore_Shenling_R290_All_in_One_Scheda_Tecnica.pdf",
+      en: "IT_Pompa_di_Calore_Shenling_R290_All_in_One_Scheda_Tecnica.pdf",
+      es: "IT_Pompa_di_Calore_Shenling_R290_All_in_One_Scheda_Tecnica.pdf",
+      fr: "IT_Pompa_di_Calore_Shenling_R290_All_in_One_Scheda_Tecnica.pdf",
+      de: "IT_Pompa_di_Calore_Shenling_R290_All_in_One_Scheda_Tecnica.pdf",
+    },
+  },
+  "shenling-r32": {
+    base: "documentazione",
+    file: {
+      it: "IT_Pompa_di_Calore_Shenling_R32_Scheda_Tecnica.pdf",
+      en: "IT_Pompa_di_Calore_Shenling_R32_Scheda_Tecnica.pdf",
+      es: "IT_Pompa_di_Calore_Shenling_R32_Scheda_Tecnica.pdf",
+      fr: "IT_Pompa_di_Calore_Shenling_R32_Scheda_Tecnica.pdf",
+      de: "IT_Pompa_di_Calore_Shenling_R32_Scheda_Tecnica.pdf",
+    },
+  },
 };
 
 /** ev-diamond 使用 Scheda Tecnica EV Charger SWG5（diamond 形态） */

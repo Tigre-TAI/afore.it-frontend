@@ -7,6 +7,8 @@ export type Product = {
   title: string
   subtitle?: string
   image: string
+  /** Opzionale: immagine tabella "Dati tecnici" (per sezioni specifiche) */
+  techTableImage?: string
   categories: Category[] // 支持多分类
   /** 用于链接到 scheda-tecnica 页面的键值，通常是产品 id 或特定的文档标识符 */
   schedaKey?: string
@@ -262,7 +264,9 @@ export const PRODUCTS: Product[] = [
     title: "Pompa di calore Shenling R290",
     subtitle: "Refrigerante R290",
     image: "/products/Heat pump/Shenling R290.png",
+    techTableImage: "/products/Heat pump/Shenling R290 Dati Tecnici.png",
     categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
+    schedaKey: "shenling-r290",
   },
   {
     id: "shenling-r290-2",
@@ -270,6 +274,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Refrigerante R290 · Variante",
     image: "/products/Heat pump/Shenling R290 2.png",
     categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
+    schedaKey: "shenling-r290-2",
   },
   {
     id: "shenling-r290-all-in-one",
@@ -277,6 +282,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Refrigerante R290 · Soluzione integrata",
     image: "/products/Heat pump/Shenling R290 All in One.png",
     categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
+    schedaKey: "shenling-r290-all-in-one",
   },
   {
     id: "shenling-r32",
@@ -284,6 +290,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Refrigerante R32",
     image: "/products/Heat pump/Shenling R32.png",
     categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
+    schedaKey: "shenling-r32",
   },
 
   /* ===== EV Charger ===== */

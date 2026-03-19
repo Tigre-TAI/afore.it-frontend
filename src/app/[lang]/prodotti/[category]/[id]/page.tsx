@@ -219,6 +219,33 @@ export default async function ProductPage({ params }: Props) {
   const p = findProductBySlugs(category, id);
   if (!p) return notFound();
 
+  const MODEL_BAR_LABEL: Record<string, string> = {
+    "ev-diamond": "SWG5E-7/32-11/16-22/32",
+    "stringa-1-3kw": "HNS1000TL-1 / HNS1500TL-1 / HNS2000TL-1 / HNS2500TL-1 / HNS3000TL-1",
+    "stringa-3-6kw": "HNS3000TL / HNS3600TL / HNS4000TL / HNS5000TL / HNS6000TL",
+    "stringa-7-10kw": "HNS7000TL / HNS8000TL / HNS9000TL / HNS10000TL",
+    "stringa-trifase-3-25kw":
+      "BNT003KTL / BNT004KTL / BNT005KTL / BNT006KTL / BNT010KTL / BNT012KTL / BNT013KTL / BNT015KTL / BNT017KTL / BNT020KTL / BNT025KTL",
+    "stringa-trifase-30kw": "BNT030KTL",
+    "stringa-trifase-36-60kw": "BNT036KTL / BNT040KTL / BNT050KTL / BNT060KTL",
+    "stringa-trifase-70-110kw": "BNT070KTL / BNT075KTL / BNT080KTL / BNT090KTL / BNT100KTL / BNT110KTL",
+    "ibrido-monofase-1-3-6kw": "AF3K-SL-1 / AF3.6K-SL-1 / AF3K-SL / AF3.6K-SL",
+    "ibrido-monofase-plus-4-6kw": "AF4K-SLP / AF4.6K-SLP / AF5K-SLP / AF5.5K-SLP / AF6K-SLP",
+    "ibrido-trifase-3-15kw": "AF3K-MTH / AF4K-MTH / AF5K-MTH / AF6K-MTH / AF8K-MTH / AF10K-MTH / AF12K-MTH / AF15K-MTH",
+    "ibrido-trifase-plus-3-12kw": "AF3K-THP / AF4K-THP / AF5K-THP / AF6K-THP / AF8K-THP / AF10K-THP / AF12K-THP",
+    "ibrido-trifase-plus-8-12kw": "AF8K-SLP / AF9K-SLP / AF10K-SLP / AF11K-SLP / AF12K-SLP",
+    "ibrido-trifase-3-30kw": "AF3K-TH ~ AF30K-TH",
+    "ibrido-trifase-36-60kw": "AF36K-TH / AF40K-TH / AF45K-TH / AF50K-TH / AF60K-TH",
+    "bat-hailei-atom-ls-10-15kwh": "ATOM-LS 10.24kWh / ATOM-LS 15.36kWh",
+    atomwb512100: "ATOM-WB512100",
+    "atomwb512100-1": "ATOM-WB512100-1",
+    // Pompa di calore
+    "shenling-r290": "Shenling R290",
+    "shenling-r290-2": "Shenling R290 · Hydro Box",
+    "shenling-r290-all-in-one": "Shenling R290 · All in One",
+    "shenling-r32": "Shenling R32",
+  };
+
   // 推导宏类/子类，并校验 URL 类别是否匹配（防止串类访问）
   const { macro, family } = resolvePath(p);
   if (category !== family) return notFound();
@@ -357,12 +384,12 @@ export default async function ProductPage({ params }: Props) {
       </section>
 
       {/* ev-diamond / stringa-1-3kw / ibrido-monofase-1-3-6kw / ... : Model bar + tab nav 左型号，右三按钮组，顶对齐 */}
-      {(p.id === "ev-diamond" || p.id === "stringa-1-3kw" || p.id === "stringa-3-6kw" || p.id === "stringa-7-10kw" || p.id === "stringa-trifase-3-25kw" || p.id === "stringa-trifase-30kw" || p.id === "stringa-trifase-36-60kw" || p.id === "stringa-trifase-70-110kw" || p.id === "ibrido-monofase-1-3-6kw" || p.id === "ibrido-monofase-plus-4-6kw" || p.id === "ibrido-trifase-3-15kw" || p.id === "ibrido-trifase-plus-3-12kw" || p.id === "ibrido-trifase-plus-8-12kw" || p.id === "ibrido-trifase-3-30kw" || p.id === "ibrido-trifase-36-60kw" || p.id === "bat-hailei-atom-ls-10-15kwh" || p.id === "atomwb512100" || p.id === "atomwb512100-1") && (
+      {MODEL_BAR_LABEL[p.id] && (
         <div className="bg-black">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 py-4">
               <span className="text-sm font-mono text-white shrink-0">
-                {p.id === "ev-diamond" ? "SWG5E-7/32-11/16-22/32" : p.id === "stringa-1-3kw" ? "HNS1000TL-1 / HNS1500TL-1 / HNS2000TL-1 / HNS2500TL-1 / HNS3000TL-1" : p.id === "stringa-3-6kw" ? "HNS3000TL / HNS3600TL / HNS4000TL / HNS5000TL / HNS6000TL" : p.id === "stringa-7-10kw" ? "HNS7000TL / HNS8000TL / HNS9000TL / HNS10000TL" : p.id === "stringa-trifase-3-25kw" ? "BNT003KTL / BNT004KTL / BNT005KTL / BNT006KTL / BNT010KTL / BNT012KTL / BNT013KTL / BNT015KTL / BNT017KTL / BNT020KTL / BNT025KTL" : p.id === "stringa-trifase-30kw" ? "BNT030KTL" : p.id === "stringa-trifase-36-60kw" ? "BNT036KTL / BNT040KTL / BNT050KTL / BNT060KTL" : p.id === "stringa-trifase-70-110kw" ? "BNT070KTL / BNT075KTL / BNT080KTL / BNT090KTL / BNT100KTL / BNT110KTL" : p.id === "ibrido-monofase-plus-4-6kw" ? "AF4K-SLP / AF4.6K-SLP / AF5K-SLP / AF5.5K-SLP / AF6K-SLP" : p.id === "ibrido-trifase-3-15kw" ? "AF3K-MTH / AF4K-MTH / AF5K-MTH / AF6K-MTH / AF8K-MTH / AF10K-MTH / AF12K-MTH / AF15K-MTH" : p.id === "ibrido-trifase-plus-3-12kw" ? "AF3K-THP / AF4K-THP / AF5K-THP / AF6K-THP / AF8K-THP / AF10K-THP / AF12K-THP" : p.id === "ibrido-trifase-plus-8-12kw" ? "AF8K-SLP / AF9K-SLP / AF10K-SLP / AF11K-SLP / AF12K-SLP" : p.id === "ibrido-trifase-3-30kw" ? "AF3K-TH ~ AF30K-TH" : p.id === "ibrido-trifase-36-60kw" ? "AF36K-TH / AF40K-TH / AF45K-TH / AF50K-TH / AF60K-TH" : p.id === "bat-hailei-atom-ls-10-15kwh" ? "ATOM-LS 10.24kWh / ATOM-LS 15.36kWh" : p.id === "atomwb512100" ? "ATOM-WB512100" : p.id === "atomwb512100-1" ? "ATOM-WB512100-1" : "AF3K-SL-1 / AF3.6K-SL-1 / AF3K-SL / AF3.6K-SL"}
+                {MODEL_BAR_LABEL[p.id]}
               </span>
               <nav className="flex flex-wrap gap-6 sm:gap-8 sm:ml-auto shrink-0" aria-label="Sezioni prodotto">
                 <a href="#panoramica" className="text-sm font-medium text-white hover:text-white/80 transition-colors">
@@ -445,6 +472,51 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Pompa di calore: sezione Dati tecnici in stile uniforme (CTA alla Scheda Tecnica) */}
+      {(p.id === "shenling-r290" ||
+        p.id === "shenling-r290-2" ||
+        p.id === "shenling-r290-all-in-one" ||
+        p.id === "shenling-r32") && (
+        <section id="specifiche" className="scroll-mt-24">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">Dati tecnici</h2>
+          <div className="space-y-6">
+            {p.techTableImage && (
+              <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                <div className="min-w-[980px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-6">
+                  <Image
+                    src={p.techTableImage}
+                    alt={`Dati tecnici - ${p.title}`}
+                    width={1800}
+                    height={1100}
+                    className="w-full h-auto object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+              <p className="text-slate-700 leading-relaxed">
+                I dati tecnici completi sono disponibili nella scheda tecnica del prodotto.
+              </p>
+              <div className="mt-5">
+                {p.schedaKey && (
+                  <Button
+                    href={getSchedaPdfUrl(p.schedaKey, p.id, lang as "it" | "en" | "es" | "fr" | "de") ?? "#"}
+                    variant="primary"
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t("prodotti.schedaTecnica")}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ev-diamond: Specifiche section Dati tecnici (flat style) */}
       {p.id === "ev-diamond" && (
