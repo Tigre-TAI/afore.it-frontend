@@ -266,7 +266,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "shenling-r290-2",
-    title: "Pompa di calore Shenling R290",
+    title: "Pompa di calore Shenling R290 con Hydro Box",
     subtitle: "Refrigerante R290 · Variante",
     image: "/products/Heat pump/Shenling R290 2.png",
     categories: [CATS.residenziale, CATS.commerciale, CATS.pompaCalore],
