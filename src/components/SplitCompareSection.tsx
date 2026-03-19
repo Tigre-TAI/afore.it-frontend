@@ -225,12 +225,12 @@ export default function SplitCompareSection({
       >
         {/* Mobile: impilate */}
         <div className="md:hidden">
-          <figure className="relative aspect-[4/3] w-full bg-slate-100">
+          <figure className="relative aspect-video w-full bg-slate-100">
             <Image
               src={leftImageSrc}
               alt={leftAlt ?? `${title} — ${leftCaption}`}
               fill
-              className="object-cover"
+              className="object-contain"
               sizes="100vw"
               unoptimized
             />
@@ -241,12 +241,12 @@ export default function SplitCompareSection({
             ) : null}
           </figure>
           <div className="h-px w-full bg-slate-200" aria-hidden />
-          <figure className="relative aspect-[4/3] w-full bg-slate-100">
+          <figure className="relative aspect-video w-full bg-slate-100">
             <Image
               src={rightImageSrc}
               alt={rightAlt ?? `${title} — ${rightCaption}`}
               fill
-              className="object-cover"
+              className="object-contain"
               sizes="100vw"
               unoptimized
             />
@@ -270,7 +270,7 @@ export default function SplitCompareSection({
           aria-valuetext={`${Math.round(posPct)} percento`}
           onPointerDown={onTrackPointerDown}
           onKeyDown={onKeyDown}
-          className={`relative hidden aspect-[16/10] w-full cursor-ew-resize overflow-hidden bg-slate-100 outline-none ring-slate-900/10 focus-visible:ring-2 focus-visible:ring-offset-2 md:block ${
+          className={`relative hidden aspect-video w-full cursor-ew-resize overflow-hidden bg-slate-100 outline-none ring-slate-900/10 focus-visible:ring-2 focus-visible:ring-offset-2 md:block ${
             isDragging ? "touch-none select-none" : "select-none"
           }`}
           style={{
@@ -282,7 +282,7 @@ export default function SplitCompareSection({
             src={rightImageSrc}
             alt={rightAlt ?? `${title} — ${rightCaption}`}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes={sizes}
             priority={false}
             unoptimized
@@ -303,7 +303,7 @@ export default function SplitCompareSection({
                 src={leftImageSrc}
                 alt={leftAlt ?? `${title} — ${leftCaption}`}
                 fill
-                className="object-cover"
+                className="object-contain"
                 sizes={sizes}
                 priority={false}
                 unoptimized
